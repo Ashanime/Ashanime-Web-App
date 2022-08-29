@@ -1,0 +1,633 @@
+:root {
+    --redor: #FC4747;
+    --whole-page: #10141E;
+    --blue-gray: #5A698F;
+    --navy-blue: #161D2F;
+    --white: #FFF
+}
+
+html {
+    width: 100%;
+}
+
+.screen-width {
+    width: 1440px
+}
+
+.outfit-light {
+    font-family: outfit-light, sans-serif;
+    font-weight: 300;
+}
+
+.outfit-medium{
+font-family: outfit-medium, sans-serif;
+    font-weight: 500;
+}
+
+.page-bg {
+    background-color: var(--whole-page);
+}
+
+.text-concrete {
+    color: #bdc3c7;
+}
+
+.navy-blue {
+    color: var(--navy-blue);
+}
+
+.blue-gray {
+    color: var(--blue-gray);
+}
+
+.login-background {
+    /*style background image*/
+    background-image: url("./assets/login-background.webp");
+    background-size: auto;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+
+}
+
+vds-media {
+    display: inline-block;
+    width: 100%;
+}
+
+/*make login-background responsive for iphone 12*/
+@media only screen and (max-width: 500px) {
+    .login-background {
+        background-size: 200vh 120vh;
+        background-position: right;
+        background-repeat: no-repeat;
+        height: 100vh;
+    }
+}
+
+.category-state svg path{
+    fill: var(--white);
+    transition: fill 0.2s ease 0s;
+}
+
+
+.category:hover svg path, .category:hover {
+    transition: fill 0.2s ease 0s;
+    fill: var(--white);
+}
+
+
+.input{
+    border-bottom:solid 1px var(--whole-page);
+}
+
+.input:focus{
+    border-bottom:solid 1px var(--blue-gray);
+    caret-color: var(--redor);
+}
+
+.video-background {
+    height: 70rem;
+    width: 100%;
+}
+
+.dark-gradiant-video {
+    background: rgb(16, 20, 30,0) linear-gradient(to bottom, rgb(16, 20, 30, 0.1) 10%, rgb(16, 20, 30, 0.3) 40%, rgb(16, 20, 30, 0.5) 80%, rgba(16, 20, 30, 1) 100%) repeat scroll 0 0;
+}
+
+
+
+.dark-gradient-nav {
+background: linear-gradient(to bottom, rgba(0,0,0, 0.8), rgba(0,0,0, 0.001))
+}
+
+
+
+.z-index-99 {
+    z-index: 99;
+}
+
+.z-index-100 {
+    z-index: 100;
+}
+
+.z-index-102{
+    z-index: 102;
+}
+
+.infinite {
+    z-index: 99999999
+}
+
+.sticky-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    z-index: 200;
+}
+
+.z-index-201 {
+    z-index: 201;
+}
+
+
+[data-rsbs-overlay], [data-rsbs-backdrop], [data-rsbs-root]:after {
+    z-index: 201 !important;
+}
+
+.scrolled-nav{
+    background-color: var(--whole-page);
+    transition: background-color 0.5s ease 0s;
+
+}
+
+.large-margin{
+    margin-top: 40rem
+}
+
+.scrollbar::-webkit-scrollbar {
+    -webkit-box-shadow: inset 0 0 6px rgba(0, 0, 0,0);
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+}
+
+/* Handle */
+.scrollbar::-webkit-scrollbar-thumb {
+    -webkit-border-radius: 10px;
+    border-radius: 10px;
+    background: var(--redor);
+    -webkit-box-shadow: inset 0 0 6px var(--redor);
+}
+
+input {
+    background: transparent;
+}
+
+
+.trailer-position {
+position: absolute;
+    top: 75%;
+    height: 100%;
+    width: 76rem
+}
+
+.swiper-height {
+    height: 26rem;
+}
+
+.recent-height {
+    height: 29rem;
+}
+
+.seasonal-box{
+    width: 25rem;
+    display: inline-block;
+    height: 12.5rem;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    border-radius: 10px;
+}
+
+.seasonal-img-box {
+    width: 25rem;
+    height: 12.5rem;
+    border-radius: 10px;
+    overflow: hidden;
+    object-fit: cover;
+}
+
+.standard-box {
+    width: 14rem;
+    display: inline-block;
+    height: 21rem;
+    border-radius: 10px;
+}
+
+.standard-box-continue {
+    display: inline-block;
+    height: 21rem;
+    width: 14rem;
+    border-radius: 10px;
+}
+
+.anime-box {
+    display: inline-block;
+    width: 14rem;
+    height: 21rem;
+    border-radius: 10px;
+    object-fit: fill;
+}
+
+.anime-box-continue {
+    display: inline-block;
+    height: 21rem;
+    width: 14rem;
+    border-radius: 10px;
+    object-fit: fill;
+}
+
+.modal-stream{
+    z-index: 1000;
+}
+
+.z-index-video{
+    z-index:1001;
+}
+
+.behind-video {
+    z-index: 0;
+}
+
+.notification{
+    z-index: 201
+}
+
+.redor-button {
+    background-color: var(--redor);
+}
+
+.text-redor {
+    color: var(--redor);
+}
+
+.modal-width {
+    width: 44rem;
+}
+
+.modal-height {
+height: 25rem;
+}
+
+.modal-container{
+    display: none;
+    position:fixed;
+    top: 50%;
+    left: 50%;
+    z-index: 101;
+    transform: translate(-50%, -50%);
+    width: 80%;
+    height: 80%;
+    justify-content: center;
+    text-align: center;
+    background: rgba(255,255,255,0.9);
+    border-radius: 20px;
+    box-shadow: 20px 15px 20px 0px rgb(255 255 255 / 20%);
+    border-right: 1px solid rgba(255,255,255,0.2);
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+    overflow-y: auto;
+}
+
+/*create a dark gradient from left to right for a banner*/
+.dark-gradient-banner {
+    background: linear-gradient(to right, rgba(0,0,0, 0.8), rgba(0,0,0, 0));
+}
+
+.banner {
+    height: 100%;
+    width: 100%;
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+
+}
+
+.hide-scrollbar ::-webkit-scrollbar {
+    display: none;
+    -ms-overflow-style: none;  /* IE and Edge */
+    scrollbar-width: none;  /* Firefox */
+}
+
+
+
+.skeleton {
+    animation: skeleton-loading 1s infinite alternate;
+}
+
+.skeleton-text {
+    width: 100%;
+    height: 0.5rem;
+    margin-bottom: 0.25rem;
+    border-radius: 0.125rem;
+    animation: skeleton-text 1s infinite alternate;
+}
+
+.skeleton-text :last-child{
+    margin-bottom: 0;
+    width: 80%;
+}
+
+@keyframes skeleton-loading {
+    0% {
+        background-color: hsl(200,20%,70%);
+    }
+    100% {
+        background-color: hsl(200,20%,95%); ;
+    }
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    position: absolute;
+    top: 40%!important;
+    width: 3.5rem!important;
+    height: 3.5rem!important;
+    color: var(--white)!important;
+    background-color: var(--redor)!important;
+    border-radius: 50%;
+}
+
+.swiper-pagination {
+    bottom: 0!important;
+
+}
+
+.swiper-pagination-bullet {
+    width: 0.5rem!important;
+    height: 0.5rem!important;
+    background-color: var(--redor)!important;
+}
+
+.react-modal-sheet-header {
+    background-color: #161D2F;
+    border-radius: 6px 6px 0 0;
+}
+
+
+@media (min-width: 1790px ) {
+    .seasonal-box {
+        width:30rem;
+        height:16rem;
+    }
+
+    .seasonal-img-box {
+        width:30rem;
+        height: 15rem;
+    }
+
+    .recent-height {
+        height: 29rem;
+    }
+
+    .popular-height {
+        height: 29rem;
+    }
+
+    .standard-box-recent {
+        width: 14rem;
+        height: 21rem;
+    }
+
+    .standard-box-continue{
+        width: 20rem;
+        height: 30rem;
+    }
+
+    .continue-height {
+        height: 28rem;
+    }
+
+    .standard-box{
+        width: 20rem;
+        height: 30rem;
+    }
+
+    .anime-box  {
+        /*maintain 2:3 ratio*/
+        width: 20rem;
+        height: 30rem;
+    }
+}
+
+
+@media (max-width: 1789px) {
+    .seasonal-box {
+        width:28rem;
+        height:14rem;
+    }
+
+    .seasonal-img-box {
+        width:28rem;
+        height: 14.7rem;
+    }
+
+    .standard-box-recent {
+        width: 14rem;
+        height: 21rem;
+    }
+
+    .standard-box-continue{
+        width: 11.2rem;
+        height: 16rem;
+    }
+
+    .recent-height {
+        height: 29rem;
+    }
+
+    .popular-height {
+        height: 29rem;
+    }
+}
+
+
+@media ( max-width: 1280px) {
+    /*reduce screen width to 1024*/
+
+    .seasonal-box {
+        width:18rem;
+        height: 9rem;
+    }
+
+    .seasonal-img-box {
+        width:18rem;
+        height: 9rem;
+    }
+
+    .standard-box-recent {
+        width: 11rem;
+        height: 16.5rem;
+    }
+
+    .standard-box-continue{
+        width: 11.2rem;
+        height: 16rem;
+    }
+
+    .recent-height {
+        height: 25rem;
+    }
+
+    .continue-height {
+        height: 22rem;
+    }
+
+    .popular-height {
+        height: 24rem;
+    }
+
+    .standard-box{
+        width: 11rem;
+        height: 16.5rem;
+    }
+
+    .anime-box  {
+        /*maintain 2:3 ratio*/
+        width: 11rem;
+        height: 16.5rem;
+    }
+}
+
+
+@media ( max-width: 800px) {
+
+    .large-margin{
+        margin-top: 6rem
+    }
+
+    .hero-absolute {
+        position:absolute;
+        bottom: 2rem;
+        left: 2rem;
+        margin: 0 1rem 0 0.3rem;
+    }
+
+    .standard-box{
+        width: 8rem;
+        height: 12rem;
+    }
+
+    .anime-box  {
+        width: 8rem;
+        height: 12rem;
+    }
+
+    .recent-height {
+        height: 20rem;
+    }
+
+    .continue-height {
+        height: 20rem;
+    }
+
+    .standard-box-continue{
+        width: 15rem;
+        height: 22.5rem;
+    }
+
+    .swiper-pagination {
+        bottom: 0!important;
+        visibility: hidden;
+    }
+
+    .seasonal-box {
+        width:22rem;
+        height: 14rem;
+    }
+
+    .seasonal-img-box {
+        width:22rem;
+        height: 12rem;
+    }
+
+    @media (max-width: 500px) {
+
+        .margin-fix {
+            margin-left: 31rem;
+        }
+
+        .hero-absolute {
+            position:absolute;
+            bottom: 2rem;
+            left: 2rem;
+            margin: 0 1rem 0 0.3rem;
+        }
+
+        .dark-gradient-banner {
+            background: linear-gradient(rgba(0,0,0, 0.5), rgba(0,0,0, 0.5));
+        }
+
+        .seasonal-box {
+            width:11rem;
+            height: 8rem;
+        }
+
+        .seasonal-img-box {
+            width:11rem;
+            height:6rem;
+        }
+
+        .scrollbar::-webkit-scrollbar {
+            display: none;
+        }
+
+        .discover-modal-width {
+            width: 50rem;
+        }
+
+        .standard-box {
+            height: 15rem;
+            width: 10rem;
+        }
+
+        .standard-box-continue{
+            height: 10rem;
+            width: 7rem
+        }
+        .standard-box-recent {
+            width: 10rem;
+            height: 11rem;
+        }
+
+        .continue-height{
+            height: 13rem;
+        }
+
+        .recent-height {
+            height: 16rem;
+        }
+
+        .popular-height {
+            height: 17rem;
+        }
+
+
+        .anime-box {
+            width: 10rem;
+            height: 15rem;
+        }
+
+        .modal-height {
+            height: 14rem;
+            width: 25rem;
+        }
+
+        .large-margin{
+            margin-top: 5rem;
+        }
+
+        .swiper-button-prev,
+        .swiper-button-next {
+            visibility: hidden;
+            position: absolute;
+            top: 45%!important;
+            width: 3rem!important;
+            height: 3rem!important;
+            color: var(--white)!important;
+            background-color: var(--redor)!important;
+            border-radius: 50%;
+        }
+
+        .swiper-pagination {
+            bottom: 0!important;
+            visibility: hidden;
+        }
+
+    }
+
+
+
+}
+
+

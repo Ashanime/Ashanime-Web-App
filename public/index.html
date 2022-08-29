@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <link rel="icon" href='../src/assets/logo-icon.png' />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="theme-color" content="#000000" />
+    <meta
+      name="Ashanime"
+      content="Tons O'Anime, Tons O'Fun"
+    />
+    <link rel="apple-touch-icon" href="../src/assets/logo-icon.png" />
+    <link rel="apple-touch-icon" sizes="192x192" href="./manifest-icon-192.maskable.png" />
+    <link rel="apple-touch-icon" sizes="512x512" href="./manifest-icon-512.maskable.png" />
+    <!-- apple splash screen   -->
+    <!-- iPhone X (1125px x 2436px) -->
+    <link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 812px) and (-webkit-device-pixel-ratio: 3)" href="/logo-long.png">
+    <!-- iPhone 8, 7, 6s, 6 (750px x 1334px) -->
+    <link rel="apple-touch-startup-image" media="(device-width: 375px) and (device-height: 667px) and (-webkit-device-pixel-ratio: 2)" href="/logo-long.png">
+    <!-- iPhone 8 Plus, 7 Plus, 6s Plus, 6 Plus (1242px x 2208px) -->
+    <link rel="apple-touch-startup-image" media="(device-width: 414px) and (device-height: 736px) and (-webkit-device-pixel-ratio: 3)" href="/logo-long.png">
+    <!-- iPhone 5 (640px x 1136px) -->
+    <link rel="apple-touch-startup-image" media="(device-width: 320px) and (device-height: 568px) and (-webkit-device-pixel-ratio: 2)" href="/logo-long.png">
+    <!-- iPad Mini, Air (1536px x 2048px) -->
+    <link rel="apple-touch-startup-image" media="(device-width: 768px) and (device-height: 1024px) and (-webkit-device-pixel-ratio: 2)" href="/logo-long.png">
+    <!-- iPad Pro 10.5" (1668px x 2224px) -->
+    <link rel="apple-touch-startup-image" media="(device-width: 834px) and (device-height: 1112px) and (-webkit-device-pixel-ratio: 2)" href="/logo-long.png">
+    <!-- iPad Pro 12.9" (2048px x 2732px) -->
+    <link rel="apple-touch-startup-image" media="(device-width: 1024px) and (device-height: 1366px) and (-webkit-device-pixel-ratio: 2)" href="/logo-long.png">
+
+    <link rel="manifest" href="/manifest.json" />
+    <script async src="https://cdn.jsdelivr.net/npm/pwacompat" crossorigin="anonymous"></script>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="../src/index.css" />
+    <link rel="stylesheet" href="../src/stylesheet.css" />
+
+    <!-- Default theme. ~960B -->
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@vime/core@^5/themes/default.css"
+    />
+
+    <!-- Optional light theme (extends default). ~400B -->
+    <link
+            rel="stylesheet"
+            href="https://cdn.jsdelivr.net/npm/@vime/core@^5/themes/light.css"
+    />
+
+    <!-- Library and all of its components are lazy loaded, so nothing to sweat about here. ~3kB -->
+    <script
+            type="module"
+            src="https://cdn.jsdelivr.net/npm/@vime/core@^5/dist/vime/vime.esm.js"
+    ></script>
+
+
+
+
+    <title>Ashanime</title>
+    <script src="https://accounts.google.com/gsi/client" async defer></script>
+  </head>
+  <body class="page-bg">
+  <script>
+    if('serviceWorker' in navigator) {
+      navigator.serviceWorker.register('./service-worker.js')
+      .then(function() {
+        console.log('Service Worker Registered');
+      }).catch(function(err) {
+        console.log(err);
+      });
+    }
+  </script>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
+    <!-- Production -->
+    <div id="root"></div>
+  </body>
+</html>

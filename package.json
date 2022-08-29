@@ -1,0 +1,77 @@
+{
+  "name": "anime-flix",
+  "version": "0.1.0",
+  "private": true,
+  "dependencies": {
+    "@headlessui/react": "^1.6.4",
+    "@heroicons/react": "^1.0.6",
+    "@reduxjs/toolkit": "^1.8.2",
+    "@tailwindcss/forms": "^0.5.2",
+    "@testing-library/jest-dom": "^5.16.4",
+    "@testing-library/react": "^13.3.0",
+    "@testing-library/user-event": "^13.5.0",
+    "@types/jest": "^27.5.2",
+    "@types/node": "^16.11.38",
+    "@types/react": "^18.0.10",
+    "@types/react-dom": "^18.0.5",
+    "@vime/react": "^5.3.1",
+    "axios": "^0.27.2",
+    "buffer": "^6.0.3",
+    "cmdk": "^0.1.16",
+    "firebase": "^9.9.0",
+    "formik": "^2.2.9",
+    "framer-motion": "^6.3.11",
+    "gapi-script": "^1.2.0",
+    "jwt-decode": "^3.1.2",
+    "lit": "^2.2.8",
+    "prettier": "^2.7.1",
+    "react": "^18.1.0",
+    "react-content-loader": "^6.2.0",
+    "react-dom": "^18.1.0",
+    "react-modal-sheet": "^1.5.2",
+    "react-redux": "^8.0.2",
+    "react-router": "^6.3.0",
+    "react-router-dom": "^6.3.0",
+    "react-scripts": "5.0.1",
+    "react-spinners": "^0.13.3",
+    "react-spring-bottom-sheet": "^3.5.0-alpha.0",
+    "react-youtube-background": "^1.0.0",
+    "redux-thunk": "^2.4.1",
+    "swiper": "^8.3.0",
+    "typescript": "^4.7.2",
+    "uid": "^2.0.0",
+    "usehooks-ts": "^2.5.4",
+    "uuid": "^8.3.2",
+    "web-vitals": "^2.1.4",
+    "webpack-visualizer-plugin": "^0.1.11"
+  },
+  "scripts": {
+    "start": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
+  "devDependencies": {
+    "autoprefixer": "^10.4.7",
+    "postcss": "^8.4.14",
+    "tailwindcss": "^3.0.24"
+  }
+}
