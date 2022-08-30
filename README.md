@@ -60,6 +60,33 @@
   </a>
 </p>
 
+<h2> App Features </h2>
+
+### Popular, trending, and recently released Animes
+
+  Stay up to date with the latest anime trends and be informed about what to watch next with what's trending and popular!
+
+### Top Anime List
+
+Ever thought to yourself "I can't find any good anime's to watch. If only I can ask someone". Well! Worry no more! The top anime list will put you right    on track and enlighten you with the knowledge of what your fellow anime enjoyers are busy having a blast watching! If you still can't find something      that sratches that itch, the next feature below will be just what you need.
+
+### Advanced search and filter with genres
+
+Use the advanced search and genre combo selector to filter away all the the animes you're not interested in and hone down on the exact niche you're looking for. Don't feel like watching comedy animes that are still airing and instead want to watch a quick 24 epsisode dramatic action anime in one spiffing sitting? No problem. Just select the drama and action genres, select the "complete" status filter, sort the list in anyway you like, and explore the glorious works of renowned anime studios.
+
+### Watch based recommended Animes
+
+Finished a splendiferous anime and now you're sad that there are no more episodes and wish that you could find a similar anime? No worries! Right under the Synopsis beneath the video player, a beautiful recommended list of animes awaits you.
+
+### Watch list (bookmarking animes)
+
+Have a long list of animes that you wish to watch? Awesome! Once you click on anime of interest, just press the "Add to Watchlist" button and your anime will be stored in your personal watchlist. Access the watchlist via the top navigation bar.
+
+### User account synchronization
+
+Here at Ashanime, we use firebase to sync your information to the cloud. Log in from anywhere and find your watchlist, shows watched and last episodes watched all available to you via the cloud.
+
+
 
 ## Local Deployment
 
