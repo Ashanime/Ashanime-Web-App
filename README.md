@@ -90,6 +90,26 @@ Here at Ashanime, we use firebase to sync your information to the cloud. Log in 
 
 ## Local Deployment
 
+
+### Firebase Installation
+
+To use Ashanime with firebase, create a firebaseConfig.js file in Ashanime-Web-App/src/firebase and insert your firebase config details therein.
+Be sure to create an export const with the name "firebaseConfig".
+See example below:
+```ts
+export const firebaseConfig = {
+  apiKey: "sjhHDJsh82hJHdh3jHJDHJQk4398",
+  authDomain: "yourdomain.firebaseapp.com",
+  databaseURL:
+    "https://jgjfhg453EHQHT.asia-east1.firebasedatabase.app",
+  projectId: "your project id",
+  storageBucket: "projectid.appspot.com",
+  messagingSenderId: "333747474747477",
+  appId: "yourappid",
+  measurementId: "R-FKJHSJW",
+};
+```
+
 You need to have `nodejs` and `git` installed on your pc for the upcoming steps.
 
 First download the repository using
@@ -109,24 +129,6 @@ npm start
 
 This will start the app on http://localhost:3000
 
-### Firebase Installation
-
-To use Ashanime with firebase, create a firebaseConfig.js file in Ashanime-App/src/firebase and insert your firebase config details therein.
-Be sure to create an export const with the name "firebaseConfig".
-See example below:
-```ts
-export const firebaseConfig = {
-  apiKey: "sjhHDJsh82hJHdh3jHJDHJQk4398",
-  authDomain: "yourdomain.firebaseapp.com",
-  databaseURL:
-    "https://jgjfhg453EHQHT.asia-east1.firebasedatabase.app",
-  projectId: "your project id",
-  storageBucket: "projectid.appspot.com",
-  messagingSenderId: "333747474747477",
-  appId: "yourappid",
-  measurementId: "R-FKJHSJW",
-};
-```
 
 ## Aknowledgements
  <a href="https://github.com/consumet/consumet.ts/">
