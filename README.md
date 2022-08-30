@@ -149,7 +149,7 @@ You can contact the developers of Ashanime via [email](mailto:help.ashanime@gmai
 </a>
 
 ## Contributors ✨
-Thanks to the following people for making taking this app to new heights.
+Thanks to the following people for taking this app to new heights.
 
 [![](https://avatars.githubusercontent.com/u/96653465?s=50)](https://github.com/ahmedalashhab) [![](https://avatars.githubusercontent.com/u/5903821?s=50)](https://github.com/smashah)
 
