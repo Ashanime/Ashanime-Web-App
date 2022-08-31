@@ -74,7 +74,7 @@ Ever thought to yourself "I can't find any good anime's to watch. If only I can 
 
 Use the advanced search and genre combo selector to filter away all the the animes you're not interested in and hone down on the exact niche you're looking for. Don't feel like watching comedy animes that are still airing and instead want to watch a quick 24 epsisode dramatic action anime in one spiffing sitting? No problem. Just select the drama and action genres, select the "complete" status filter, sort the list in anyway you like, and explore the glorious works of renowned anime studios.
 
-### Watch based recommended Animes
+### Watch-based recommended Animes
 
 Finished a splendiferous anime and now you're sad that there are no more episodes and wish that you could find a similar anime? No worries! Right under the Synopsis beneath the video player, a beautiful recommended list of animes awaits you.
 
