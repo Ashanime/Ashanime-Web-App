@@ -31,7 +31,6 @@ const initialState: initialStateInterface = {
   },
   genres: [],
   submit: false,
-  // current year
   year: null,
   status: {
     name: "",

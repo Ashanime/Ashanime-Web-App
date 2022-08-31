@@ -1,4 +1,4 @@
-import { Fragment, useCallback } from "react";
+import { Fragment } from "react";
 import { Disclosure, Menu, Transition } from "@headlessui/react";
 import { SearchIcon } from "@heroicons/react/solid";
 import { BellIcon, MenuIcon, XIcon } from "@heroicons/react/outline";
@@ -25,7 +25,6 @@ import LogoutButton from "../Login/google/LogoutButton";
 import axios from "axios";
 import Random from "../Random/Random";
 import { setFormat, setStatus } from "../../redux/filter-slice";
-import InstallApp from "./Install-App";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -206,7 +205,6 @@ export default function MobileNav({ paginate }: props) {
                 </div>
                 <div className="hidden lg:block lg:ml-6">
                   <div className="flex space-x-4">
-                    {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
                     <Link
                       onClick={handleClickAll}
                       to={"/"}
@@ -261,7 +259,6 @@ export default function MobileNav({ paginate }: props) {
                         className="w-full pl-10 pr-3 py-2 border border-transparent rounded-md leading-5 bg-gray-700 text-gray-300 placeholder-gray-400 focus:outline-none focus:bg-white focus:border-white focus:ring-white focus:text-gray-900 sm:text-sm"
                         placeholder="Search for anime"
                         type="search"
-                        // ref={(input) => input && input.focus()}
                         onChange={(e) => {
                           dispatch(setSearchQuery(e.target.value));
                           // sets the page to 1 when searching something new
@@ -354,7 +351,6 @@ export default function MobileNav({ paginate }: props) {
           >
             <Disclosure.Panel className="lg:hidden ">
               <div className="px-2 pt-2 pb-3 space-y-1">
-                {/* Current: "bg-gray-900 text-white", Default: "text-gray-300 hover:bg-gray-700 hover:text-white" */}
                 <Disclosure.Button
                   as="div"
                   className="text-gray-300 block px-3 py-2 rounded-md text-center font-medium"

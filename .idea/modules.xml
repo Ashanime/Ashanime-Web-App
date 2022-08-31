@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/.idea/Ashanime-Web-App.iml" filepath="$PROJECT_DIR$/.idea/Ashanime-Web-App.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/anime-flix.iml" filepath="$PROJECT_DIR$/.idea/anime-flix.iml" />
     </modules>
   </component>
 </project>

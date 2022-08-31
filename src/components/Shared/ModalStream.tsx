@@ -62,7 +62,7 @@ export default function ModalStream({
   };
 
   useEffect(() => {
-    if (modalId) {
+    if (modalId && toggle) {
       const getData = async () => {
         await getAnimeDetails(modalId);
       };
@@ -112,23 +112,25 @@ export default function ModalStream({
 
   // get bookmarks from firebase
   useEffect(() => {
-    onValue(
-      ref(db, `users/${uid}/bookmarks`),
-      (snapshot: { val: () => any }) => {
-        const data = snapshot.val();
-        if (data !== null) {
-          dispatch(setBookmarks(data));
+    if (toggle) {
+      onValue(
+        ref(db, `users/${uid}/bookmarks`),
+        (snapshot: { val: () => any }) => {
+          const data = snapshot.val();
+          if (data !== null) {
+            dispatch(setBookmarks(data));
+          }
         }
-      }
-    );
-  }, [dispatch, uid]);
+      );
+    }
+  }, [dispatch, uid, toggle]);
 
   // check if items are in bookmarks and set
   useEffect(() => {
-    if (bookmarks.length > 0) {
+    if (bookmarks.length > 0 && toggle) {
       localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
     }
-  }, [bookmarks]);
+  }, [bookmarks, toggle]);
 
   const addToBookmarks = () => {
     dispatch(setBookmarks([...bookmarks, modalData]));

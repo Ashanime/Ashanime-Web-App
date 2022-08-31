@@ -1,4 +1,4 @@
-import React, { useEffect, useCallback, useState } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import {
   animeSearch,
@@ -26,7 +26,7 @@ const SearchBar = () => {
   const currentPage = useSelector(
     (state: RootState) => state.anime.currentPage
   );
-  const { format, type, sort, genres, submit, year, status } = useSelector(
+  const { format, sort, genres, year, status } = useSelector(
     (state: RootState) => state.filter
   );
 
@@ -119,7 +119,6 @@ const SearchBar = () => {
                 type="text"
                 placeholder="Search titles, movies, shows"
                 id="search-bar"
-                // ref={(input) => input && input.focus()}
                 onChange={(e) => {
                   dispatch(setSearchQuery(e.target.value));
                   // sets the page to 1 when searching something new

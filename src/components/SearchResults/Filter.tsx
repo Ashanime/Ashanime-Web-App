@@ -41,7 +41,8 @@ const Filter = () => {
   // screen width
   const width = window.innerWidth;
   const isMobile = width < 768;
-  const isDesktop = width >= 768;
+  const isTablet = width >= 768 && width <= 1024;
+  const isDesktop = width > 1024;
 
   const getSearch = async () => {
     const convertedGenres = `[${genres.map((genre: any) => `"${genre}"`)}]`;
@@ -50,7 +51,7 @@ const Filter = () => {
         params: {
           ...(searchQueryView && { query: searchQueryView }),
           page: currentPage,
-          perPage: isMobile ? 26 : 25,
+          perPage: isMobile ? 26 : isTablet ? 24 : 25,
           ...(format.value && { format: format.value }),
           type: "ANIME",
           ...([...genres].length > 0 && { genres: convertedGenres }),

@@ -55,7 +55,7 @@ export default function SheetStream({ setToggle, toggle, modalId }: props) {
   };
 
   useEffect(() => {
-    if (modalId) {
+    if (modalId && toggle) {
       const getData = async () => {
         await getAnimeDetails(modalId);
       };
@@ -65,23 +65,25 @@ export default function SheetStream({ setToggle, toggle, modalId }: props) {
 
   // get bookmarks from firebase
   useEffect(() => {
-    onValue(
-      ref(db, `users/${uid}/bookmarks`),
-      (snapshot: { val: () => any }) => {
-        const data = snapshot.val();
-        if (data !== null) {
-          dispatch(setBookmarks(data));
+    if (toggle) {
+      onValue(
+        ref(db, `users/${uid}/bookmarks`),
+        (snapshot: { val: () => any }) => {
+          const data = snapshot.val();
+          if (data !== null) {
+            dispatch(setBookmarks(data));
+          }
         }
-      }
-    );
-  }, [dispatch, uid]);
+      );
+    }
+  }, [dispatch, uid, toggle]);
 
   // check if items are in bookmarks and set
   useEffect(() => {
-    if (bookmarks.length > 0) {
+    if (bookmarks.length > 0 && toggle) {
       localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
     }
-  }, [bookmarks]);
+  }, [bookmarks, toggle]);
 
   function onDismiss() {
     setToggle(false);

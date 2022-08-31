@@ -16,7 +16,7 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
-export default function EpisodeDropdown(modalToggle: any, dub: boolean) {
+export default function EpisodeDropdown(modalToggle: any) {
   const dispatch = useAppDispatch();
   const streamId = useSelector((state: RootState) => state.anime.streamId);
   const episodesList = useSelector(
@@ -59,10 +59,6 @@ export default function EpisodeDropdown(modalToggle: any, dub: boolean) {
   };
 
   const lastEpisode = episodesList[episodesList.length - 1];
-
-  const cleanSelected =
-    // extract the episode number from the selected episode. It is the last number in the string
-    selected.match(/\d+$/g) && selected.match(/\d+$/g)[0];
 
   const cleanStreamId = () => {
     // extract the episode number from the selected episode. It is the last number in the string

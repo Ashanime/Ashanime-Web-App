@@ -12,7 +12,6 @@ import SheetStream from "../Shared/SheetStream";
 import { animeSearch, setSearchQueryView } from "../../redux/search-slice";
 
 const Bookmarks = () => {
-  // const [modalData, setModalData] = useState<anime>(initialDataState);
   const [modalId, setModalId] = useState<number>(0);
   const [modal, setModal] = useState(false);
   const [sheet, setSheet] = useState(false);

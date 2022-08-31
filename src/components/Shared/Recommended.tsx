@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../redux/store";
 
@@ -9,11 +9,11 @@ import {
   searchLoadingAction,
   setCurrentPage,
   setModalData,
-  setPageLoadingAction,
   setSearchQuery,
   setSearchQueryView,
 } from "../../redux/search-slice";
 import axios from "axios";
+import { imageResize } from "./reUsableFunctions";
 
 interface props {
   getAnimeDetails?: (id: number) => void;
@@ -114,7 +114,6 @@ const Recommended = ({ getAnimeDetails, setModalId, data, local }: props) => {
           modules={[Navigation, Pagination, Scrollbar, A11y]}
           slidesPerView={itemCount()}
           spaceBetween={spaceBetween()}
-          // navigation={true}
           pagination={{ clickable: true }}
           scrollbar={{ draggable: true }}
           loop={true}
@@ -131,7 +130,7 @@ const Recommended = ({ getAnimeDetails, setModalId, data, local }: props) => {
                   >
                     <img
                       alt={`thumbnail of ${title}`}
-                      src={anime.image}
+                      src={imageResize(anime.image)}
                       className="skeleton h-full mr-1 inline-block lg:w-[8rem] lg:h-[12rem] xl:w-[10rem] xl:h-[15rem] 2xl:w-[13rem] 2xl:h-[19.5rem] rounded-xl hover:scale-105 hover:shadow-2xl overflow-visible transition-all duration-300 ease-in-out"
                       onClick={() =>
                         handleOnClick(anime.id, anime.title.romaji)

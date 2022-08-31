@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import { useAppDispatch } from "../../redux/store";
-import { setStatus, setYear } from "../../redux/filter-slice";
+import { setStatus } from "../../redux/filter-slice";
 import { useSelector } from "react-redux";
 
 function classNames(...classes: string[]) {

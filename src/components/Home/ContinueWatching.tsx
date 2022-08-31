@@ -14,6 +14,7 @@ import useWindowResize from "../../hooks/useWindowResize";
 import { ref, set } from "firebase/database";
 import { db } from "../../firebase/Firebase";
 import { streamDataState } from "../../types/initialDataState";
+import { imageResize } from "../Shared/reUsableFunctions";
 
 const ContinueWatching = () => {
   const [modal, setModal] = useState(false);
@@ -120,7 +121,7 @@ const ContinueWatching = () => {
                     </div>
                     <img
                       alt={`thumbnail of ${anime.title.romaji}`}
-                      src={anime.image}
+                      src={imageResize(anime.image)}
                       className="skeleton h-full standard-box-recent rounded-xl hover:scale-105 hover:shadow-2xl overflow-visible transition-all duration-300 ease-in-out"
                       onClick={() => handleOnClick(true, anime)}
                     />

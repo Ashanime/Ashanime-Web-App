@@ -7,12 +7,7 @@ import {
   useAppDispatch,
 } from "../../redux/store";
 import AnimeGridStream from "../Shared/AnimeGridStream";
-import {
-  animeSearch,
-  setCurrentPage,
-  setModalData,
-  setSearchQueryView,
-} from "../../redux/search-slice";
+import { setCurrentPage, setModalData } from "../../redux/search-slice";
 import ModalStream from "../Shared/ModalStream";
 import MobileNav from "../Shared/MobileNav";
 import SheetStream from "../Shared/SheetStream";
@@ -48,8 +43,6 @@ const SearchResults = () => {
     //scroll to top
     window.scrollTo(0, 0);
     return () => {
-      // dispatch(animeSearch([]));
-      // dispatch(setSearchQueryView(""));
       dispatch(setFormat({ value: "", name: "" }));
       dispatch(setSort({ value: "", name: "" }));
       dispatch(setGenres([]));

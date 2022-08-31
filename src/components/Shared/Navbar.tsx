@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 //@ts-ignore
 import logo from "../../assets/logo-long.png";
-import { setType, setAiring, setSearchQuery } from "../../redux/search-slice";
+import { setSearchQuery } from "../../redux/search-slice";
 import { useAppDispatch } from "../../redux/store";
 import { useNavigate } from "react-router";
 import { useSelector } from "react-redux";

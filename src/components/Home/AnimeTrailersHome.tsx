@@ -74,6 +74,18 @@ const AnimeTrailersHome = () => {
     }
   };
 
+  const handleImage = (anime: any) => {
+    if (winWidth <= 500) {
+      return anime.trailer.images.small_image_url;
+    }
+    if (winWidth > 500 && winWidth <= 1024) {
+      return anime.trailer.images.medium_image_url;
+    }
+    if (winWidth > 1024) {
+      return anime.trailer.images.large_image_url;
+    }
+  };
+
   return (
     <div className="z-10 lg:ml-0 lg:mb-6 ">
       <h3 className=" 2xl:ml-5 xl:ml-5 lg:ml-6 outfit-light text-orange-300 text-[32px] relative mb-4">
@@ -95,7 +107,7 @@ const AnimeTrailersHome = () => {
                   <div className="seasonal-box rounded-xl">
                     <img
                       alt={`thumbnail of ${anime.title}`}
-                      src={anime.trailer.images.large_image_url}
+                      src={handleImage(anime)}
                       className="rounded-xl seasonal-img-box mb-2 mt-1 cursor-pointer hover:scale-105 overflow-visible transition-all duration-300 ease-in-out"
                       onClick={() => handleModal(true, anime)}
                     />

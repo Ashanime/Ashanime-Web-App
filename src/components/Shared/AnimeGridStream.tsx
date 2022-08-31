@@ -2,6 +2,7 @@ import { motion } from "framer-motion";
 import React from "react";
 import { streamModal, streamSearch } from "../../types/type";
 import useWindowResize from "../../hooks/useWindowResize";
+import { gridImageResize } from "./reUsableFunctions";
 
 interface props {
   animeList?: streamSearch[] | streamModal[];
@@ -47,7 +48,7 @@ const AnimeGrid = ({
             <div className="standard-box cursor-pointer">
               <img
                 alt={`thumbnail of ${anime.title.romaji}`}
-                src={anime.image}
+                src={gridImageResize(anime.image)}
                 className="skeleton anime-box hover:scale-105 hover:shadow-2xl overflow-visible transition-all duration-300 ease-in-out"
                 data-tippy-content={<span>{anime.title.romaji}</span>}
               />

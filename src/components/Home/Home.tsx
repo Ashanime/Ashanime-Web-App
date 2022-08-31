@@ -12,17 +12,12 @@ import { RootState, useAppDispatch } from "../../redux/store";
 import { setContinueWatching } from "../../redux/videoState-slice";
 import { onValue, ref } from "firebase/database";
 import { db } from "../../firebase/Firebase";
-import useWindowResize from "../../hooks/useWindowResize";
 import { motion } from "framer-motion";
 import Hero from "./Hero";
 import { Popular } from "./Popular";
-import {
-  animeSearch,
-  setBookmarks,
-  setSearchQueryView,
-} from "../../redux/search-slice";
+import { animeSearch, setSearchQueryView } from "../../redux/search-slice";
 
-const Home = () => {
+export const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
 
   const navigate = useNavigate();
@@ -74,7 +69,7 @@ const Home = () => {
           <Navbar paginate={(pageNumber: number) => paginate(pageNumber)} />
           <MobileNav paginate={(pageNumber: number) => paginate(pageNumber)} />
           <Hero />
-          <AnimeTrailersHome />
+          {window.innerWidth > 768 && <AnimeTrailersHome />}
           <RecentReleases />
           {continueWatching.length > 0 && <ContinueWatching />}
           <Popular />

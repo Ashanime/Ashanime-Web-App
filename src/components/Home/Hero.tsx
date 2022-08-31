@@ -76,7 +76,7 @@ const Hero = () => {
 
   return (
     <div className="z-10 lg:ml-0 lg:mb-6 ">
-      <div className="whitespace-nowrap lg:h-[30rem] h-[23rem] overflow-y-hidden lg:px-5 flex items-center justify-center">
+      <div className="whitespace-nowrap lg:h-[30rem] h-[20rem] overflow-y-hidden lg:px-5 flex items-center justify-center">
         {trending && (
           <Swiper
             className="lg:ml-0 flex h-full"

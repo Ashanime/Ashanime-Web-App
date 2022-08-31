@@ -9,6 +9,7 @@ import useWindowResize from "../../hooks/useWindowResize";
 import ModalStream from "../Shared/ModalStream";
 import { setModalData } from "../../redux/search-slice";
 import SheetStream from "../Shared/SheetStream";
+import { imageResize } from "../Shared/reUsableFunctions";
 
 export const Popular = () => {
   const [popular, setPopular] = useState<any>([]);
@@ -101,7 +102,6 @@ export const Popular = () => {
           modules={[Navigation, Pagination, Scrollbar, A11y]}
           slidesPerView={itemCount()}
           spaceBetween={spaceBetween()}
-          // navigation={true}
           pagination={{ clickable: true }}
           scrollbar={{ draggable: true }}
           loop={true}
@@ -115,7 +115,6 @@ export const Popular = () => {
               totalEpisodes: number;
               rating: string;
               id: number;
-              // eslint-disable-next-line array-callback-return
             }) => {
               // only include animeTitle if it does not have special characters
               const title = anime.title.romaji.replace(/[^a-zA-Z0-9 ]/g, ` `);
@@ -131,7 +130,7 @@ export const Popular = () => {
                     >
                       <img
                         alt={`thumbnail of ${title}`}
-                        src={anime.image}
+                        src={imageResize(anime.image)}
                         className="skeleton h-full standard-box-recent rounded-xl hover:scale-105 hover:shadow-2xl overflow-visible transition-all duration-300 ease-in-out"
                         onClick={() => handleClick(anime.id)}
                       />

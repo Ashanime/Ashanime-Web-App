@@ -10,6 +10,7 @@ import useWindowResize from "../../hooks/useWindowResize";
 import ModalStream from "../Shared/ModalStream";
 import SheetStream from "../Shared/SheetStream";
 import { streamModal } from "../../types/type";
+import { imageResize } from "../Shared/reUsableFunctions";
 
 export const RecentReleases = () => {
   const [animeBelt, setAnimeBelt] = useState<any>([]);
@@ -131,7 +132,7 @@ export const RecentReleases = () => {
                     >
                       <img
                         alt={`thumbnail of ${anime.title.romaji}`}
-                        src={anime.image}
+                        src={imageResize(anime.image)}
                         className="skeleton h-full standard-box-recent rounded-xl hover:scale-105 hover:shadow-2xl overflow-visible transition-all duration-300 ease-in-out"
                         onClick={() => {
                           handleClick(anime.id);

@@ -4,7 +4,6 @@ import {
   Player,
   Hls,
   Video,
-  Poster,
   SettingsControl,
   Controls,
   DefaultUi,
@@ -35,7 +34,6 @@ import {
   setVideoLink,
 } from "../../redux/videoState-slice";
 import useWindowResize from "../../hooks/useWindowResize";
-import LocalModalStream from "../Home/LocalModalStream";
 
 interface props {
   animeStatus?: string;
