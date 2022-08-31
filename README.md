@@ -157,4 +157,4 @@ Thanks to the following people for taking this app to new heights.
 Licensed under [AG](./LICENSE).
 
 ## Sponsor this project
-[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](buymeacoffee.com/ahmedalashhab)
+[!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/ahmedalashhab)
