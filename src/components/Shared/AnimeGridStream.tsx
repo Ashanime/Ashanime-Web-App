@@ -2,7 +2,7 @@ import { motion } from "framer-motion";
 import React from "react";
 import { streamModal, streamSearch } from "../../types/type";
 import useWindowResize from "../../hooks/useWindowResize";
-import { gridImageResize } from "./reUsableFunctions";
+import { gridImageResize } from "../../reUsableFunctions";
 
 interface props {
   animeList?: streamSearch[] | streamModal[];

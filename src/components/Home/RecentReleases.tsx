@@ -10,7 +10,7 @@ import useWindowResize from "../../hooks/useWindowResize";
 import ModalStream from "../Shared/ModalStream";
 import SheetStream from "../Shared/SheetStream";
 import { streamModal } from "../../types/type";
-import { imageResize } from "../Shared/reUsableFunctions";
+import { imageResize } from "../../reUsableFunctions";
 
 export const RecentReleases = () => {
   const [animeBelt, setAnimeBelt] = useState<any>([]);

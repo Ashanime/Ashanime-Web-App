@@ -33,7 +33,6 @@ export default function EpisodeDropdown(modalToggle: any) {
 
   // fetch savedEpisodes from firebase
   useEffect(() => {
-    dispatch(fetchUserDataById(uid));
     dispatch(watchViewOpened(modalData));
     setSelected(savedEpisode);
   }, [modalToggle, streamId, episodesList]);

@@ -51,10 +51,16 @@ const Login = () => {
           <div className=" mb-6 mt-6">
             <img className="lg:h-16 h-12" src={logo} alt="logo" />
           </div>
-
+          <h2 className="text-white outfit-medium lg:text-[28px] text-[24px] lg:mb-6 mb-6 flex flex-col items-center">
+            Stream Anime
+            <p className="text-redor outfit-medium lg:text-[28px] text-[24px]">
+              &nbsp;No Ads
+            </p>
+          </h2>
           <h3 className="text-white outfit-medium lg:text-[32px] text-[24px] lg:mb-6 mb-6">
             Login
           </h3>
+
           {/*username and password fields*/}
           <form className="space-y-6 w-full px-6" action="#" method="POST">
             <div>

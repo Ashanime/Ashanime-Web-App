@@ -13,7 +13,7 @@ import {
   setSearchQueryView,
 } from "../../redux/search-slice";
 import axios from "axios";
-import { imageResize } from "./reUsableFunctions";
+import { imageResize } from "../../reUsableFunctions";
 
 interface props {
   getAnimeDetails?: (id: number) => void;

@@ -216,7 +216,7 @@ export default function ModalStream({
                         {modalData.status}
                       </span>
                     </div>
-                    <div className="flex flex-col justify-center">
+                    <div className="flex flex-col justify-center md:items-center lg:items-start">
                       <div className="flex mt-2 gap-4 justify-center lg:justify-start lg:px-8 px-4">
                         {/*  drop down list for episodes*/}
                         <EpisodeDropdown dub={dub} />
@@ -240,7 +240,7 @@ export default function ModalStream({
                             ? removeFromBookmarks
                             : addToBookmarks
                         }
-                        className="w-24 lg:w-52 lg:py-2 ml-8 mt-2 text-[10px]  lg:text-[16px] py-0 inline-flex justify-center items-center rounded-md border border-transparent shadow-sm lg:px-2 px-4 py-2 redor-button outfit-medium text-white hover:bg-red-600 transition-all ease-linear duration-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500  sm:w-auto sm:text-sm"
+                        className="w-40 lg:w-52 md:py-2 lg:ml-8 mt-2 text-[10px]  md:text-[16px] py-0 inline-flex justify-center items-center rounded-md border border-transparent shadow-sm lg:px-2 px-4 py-2 redor-button outfit-medium text-white hover:bg-red-600 transition-all ease-linear duration-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500 "
                       >
                         {/*check if item is in bookmarks*/}
                         {bookmarks.find(

@@ -14,7 +14,7 @@ import useWindowResize from "../../hooks/useWindowResize";
 import { ref, set } from "firebase/database";
 import { db } from "../../firebase/Firebase";
 import { streamDataState } from "../../types/initialDataState";
-import { imageResize } from "../Shared/reUsableFunctions";
+import { imageResize } from "../../reUsableFunctions";
 
 const ContinueWatching = () => {
   const [modal, setModal] = useState(false);
