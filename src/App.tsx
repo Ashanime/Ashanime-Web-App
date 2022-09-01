@@ -9,12 +9,22 @@ import Notification from "./components/Shared/Notification";
 import ForgotPassword from "./components/Login/ForgotPassword";
 import { fetchUserDataById, RootState, useAppDispatch } from "./redux/store";
 import { useSelector } from "react-redux";
+import { onValue, ref } from "firebase/database";
+import { db } from "./firebase/Firebase";
+import { setBookmarks } from "./redux/search-slice";
 
 function App() {
   const dispatch = useAppDispatch();
 
   const uid = useSelector((state: any) => state.google.profileObject?.uid);
   dispatch(fetchUserDataById(uid));
+
+  onValue(ref(db, `users/${uid}/bookmarks`), (snapshot: { val: () => any }) => {
+    const data = snapshot.val();
+    if (data !== null) {
+      dispatch(setBookmarks(data));
+    }
+  });
 
   const notificationReducer = useSelector(
     (state: RootState) => state.notification
