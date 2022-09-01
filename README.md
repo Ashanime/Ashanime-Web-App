@@ -88,7 +88,7 @@ Here at Ashanime, we use firebase to sync your information to the cloud. Log in 
 
 ### PWA compliant
 
-Tired of repeatedly opening the browser and searching for Ashanime every single time you feel like Bing Chilling? No worries fam. Be it on Android, iOS, MacOS, or PC, simply download the PWA from your chrome browser and install Ashanime right on your device! You'll receieve updates automatically whenever you open you app.
+Tired of repeatedly opening the browser and searching for Ashanime every single time you feel like Bing Chilling? No worries fam. Be it on Android, iOS, MacOS, or PC, simply download the PWA from your chrome browser and install Ashanime right on your device! You'll receieve updates automatically whenever you open your app.
 
 
 ## Local Deployment
