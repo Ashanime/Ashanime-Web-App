@@ -9,7 +9,7 @@ import useWindowResize from "../../hooks/useWindowResize";
 import ModalStream from "../Shared/ModalStream";
 import { setModalData } from "../../redux/search-slice";
 import SheetStream from "../Shared/SheetStream";
-import { imageResize } from "../../reUsableFunctions";
+import { imageResize } from "../Shared/reUsableFunctions";
 
 export const Popular = () => {
   const [popular, setPopular] = useState<any>([]);

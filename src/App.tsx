@@ -10,8 +10,8 @@ import ForgotPassword from "./components/Login/ForgotPassword";
 import { fetchUserDataById, RootState, useAppDispatch } from "./redux/store";
 import { useSelector } from "react-redux";
 import { onValue, ref } from "firebase/database";
-import { db } from "./firebase/Firebase";
 import { setBookmarks } from "./redux/search-slice";
+import { db } from "./firebase/Firebase";
 
 function App() {
   const dispatch = useAppDispatch();

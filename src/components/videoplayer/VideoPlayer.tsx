@@ -41,6 +41,7 @@ interface props {
 
 const VideoPlayer = (props: props) => {
   const [loading, setLoading] = useState(false);
+  const [hidden, setHidden] = useState(false);
 
   const dispatch = useDispatch();
 
@@ -73,7 +74,6 @@ const VideoPlayer = (props: props) => {
   useEffect(() => {
     // focus on videoplayer by default
     if (videoplayer.current) {
-      console.log("focus");
       videoplayer.current.focus();
 
       // prevent default actions
@@ -108,7 +108,7 @@ const VideoPlayer = (props: props) => {
         }
       });
     }
-  }, [videoplayer, winWidth, modalData]);
+  }, [videoplayer, winWidth, modalData, videoLink, loading]);
 
   const onTimeUpdate = (event: CustomEvent<number>) => {
     dispatch(setSavedCurrentTime(event.detail));
@@ -135,6 +135,7 @@ const VideoPlayer = (props: props) => {
         return;
       });
   };
+
 
   useEffect(() => {
     const getData = async () => {
@@ -175,6 +176,7 @@ const VideoPlayer = (props: props) => {
               currentTime={currentTime}
               onVmCurrentTimeChange={onTimeUpdate}
               ref={videoplayer}
+              tabIndex={0}
             >
               {videoLink && videoLink.includes("m3u8") ? (
                 <Hls version="latest" config={hlsConfig}>
@@ -187,7 +189,13 @@ const VideoPlayer = (props: props) => {
               )}
               <DefaultUi noControls>
                 {/*Center Controls for play/pause and changing episode */}
-                <Controls align="center" pin="center" justify="space-evenly">
+                <Controls
+                  align="center"
+                  pin="center"
+                  justify="space-evenly"
+                  hideOnMouseLeave={true}
+                  activeDuration={1000}
+                >
                   <Control
                     onClick={() =>
                       dispatch(setSavedCurrentTime(currentTime - 15))
@@ -199,7 +207,7 @@ const VideoPlayer = (props: props) => {
                     <Tooltip>Rewind 15 seconds</Tooltip>
                   </Control>
 
-                  <PlaybackControl hideTooltip keys="k/ " />
+                  <PlaybackControl hideTooltip keys="k/" />
 
                   <Control
                     onClick={() =>
@@ -219,14 +227,18 @@ const VideoPlayer = (props: props) => {
                 <Scrim gradient="up" />
 
                 {isMobile() && (
-                  <Controls pin="topLeft">
+                  <Controls activeDuration={1000} pin="topLeft">
                     <ControlSpacer />
                     <VolumeControl />
                     <SettingsControl />
                   </Controls>
                 )}
 
-                <Controls pin="bottomLeft" direction={"column"}>
+                <Controls
+                  pin="bottomLeft"
+                  direction={"column"}
+                  activeDuration={1000}
+                >
                   <ControlGroup>
                     <ScrubberControl />
                   </ControlGroup>

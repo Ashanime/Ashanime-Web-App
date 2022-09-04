@@ -3,7 +3,8 @@
     --whole-page: #10141E;
     --blue-gray: #5A698F;
     --navy-blue: #161D2F;
-    --white: #FFF
+    --white: #FFF;
+    --vm-slider-track-height: 10px;
 }
 
 html {
@@ -352,6 +353,15 @@ height: 25rem;
 .react-modal-sheet-header {
     background-color: #161D2F;
     border-radius: 6px 6px 0 0;
+}
+
+vm-player {
+    --vm-slider-track-height: 0.5rem!important;
+    --vm-slider-track-focused-height: 0.5rem!important;
+    --vm-slider-value-color: var(--redor)!important;
+    --vm-slider-thumb-bg: var(--redor)!important;
+    --vm-slider-thumb-height: 1.2rem!important;
+    --vm-slider-thumb-width: 1.2rem!important;
 }
 
 
