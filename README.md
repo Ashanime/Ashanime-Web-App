@@ -1,4 +1,5 @@
 <p align="center"><img src="https://i.ibb.co/LSpM063/Asset-4.png" width="175"/></p>
+<p align="center"> Ashanime - Watch Ad-free Anime<p/>
 
 <p align="center">  Ashanime is an Ad free responsive web application built with the intention of providing a pleasent anime viewing experience. <p/>
 
