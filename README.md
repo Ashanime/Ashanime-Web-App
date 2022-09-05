@@ -3,6 +3,8 @@
 
 <p align="center">  Ashanime is an Ad free responsive web application built with the intention of providing a pleasent anime viewing experience. <p/>
 
+<p align="center"> Watch anime ad free through a beautiful UI. Don't forget to 🌟 this repo for updates! <p/>
+
 <p align="center">
   <a href="https://github.com/Ashanime/Ashanime-Web-App">
       <img src="https://img.shields.io/github/stars/Ashanime/Ashanime-Web-App" alt="Github Stars">
