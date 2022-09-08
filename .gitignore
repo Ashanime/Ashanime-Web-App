@@ -8,6 +8,9 @@
 # firebase config
 /firebase/firebaseConfig.js
 
+#/readme
+/README.md
+
 # testing
 /coverage
 

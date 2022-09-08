@@ -33,7 +33,7 @@ export interface recommended {
   image: string;
   episodes: number;
   malId: number;
-  score: number;
+  rating: number;
   status: string;
 }
 
@@ -66,6 +66,7 @@ export interface streamModal {
   };
   recommendations: [
     {
+      rating: number;
       title: {
         romaji: string;
         english: string;
@@ -77,7 +78,6 @@ export interface streamModal {
       id: number;
       image: string;
       malId: number;
-      score: number;
       status: string;
     }
   ];
@@ -90,7 +90,6 @@ export interface streamModal {
       image: string;
       malId: number;
       relationType: string;
-      score: number;
       status: string;
       title: {
         romaji: string;

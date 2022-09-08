@@ -9,13 +9,21 @@ import { motion } from "framer-motion";
 import ModalStream from "../Shared/ModalStream";
 import AnimeGridStream from "../Shared/AnimeGridStream";
 import SheetStream from "../Shared/SheetStream";
-import { animeSearch, setSearchQueryView } from "../../redux/search-slice";
+import {
+  animeSearch,
+  setBookmarks,
+  setSearchQueryView,
+} from "../../redux/search-slice";
+import { onValue, ref } from "firebase/database";
+import { db } from "../../firebase/Firebase";
 
 const Bookmarks = () => {
   const [modalId, setModalId] = useState<number>(0);
   const [modal, setModal] = useState(false);
   const [sheet, setSheet] = useState(false);
   const [currentPage, setCurrentPage] = useState(1);
+
+  const uid = useSelector((state: any) => state.google.profileObject?.uid);
 
   const dispatch = useAppDispatch();
 
@@ -25,6 +33,18 @@ const Bookmarks = () => {
     dispatch(animeSearch([]));
     dispatch(setSearchQueryView(""));
   }, []);
+
+  useEffect(() => {
+    onValue(
+      ref(db, `users/${uid}/bookmarks`),
+      (snapshot: { val: () => any }) => {
+        const data = snapshot.val();
+        if (data !== null) {
+          dispatch(setBookmarks(data));
+        }
+      }
+    );
+  }, [dispatch, uid]);
 
   const bookmarks = useSelector((state: RootState) => state.anime.bookmarks);
 

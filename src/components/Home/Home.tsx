@@ -15,7 +15,11 @@ import { db } from "../../firebase/Firebase";
 import { motion } from "framer-motion";
 import Hero from "./Hero";
 import { Popular } from "./Popular";
-import { animeSearch, setSearchQueryView } from "../../redux/search-slice";
+import {
+  animeSearch,
+  setBookmarks,
+  setSearchQueryView,
+} from "../../redux/search-slice";
 
 export const Home = () => {
   const [currentPage, setCurrentPage] = useState(1);
@@ -24,6 +28,9 @@ export const Home = () => {
   const userSignedIn = typeof localStorage.getItem("user") === "string";
   const continueWatching = useSelector(
     (state: RootState) => state.videoState.continueWatching
+  );
+  const recentReleasesLength = useSelector(
+    (state: RootState) => state.anime.recentReleasesLength
   );
   const dispatch = useAppDispatch();
   const uid = useSelector((state: any) => state.google.profileObject?.uid);
@@ -51,6 +58,18 @@ export const Home = () => {
   }, [dispatch, uid]);
 
   useEffect(() => {
+    onValue(
+      ref(db, `users/${uid}/bookmarks`),
+      (snapshot: { val: () => any }) => {
+        const data = snapshot.val();
+        if (data !== null) {
+          dispatch(setBookmarks(data));
+        }
+      }
+    );
+  }, [dispatch, uid]);
+
+  useEffect(() => {
     !userSignedIn && navigate("/login");
     window.scrollTo(0, 0);
   }, [navigate, userSignedIn]);
@@ -70,7 +89,7 @@ export const Home = () => {
           <MobileNav paginate={(pageNumber: number) => paginate(pageNumber)} />
           <Hero />
           {window.innerWidth > 768 && <AnimeTrailersHome />}
-          <RecentReleases />
+          {recentReleasesLength > 0 && <RecentReleases />}
           {continueWatching.length > 0 && <ContinueWatching />}
           <Popular />
           <TopAnime

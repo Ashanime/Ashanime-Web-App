@@ -32,13 +32,19 @@ const Recommended = ({ getAnimeDetails, setModalId, data, local }: props) => {
   const dispatch = useAppDispatch();
 
   const itemCount = () => {
+    if (recommendations.length) {
+    }
+
     if (winWidth <= 500) {
       return 3;
     }
     if (winWidth > 500 && winWidth <= 800) {
       return 3;
     }
-    if (winWidth > 800) {
+    if (winWidth > 800 && recommendations.length < 5) {
+      return recommendations.length;
+    }
+    if (winWidth > 800 && recommendations.length >= 5) {
       return 5;
     }
   };
@@ -139,7 +145,7 @@ const Recommended = ({ getAnimeDetails, setModalId, data, local }: props) => {
                   </div>
                   <div className="flex flex-col justify-center items-center mx-4">
                     <p className="outfit-medium  mt-2 lg:mx-0 text-white hover:text-redor transition-all ease-in-out lg:text-[12px] text-[12px] cursor-pointer text-center">
-                      Score: {anime.score}
+                      Score: {anime.rating}
                     </p>
                     <h3 className="h-14 lg:h-12 overflow-clip outfit-medium  lg:mx-0 mt-1 text-white hover:text-redor transition-all ease-in-out lg:text-[16px] text-[12px] cursor-pointer text-center">
                       {title}

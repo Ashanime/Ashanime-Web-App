@@ -92,7 +92,7 @@ export const Popular = () => {
   };
 
   return (
-    <div className="z-10 lg:-ml-2 lg:mt-0 ">
+    <div className="z-10 lg:-ml-2 lg:mt-0 lg:mt-6 ">
       <h3 className="outfit-light text-orange-300 text-[32px] 2xl:ml-8 xl:ml-2 lg:ml-6 relative">
         Popular Anime
       </h3>

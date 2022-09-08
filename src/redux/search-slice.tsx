@@ -18,6 +18,8 @@ interface initialStateInterface {
   stream: any;
   streamId: string;
   episodeSelected: boolean;
+  // below is length of recent releases
+  recentReleasesLength: number;
 }
 
 const initialState: initialStateInterface = {
@@ -38,6 +40,7 @@ const initialState: initialStateInterface = {
   stream: {},
   streamId: "",
   episodeSelected: false,
+  recentReleasesLength: 0,
 };
 
 export const animeSlice = createSlice({
@@ -90,6 +93,9 @@ export const animeSlice = createSlice({
     setEpisodeSelected: (state, action: PayloadAction<boolean>) => {
       state.episodeSelected = action.payload;
     },
+    setRecentReleasesLength: (state, action: PayloadAction<number>) => {
+      state.recentReleasesLength = action.payload;
+    },
   },
 });
 
@@ -110,6 +116,7 @@ export const {
   setStream,
   setStreamId,
   setEpisodeSelected,
+  setRecentReleasesLength,
 } = animeSlice.actions;
 
 export default animeSlice.reducer;

@@ -136,6 +136,7 @@ const VideoPlayer = (props: props) => {
       });
   };
 
+  // if the user taps his phone screen, toggle hidden on the videoplayer
 
   useEffect(() => {
     const getData = async () => {
