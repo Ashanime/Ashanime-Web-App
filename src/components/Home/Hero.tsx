@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination, Keyboard, Mousewheel } from "swiper";
+import { Pagination } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 // @ts-ignore
@@ -17,7 +16,7 @@ import { useAppDispatch } from "../../redux/store";
 import ModalStream from "../Shared/ModalStream";
 import SheetStream from "../Shared/SheetStream";
 import useWindowResize from "../../hooks/useWindowResize";
-import { Player, Youtube } from "@vime/react";
+import { animeApi } from "../../backend/anime_api";
 
 const Hero = () => {
   const [trending, setTrending] = useState<any[]>([]);
@@ -28,15 +27,13 @@ const Hero = () => {
   const dispatch = useAppDispatch();
 
   const getTrending = async () => {
-    return await axios
-      .get(`https://consumet-api.herokuapp.com/meta/anilist/trending`)
-      .then((response) => {
-        const data = response.data.results;
-        setTrending(data);
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    try {
+      const data = await animeApi.getTrending()
+      setTrending(data.results);
+      return data;
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   //get win-width
@@ -82,140 +79,116 @@ const Hero = () => {
           <Swiper
             className="lg:ml-0 flex h-full"
             slidesPerView={1}
-            modules={[Pagination, Keyboard, Mousewheel]}
+            modules={[Pagination]}
             loop={true}
             pagination={{ clickable: true }}
-            keyboard={{ enabled: true }}
-            mousewheel={{ forceToAxis: true }}
           >
             {trending.map((anime) => {
               if (anime.cover.includes("banner")) {
                 return (
                   <SwiperSlide key={anime.id}>
-                    {({ isActive }: any) => (
-                      <div className="rounded-xl  lg:h-[28rem] h-[20rem] w-full flex justify-center relative">
-                        <div className="relative z-20 w-full flex justify-start items-start">
-                          <div className="flex flex-col gap-4 lg:ml-10 lg:mt-4 mx-8 mt-4">
-                            <h2 className="text-white text-left lg:w-full w-[1rem] outfit-medium lg:text-[48px] text-[28px] -mb-2 whitespace-nowrap">
-                              {(isLargeDesktop &&
-                                shortTitle(anime.title.romaji, 51)) ||
-                                (isDesktop &&
-                                  shortTitle(anime.title.romaji, 35)) ||
-                                (isTablet &&
-                                  shortTitle(anime.title.romaji, 25)) ||
-                                (isMobile &&
-                                  shortTitle(anime.title.romaji, 20))}
-                            </h2>
-                            <div className="flex flex-col">
-                              <div className="flex gap-4">
-                                <p
-                                  className="text-white flex items-center justify-center outfit-light lg:text-[16px]
+                    <div className="rounded-xl  lg:h-[28rem] h-[20rem] w-full flex justify-center relative">
+                      <div className="relative z-20 w-full flex justify-start items-start">
+                        <div className="flex flex-col gap-4 lg:ml-10 lg:mt-4 mx-8 mt-4">
+                          <h2 className="text-white text-left lg:w-full w-[1rem] outfit-medium lg:text-[48px] text-[28px] -mb-2 whitespace-nowrap">
+                            {(isLargeDesktop &&
+                              shortTitle(anime.title.romaji, 51)) ||
+                              (isDesktop &&
+                                shortTitle(anime.title.romaji, 35)) ||
+                              (isTablet &&
+                                shortTitle(anime.title.romaji, 25)) ||
+                              (isMobile && shortTitle(anime.title.romaji, 20))}
+                          </h2>
+                          <div className="flex flex-col">
+                            <div className="flex gap-4">
+                              <p
+                                className="text-white flex items-center justify-center outfit-light lg:text-[16px]
                             text-[14px]"
-                                >
-                                  <img
-                                    alt="TV show"
-                                    src={play}
-                                    className="h-4"
-                                  />
-                                  {anime.type}
-                                </p>
-                                <p
-                                  className="ml-4 flex items-center justify-center text-white outfit-light lg:text-[16px]
+                              >
+                                <img alt="TV show" src={play} className="h-4" />
+                                {anime.type}
+                              </p>
+                              <p
+                                className="ml-4 flex items-center justify-center text-white outfit-light lg:text-[16px]
                             text-[14px]"
-                                >
-                                  <img
-                                    alt="total episodes"
-                                    src={episodes}
-                                    className="h-4"
-                                  />
-                                  {anime.totalEpisodes} Episodes
-                                </p>
-                                <p
-                                  className="text-white flex items-center justify-center outfit-light lg:text-[16px]
-                            text-[14px]"
-                                >
-                                  <img
-                                    alt="average episode duration"
-                                    src={time}
-                                    className="h-4"
-                                  />
-                                  {anime.duration} mins
-                                </p>
-                                <p
-                                  className="text-white flex items-center justify-center outfit-light lg:text-[16px]
-                            text-[14px]"
-                                >
-                                  <img
-                                    alt="airing date"
-                                    src={calender}
-                                    className="h-4"
-                                  />
-                                  {anime.releaseDate}
-                                </p>
-                              </div>
-                            </div>
-                            {/*add the anime description within the container*/}
-                            <div
-                              /*place div at the bottom left of container*/
-
-                              className="hero-absolute"
-                            >
-                              <div className="flex flex-col hide-scrollbar">
-                                <p className="text-white overflow-y-scroll xl:h-[13rem] lg:h-[13rem] md:h-[8rem] md:w-1/2 lg:mb-4 text-left outfit-medium lg:text-[14px] text-[12px] whitespace-pre-line">
-                                  {isLargeDesktop &&
-                                    !anime.trailer.id &&
-                                    cleanHTML(anime.description, 700)}
-                                  {isDesktop &&
-                                    cleanHTML(anime.description, 600)}
-                                  {isTablet &&
-                                    cleanHTML(anime.description, 350)}
-                                  {isMobile &&
-                                    cleanHTML(anime.description, 100)}
-                                </p>
-                              </div>
-
-                              <button
-                                className="flex gap-2 mt-2 items-center justify-center bg-redor w-44 h-12 rounded-xl
-                          hover:brightness-150 transition-all ease-in-out duration-200"
-                                onClick={() => handleClick(anime.id)}
                               >
                                 <img
-                                  src={play}
-                                  className="h-8"
-                                  alt="play-button"
+                                  alt="total episodes"
+                                  src={episodes}
+                                  className="h-4"
                                 />
-                                <p className="outfit-medium text-white text-[20px]">
-                                  Watch Now
-                                </p>
-                              </button>
+                                {anime.totalEpisodes} Episodes
+                              </p>
+                              <p
+                                className="text-white flex items-center justify-center outfit-light lg:text-[16px]
+                            text-[14px]"
+                              >
+                                <img
+                                  alt="average episode duration"
+                                  src={time}
+                                  className="h-4"
+                                />
+                                {anime.duration} mins
+                              </p>
+                              <p
+                                className="text-white flex items-center justify-center outfit-light lg:text-[16px]
+                            text-[14px]"
+                              >
+                                <img
+                                  alt="airing date"
+                                  src={calender}
+                                  className="h-4"
+                                />
+                                {anime.releaseDate}
+                              </p>
                             </div>
                           </div>
-                        </div>
-                        <div className="absolute z-10 w-full h-full overflow-hidden">
-                          <div className="dark-gradient-banner rounded-xl absolute w-full h-full overflow-hidden" />
-                          {anime.trailer.id && isActive && !isMobile ? (
-                            <div className="rounded-xl z-0">
-                              <Player loop autoplay muted>
-                                {/*only play video if on screen*/}
-                                <Youtube
-                                  videoId={`${anime.trailer.id}?modestbranding=1&rel=0&iv_load_policy=3`}
-                                />
-                              </Player>
+                          {/*add the anime description within the container*/}
+                          <div
+                            /*place div at the bottom left of container*/
+
+                            className="hero-absolute"
+                          >
+                            <div className="flex flex-col hide-scrollbar">
+                              <p className="text-white overflow-y-scroll xl:h-[13rem] lg:h-[13rem] md:h-[8rem] md:w-1/2 lg:mb-4 text-left outfit-medium lg:text-[14px] text-[12px] whitespace-pre-line">
+                                {isLargeDesktop &&
+                                  cleanHTML(anime.description, 700)}
+                                {isDesktop && cleanHTML(anime.description, 600)}
+                                {isTablet && cleanHTML(anime.description, 350)}
+                                {isMobile && cleanHTML(anime.description, 100)}
+                              </p>
                             </div>
-                          ) : (
-                            <div
-                              style={{
-                                backgroundImage: `url(${anime.cover})`,
-                              }}
-                              className="rounded-xl w-full h-full bg-no-repeat bg-cover bg-center "
+
+                            <button
+                              className="flex gap-2 mt-2 items-center justify-center bg-redor w-44 h-12 rounded-xl
+                          hover:brightness-150 transition-all ease-in-out duration-200"
+                              onClick={() => handleClick(anime.id)}
                             >
-                              {/*There has to be something in the div for Swiper to work correctly :(*/}
-                              <div className="opacity-0">.</div>
-                            </div>
-                          )}
+                              <img
+                                src={play}
+                                className="h-8"
+                                alt="play-button"
+                              />
+                              <p className="outfit-medium text-white text-[20px]">
+                                Watch Now
+                              </p>
+                            </button>
+                          </div>
                         </div>
                       </div>
-                    )}
+                      <div className="absolute z-10 w-full h-full">
+                        <div className="dark-gradient-banner rounded-xl absolute w-full h-full" />
+                        <div
+                          style={{
+                            backgroundImage: `url(${anime.cover})`,
+                          }}
+                          className="rounded-xl w-full h-full bg-no-repeat bg-cover bg-center "
+                        >
+                          {/*There has to be something in the div for Swiper to work correctly :(*/}
+                          <div className="opacity-0">.</div>
+                        </div>
+                      </div>
+                    </div>
                   </SwiperSlide>
                 );
               }

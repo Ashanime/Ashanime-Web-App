@@ -89,7 +89,7 @@ export const Home = () => {
           <MobileNav paginate={(pageNumber: number) => paginate(pageNumber)} />
           <Hero />
           {window.innerWidth > 768 && <AnimeTrailersHome />}
-          {recentReleasesLength > 0 && <RecentReleases />}
+          <RecentReleases />
           {continueWatching.length > 0 && <ContinueWatching />}
           <Popular />
           <TopAnime

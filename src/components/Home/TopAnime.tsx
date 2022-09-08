@@ -5,9 +5,7 @@ import { useSelector } from "react-redux";
 
 import Pagination from "../Shared/Pagination";
 import {
-  animeSearch,
-  setHasNextPage,
-  setLastPage,
+  fetchTopAnimes,
   setModalData,
 } from "../../redux/search-slice";
 import ToggleAiring from "./ToggleAiring";
@@ -15,6 +13,7 @@ import { setUser } from "../../redux/google-slice";
 import AnimeGridStream from "../Shared/AnimeGridStream";
 import ModalStream from "../Shared/ModalStream";
 import SheetStream from "../Shared/SheetStream";
+import { animeApi, AnimeApi } from "../../backend/anime_api";
 
 interface props {
   currentPage: number;
@@ -44,32 +43,10 @@ const TopAnime = ({ currentPage, paginate }: props) => {
     return window.innerWidth < 768;
   };
 
-  const getTopAnime = async () => {
-    return await axios
-      .get(`https://consumet-api.herokuapp.com/meta/anilist/advanced-search`, {
-        params: {
-          page: currentPage,
-          perPage: isMobile() ? 26 : 25,
-          sort: '["SCORE_DESC"]',
-          ...(format.value && { format: format.value }),
-          ...(status.value && { status: status.value }),
-        },
-      })
-      .then((response) => {
-        const data = response.data.results;
-        dispatch(animeSearch(data));
-        dispatch(setHasNextPage(response.data.hasNextPage));
-        dispatch(setLastPage(response.data.totalPages));
-      })
-      .catch(() => {
-        return;
-      });
-  };
-
   useEffect(() => {
     // wait 0.5 seconds before getting top anime
     setTimeout(() => {
-      getTopAnime();
+      dispatch(fetchTopAnimes(isMobile()));
     }, 600);
     dispatch(setUser(JSON.parse(localStorage.getItem("user") as string)));
   }, [format, status, currentPage]);
