@@ -128,7 +128,7 @@ const Comments = () => {
           )}
         </div>
       ) : (
-        <div className="bg-whole-page h-[30rem]"></div>
+        <div className="bg-whole-page h-4"></div>
       )}
     </section>
   );

@@ -62,9 +62,10 @@ const SearchBar = () => {
   const handleSubmit = (e?: React.FormEvent<HTMLFormElement>) => {
     e?.preventDefault();
     // searchQueryView is used to store what the user is searching for without filling the search input bar
-    dispatch(setSearchQueryView(searchQuery));
-    dispatch(searchLoadingAction(true));
-
+    if (searchQuery !== "") {
+      dispatch(setSearchQueryView(searchQuery));
+      dispatch(searchLoadingAction(true));
+    }
     getSearch().then(() => {
       dispatch(searchLoadingAction(false));
       if (searchResults.length === 0 && setCurrentPage) {

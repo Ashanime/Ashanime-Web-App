@@ -56,7 +56,13 @@ export default function LocalModalStream({
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <div className="fixed inset-0 bg-black bg-opacity-75 transition-opacity" />
+          <div className="fixed inset-0 bg-black bg-opacity-75 transition-opacity">
+            <img
+              alt={data.title.romaji}
+              src={data.cover}
+              className="w-screen h-screen object-cover blur-md opacity-50"
+            />
+          </div>
         </Transition.Child>
 
         <div className="fixed modal-stream inset-0 overflow-y-auto">

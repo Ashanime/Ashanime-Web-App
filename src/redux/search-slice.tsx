@@ -23,19 +23,30 @@ interface initialStateInterface {
   recentReleasesLength: number;
 }
 
-export const fetchTopAnimes = createAsyncThunk("anime/fetchTopAnimes", async (isMobile: boolean, thunkApi) => {
-  const state = thunkApi.getState() as any;
-  const data = await animeApi.advancedSearch({
-    page: state.anime.currentPage,
-    perPage: isMobile ? 26 : 25,
-    sort: '["SCORE_DESC"]',
-    ...(state?.filter?.format?.value && { format: state?.filter?.format?.value }),
-    ...(state?.filter?.status?.value && { status: state?.filter?.status?.value }),
-  });
-  thunkApi.dispatch(animeSearch(data.results))
-  thunkApi.dispatch(setHasNextPage(data.hasNextPage));
-  thunkApi.dispatch(setLastPage(data.totalPages));
-})
+const isMobile = () => {
+  return window.innerWidth < 768;
+};
+
+export const fetchTopAnimes = createAsyncThunk(
+  "anime/fetchTopAnimes",
+  async (currentPage: number, thunkApi) => {
+    const state = thunkApi.getState() as any;
+    const data = await animeApi.advancedSearch({
+      page: currentPage,
+      perPage: isMobile() ? 26 : 25,
+      sort: '["SCORE_DESC"]',
+      ...(state?.filter?.format?.value && {
+        format: state?.filter?.format?.value,
+      }),
+      ...(state?.filter?.status?.value && {
+        status: state?.filter?.status?.value,
+      }),
+    });
+    thunkApi.dispatch(animeSearch(data.results));
+    thunkApi.dispatch(setHasNextPage(data.hasNextPage));
+    thunkApi.dispatch(setLastPage(data.totalPages));
+  }
+);
 
 const initialState: initialStateInterface = {
   searchResults: [],

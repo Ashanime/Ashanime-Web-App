@@ -1,19 +1,14 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
 import { RootState, useAppDispatch } from "../../redux/store";
 import { useSelector } from "react-redux";
 
 import Pagination from "../Shared/Pagination";
-import {
-  fetchTopAnimes,
-  setModalData,
-} from "../../redux/search-slice";
+import { fetchTopAnimes, setModalData } from "../../redux/search-slice";
 import ToggleAiring from "./ToggleAiring";
 import { setUser } from "../../redux/google-slice";
 import AnimeGridStream from "../Shared/AnimeGridStream";
 import ModalStream from "../Shared/ModalStream";
 import SheetStream from "../Shared/SheetStream";
-import { animeApi, AnimeApi } from "../../backend/anime_api";
 
 interface props {
   currentPage: number;
@@ -46,7 +41,7 @@ const TopAnime = ({ currentPage, paginate }: props) => {
   useEffect(() => {
     // wait 0.5 seconds before getting top anime
     setTimeout(() => {
-      dispatch(fetchTopAnimes(isMobile()));
+      dispatch(fetchTopAnimes(currentPage));
     }, 600);
     dispatch(setUser(JSON.parse(localStorage.getItem("user") as string)));
   }, [format, status, currentPage]);

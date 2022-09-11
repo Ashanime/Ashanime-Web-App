@@ -16,7 +16,7 @@ interface props {
   elementCount?: number;
 }
 
-const Pagination = ({ currentPage, paginate, elementCount }: props) => {
+const Pagination = ({ currentPage, paginate }: props) => {
   const [pageRange, setPageRange] = useState<number[]>([
     1, 2, 3, 4, 5, 6, 7, 8, 9, 10,
   ]);
