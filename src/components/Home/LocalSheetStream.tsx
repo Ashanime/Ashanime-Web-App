@@ -29,7 +29,9 @@ export default function LocalSheetStream({
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(setModalData(data));
+ if (data.title.romaji !== "") {
+      dispatch(setModalData(data));
+    }
   }, [toggle]);
 
   function onDismiss() {
