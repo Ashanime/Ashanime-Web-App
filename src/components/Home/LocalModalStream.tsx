@@ -30,7 +30,9 @@ export default function LocalModalStream({
   const dispatch = useAppDispatch();
 
   useEffect(() => {
-    dispatch(setModalData(data));
+    if (data.title.romaji !== "") {
+      dispatch(setModalData(data));
+    }
   }, [toggle]);
 
   const handleOnClose = () => {
