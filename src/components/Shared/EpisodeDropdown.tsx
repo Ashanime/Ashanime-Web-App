@@ -61,7 +61,7 @@ export default function EpisodeDropdown(modalToggle: any) {
 
   const cleanStreamId = () => {
     // extract the episode number from the selected episode. It is the last number in the string
-    return selected.match(/\d+$/g) && selected.match(/\d+$/g)[0];
+    return selected.length > 1 && selected.match(/\d+$/g)[0];
   };
 
   return (
