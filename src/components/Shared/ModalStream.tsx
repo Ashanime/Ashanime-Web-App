@@ -45,7 +45,7 @@ export default function ModalStream({
     dispatch(setVideoLink(""));
     setLoading(true);
     await axios
-      .get(`https://consumet-api.herokuapp.com/meta/anilist/info/${modalId}`, {
+      .get(`https://api.consumet.org/meta/anilist/info/${modalId}`, {
         params: {
           dub: dub,
         },

@@ -39,7 +39,7 @@ export default function SheetStream({ setToggle, toggle, modalId }: props) {
   const getAnimeDetails = async (modalId: number) => {
     setLoading(true);
     await axios
-      .get(`https://consumet-api.herokuapp.com/meta/anilist/info/${modalId}`, {
+      .get(`https://api.consumet.org/meta/anilist/info/${modalId}`, {
         params: {
           dub: dub,
         },

@@ -122,7 +122,7 @@ const VideoPlayer = (props: props) => {
   const getEpisodeStream = async () => {
     setLoading(true);
     await axios
-      .get(`https://consumet-api.herokuapp.com/meta/anilist/watch/${streamId}`)
+      .get(`https://api.consumet.org/meta/anilist/watch/${streamId}`)
       .then((response) => {
         const { data } = response;
         dispatch(setVideoLink(data.sources[data.sources.length - 2].url));
