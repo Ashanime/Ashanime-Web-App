@@ -10,6 +10,7 @@ import {
 } from "../../redux/videoState-slice";
 import useWindowResize from "../../hooks/useWindowResize";
 import Hls from "hls.js";
+// @ts-ignore
 import subtitleIcon from "../../assets/subtitle.svg";
 
 interface props {
