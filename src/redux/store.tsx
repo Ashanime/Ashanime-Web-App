@@ -1,5 +1,5 @@
 import { configureStore, createAsyncThunk } from "@reduxjs/toolkit";
-import animeReducer, { setStreamId } from "./search-slice";
+import animeReducer, { setStreamEpisode } from "./search-slice";
 import { useDispatch } from "react-redux";
 import { Buffer } from "buffer";
 import notificationReducer from "./notification-slice";
@@ -43,7 +43,17 @@ export const fetchUserDataById = createAsyncThunk(
      */
     const userData = await getUserDataById(userId);
     thunkAPI.dispatch(setSavedEpisodes(userData.savedEpisodes || []));
-    thunkAPI.dispatch(setSavedEpisode(userData.savedEpisode || ""));
+    thunkAPI.dispatch(
+      setSavedEpisode(
+        userData.savedEpisode || {
+          title: "",
+          id: "",
+          number: 0,
+          image: "",
+          description: "",
+        }
+      )
+    );
   }
 );
 
@@ -66,7 +76,13 @@ export const episodeSelected = createAsyncThunk(
       modalData,
       uid,
     }: {
-      selectedEpisode: string;
+      selectedEpisode: {
+        title: string;
+        id: string;
+        number: number;
+        image: string;
+        description: string;
+      };
       modalData: any;
       uid: string;
     },
@@ -77,7 +93,7 @@ export const episodeSelected = createAsyncThunk(
     const backendSyncPromises = [];
     //Do everything related to selecting an episode.
     if (selectedEpisode) {
-      thunkAPI.dispatch(setStreamId(selectedEpisode));
+      thunkAPI.dispatch(setStreamEpisode(selectedEpisode));
       thunkAPI.dispatch(setSavedEpisode(selectedEpisode));
       /**
        * Set saved episodes
@@ -122,7 +138,7 @@ export const watchViewOpened = createAsyncThunk(
     const currentAnimeTitleB64 = encodeBase64(currentAnimeTitle) as string;
     if (videoState.savedEpisodes[currentAnimeTitleB64]) {
       const savedEpisode = videoState.savedEpisodes[currentAnimeTitleB64];
-      thunkAPI.dispatch(setStreamId(savedEpisode));
+      thunkAPI.dispatch(setStreamEpisode(savedEpisode));
       thunkAPI.dispatch(setSavedEpisode(savedEpisode));
     }
   }

@@ -62,7 +62,6 @@ const TopAnime = ({ currentPage, paginate }: props) => {
 
   useEffect(() => {
     if (savedFormat !== null) {
-      console.log("savedFormat", savedFormat);
       document.getElementById("top-anime")?.scrollIntoView({
         behavior: "smooth",
         block: "start",

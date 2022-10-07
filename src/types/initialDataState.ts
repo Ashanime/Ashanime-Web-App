@@ -1,4 +1,4 @@
-import { anime } from "./type";
+import { anime, streamEpisode } from "./type";
 import { streamModal } from "./type";
 
 export const streamDataState: streamModal = {
@@ -69,6 +69,15 @@ export const streamDataState: streamModal = {
       number: 0,
       description: "",
       url: "",
+      isFiller: null,
     },
   ],
+};
+
+export const streamEpisodeDatastate: streamEpisode = {
+  id: "",
+  title: "",
+  image: "",
+  number: 0,
+  description: "",
 };

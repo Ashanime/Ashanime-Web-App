@@ -37,7 +37,7 @@ const SearchBar = () => {
   const getSearch = async () => {
     const convertedGenres = `[${genres.map((genre: any) => `"${genre}"`)}]`;
     await axios
-      .get(`https://consumet-api.herokuapp.com/meta/anilist/advanced-search`, {
+      .get(`https://api.consumet.org/meta/anilist/advanced-search`, {
         params: {
           ...(searchQuery && { query: searchQuery }),
           page: currentPage,
@@ -54,7 +54,6 @@ const SearchBar = () => {
         const data = res.data.results;
         dispatch(animeSearch(data));
         dispatch(setHasNextPage(res.data.hasNextPage));
-        console.log(res.data.lastPage);
         dispatch(setLastPage(res.data.totalPages));
       });
   };

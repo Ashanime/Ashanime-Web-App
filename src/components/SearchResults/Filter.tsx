@@ -47,7 +47,7 @@ const Filter = () => {
   const getSearch = async () => {
     const convertedGenres = `[${genres.map((genre: any) => `"${genre}"`)}]`;
     await axios
-      .get(`https://consumet-api.herokuapp.com/meta/anilist/advanced-search`, {
+      .get(` https://api.consumet.org/meta/anilist/advanced-search`, {
         params: {
           ...(searchQueryView && { query: searchQueryView }),
           page: currentPage,

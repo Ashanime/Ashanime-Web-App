@@ -2,7 +2,9 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
+//@ts-ignore
 import thumbsUp from "../../assets/thumbs-up.svg";
+//@ts-ignore
 import thumbsDown from "../../assets/thumbs-down.svg";
 
 import PulseLoader from "react-spinners/PulseLoader";
@@ -11,12 +13,14 @@ const Comments = () => {
   const [loading, setLoading] = useState(false);
   const [comments, setComments] = useState<any>([]);
 
-  const streamId = useSelector((state: RootState) => state.anime.streamId);
+  const streamId = useSelector(
+    (state: RootState) => state.anime.streamEpisode.id
+  );
 
   const getComments = async () => {
     setLoading(true);
     await axios
-      .get(`https://gogoanime.herokuapp.com/thread/${streamId}`)
+      .get(` https://api.consumet.org/thread/${streamId}`)
       .then((response) => {
         setComments(response.data.comments);
         setLoading(false);

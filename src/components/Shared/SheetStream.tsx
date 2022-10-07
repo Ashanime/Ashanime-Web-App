@@ -4,21 +4,25 @@ import PulseLoader from "react-spinners/PulseLoader";
 import {
   setBookmarks,
   setModalData,
-  setStreamId,
+  setStreamEpisode,
 } from "../../redux/search-slice";
 import { RootState, useAppDispatch } from "../../redux/store";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import VideoPlayer from "../videoplayer/VideoPlayer";
 import EpisodeDropdown from "./EpisodeDropdown";
 import Comments from "./Comments";
-import { streamDataState } from "../../types/initialDataState";
+import {
+  streamDataState,
+  streamEpisodeDatastate,
+} from "../../types/initialDataState";
 import ToggleDub from "./ToggleDub";
 import Recommended from "./Recommended";
 import { useNotification } from "../../hooks/useNotification";
 import { onValue, ref, set } from "firebase/database";
 import { db } from "../../firebase/Firebase";
 import Relations from "./Relations";
+import ProviderDropdown from "./ProviderDropdown";
+import ArtPlayerApp from "../videoplayer/ArtPlayerApp";
 
 interface props {
   setToggle: (toggle: boolean) => void;
@@ -35,15 +39,30 @@ export default function SheetStream({ setToggle, toggle, modalId }: props) {
   const modalData = useSelector((state: RootState) => state.anime.modalData);
   const uid = useSelector((state: any) => state.google.profileObject.uid);
   const bookmarks = useSelector((state: RootState) => state.anime.bookmarks);
+  const provider = useSelector(
+    (state: RootState) => state.videoState.streamProvider
+  );
+  const streamEpisodeObject = useSelector(
+    (state: RootState) => state.videoState.streamEpisodeObject
+  );
+  const streamEpisode = useSelector(
+    (state: RootState) => state.anime.streamEpisode
+  );
 
   const getAnimeDetails = async (modalId: number) => {
     setLoading(true);
     await axios
-      .get(`https://consumet-api.herokuapp.com/meta/anilist/info/${modalId}`, {
-        params: {
-          dub: dub,
-        },
-      })
+      .get(
+        `https://api.consumet.org/meta/anilist/info/${modalId}${
+          provider === "gogoanime" || "zoro" ? "?fetchFiller=true" : ""
+        }`,
+        {
+          params: {
+            dub,
+            provider,
+          },
+        }
+      )
       .then(async (response) => {
         const data = response.data;
         dispatch(setModalData(data));
@@ -61,7 +80,7 @@ export default function SheetStream({ setToggle, toggle, modalId }: props) {
       };
       getData();
     }
-  }, [modalId, toggle, dub]);
+  }, [modalId, toggle, dub, provider]);
 
   // get bookmarks from firebase
   useEffect(() => {
@@ -88,7 +107,7 @@ export default function SheetStream({ setToggle, toggle, modalId }: props) {
   function onDismiss() {
     setToggle(false);
     dispatch(setModalData(streamDataState));
-    dispatch(setStreamId(""));
+    dispatch(setStreamEpisode(streamEpisodeDatastate));
   }
 
   const handleToggleDub = () => {
@@ -167,7 +186,9 @@ export default function SheetStream({ setToggle, toggle, modalId }: props) {
                       </p>
                     </button>
                   </div>
-                  <VideoPlayer animeStatus={modalData.status} />
+                  <div className="flex h-[14rem]">
+                    <ArtPlayerApp />
+                  </div>
                 </div>
 
                 {loading ? (
@@ -203,7 +224,18 @@ export default function SheetStream({ setToggle, toggle, modalId }: props) {
                     <div className="flex justify-center my-4">
                       <ToggleDub handleToggle={handleToggleDub} dub={dub} />
                     </div>
+                    <div className="flex justify-center lg:px-4 mt-auto lg:pb-6">
+                      <h3 className="flex items-center outfit-medium text-redor xl:text-[18px] text-[16px] pl-4 mr-4 text-left ">
+                        Server:
+                      </h3>
+                      <div className="flex items-center justify-center flex-wrap">
+                        <ProviderDropdown />
+                      </div>
+                    </div>
                     <div className="flex justify-center mt-2">
+                      <h3 className="flex items-center outfit-medium text-redor xl:text-[18px] text-[16px] pl-4 mr-4 text-left ">
+                        Episode:
+                      </h3>
                       {/*  drop down list for episodes*/}
                       {modalData?.episodes?.length > 0 ? (
                         <EpisodeDropdown modalToggle={toggle} />
@@ -230,7 +262,7 @@ export default function SheetStream({ setToggle, toggle, modalId }: props) {
                             ? removeFromBookmarks
                             : addToBookmarks
                         }
-                        className="w-1/3 h-8 lg:w-44 text-[10px]  lg:text-[16px] py-0 inline-flex justify-center items-center rounded-md border border-transparent shadow-sm lg:px-2 px-4 py-2 redor-button outfit-medium text-white hover:bg-red-600 transition-all ease-linear duration-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500  sm:w-auto sm:text-sm"
+                        className="w-3/5 h-8 lg:w-44 text-[16px] py-0 inline-flex justify-center items-center rounded-md border border-transparent shadow-sm lg:px-2 px-4 py-6 redor-button outfit-medium text-white hover:bg-red-600 transition-all ease-linear duration-100 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-red-500  sm:w-auto sm:text-sm"
                       >
                         {/*check if item is in bookmarks*/}
                         {bookmarks.find(
@@ -248,8 +280,22 @@ export default function SheetStream({ setToggle, toggle, modalId }: props) {
                     ""
                   ) : (
                     <div className="my-4 lg:px-8 mx-4 ">
+                      {(streamEpisodeObject?.description ||
+                        streamEpisode?.description) && (
+                        <div>
+                          <h3 className="text-redor outfit-medium text-[16px]">
+                            Episode Synopsis
+                          </h3>
+                          <p className="text-white mb-[1rem] text-left outfit-light text-[16px]">
+                            {streamEpisodeObject?.description?.replace(
+                              /<[^>]*>/g,
+                              ""
+                            )}
+                          </p>
+                        </div>
+                      )}
                       <h3 className="text-redor outfit-medium text-[16px]">
-                        Synopsis
+                        Summary
                       </h3>
                       <p className="text-white text-left outfit-light text-[16px]">
                         {modalData?.description?.replace(/<[^>]*>/g, "")}

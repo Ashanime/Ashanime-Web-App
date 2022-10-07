@@ -4,22 +4,31 @@ import PulseLoader from "react-spinners/PulseLoader";
 import {
   setBookmarks,
   setModalData,
-  setStreamId,
+  setStreamEpisode,
 } from "../../redux/search-slice";
 import { RootState, useAppDispatch } from "../../redux/store";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import VideoPlayer from "../videoplayer/VideoPlayer";
+import VideoPlayer from "../videoplayer/ArtPlayer";
 import EpisodeDropdown from "./EpisodeDropdown";
 import Comments from "./Comments";
-import { streamDataState } from "../../types/initialDataState";
+import {
+  streamDataState,
+  streamEpisodeDatastate,
+} from "../../types/initialDataState";
 import ToggleDub from "./ToggleDub";
 import Recommended from "./Recommended";
-import { setVideoLink } from "../../redux/videoState-slice";
+import {
+  setVideoLink,
+  setContinueWatching,
+  setStreamEpisodeObject,
+} from "../../redux/videoState-slice";
 import { useNotification } from "../../hooks/useNotification";
 import { onValue, ref, set } from "firebase/database";
 import { db } from "../../firebase/Firebase";
 import Relations from "../Shared/Relations";
+import ProviderDropdown from "./ProviderDropdown";
+import ArtPlayerApp from "../videoplayer/ArtPlayerApp";
 
 interface props {
   setToggle: (toggle: boolean) => void;
@@ -40,16 +49,33 @@ export default function ModalStream({
   const cancelButtonRef = useRef(null);
   const dispatch = useAppDispatch();
   const modalData = useSelector((state: RootState) => state.anime.modalData);
+  const provider = useSelector(
+    (state: RootState) => state.videoState.streamProvider
+  );
+  // StreamEpisodeObject is a temp state to store the episode object as the streamEpisode var only contains 2 elements
+  // elements of the object rather than the whole object due to redux thunk in store.
+  const streamEpisodeObject = useSelector(
+    (state: RootState) => state.videoState.streamEpisodeObject
+  );
+  const streamEpisode = useSelector(
+    (state: RootState) => state.anime.streamEpisode
+  );
 
   const getAnimeDetails = async (modalId: number) => {
     dispatch(setVideoLink(""));
     setLoading(true);
     await axios
-      .get(`https://consumet-api.herokuapp.com/meta/anilist/info/${modalId}`, {
-        params: {
-          dub: dub,
-        },
-      })
+      .get(
+        `https://api.consumet.org/meta/anilist/info/${modalId}${
+          provider === "gogoanime" || "zoro" ? "?fetchFiller=true" : ""
+        }`,
+        {
+          params: {
+            dub,
+            provider,
+          },
+        }
+      )
       .then(async (response) => {
         const data = response.data;
         dispatch(setModalData(data));
@@ -68,19 +94,20 @@ export default function ModalStream({
       };
       getData();
     }
-  }, [modalId, toggle, dub]);
+  }, [modalId, toggle, dub, provider]);
 
   useEffect(() => {
     return () => {
       dispatch(setModalData(streamDataState));
-      dispatch(setStreamId(""));
+      dispatch(setStreamEpisode(streamEpisodeDatastate));
     };
   }, []);
 
   const handleOnClose = () => {
     setToggle(false);
     dispatch(setModalData(streamDataState));
-    dispatch(setStreamId(""));
+    dispatch(setStreamEpisode(streamEpisodeDatastate));
+    dispatch(setStreamEpisodeObject(streamEpisodeDatastate));
   };
 
   const handleToggleDub = () => {
@@ -110,15 +137,15 @@ export default function ModalStream({
     });
   }
 
-  // get bookmarks from firebase
+  // get continewatching from firebase
   useEffect(() => {
     if (toggle) {
       onValue(
-        ref(db, `users/${uid}/bookmarks`),
+        ref(db, `users/${uid}/continueWatching`),
         (snapshot: { val: () => any }) => {
           const data = snapshot.val();
           if (data !== null) {
-            dispatch(setBookmarks(data));
+            dispatch(setContinueWatching(data));
           }
         }
       );
@@ -170,7 +197,7 @@ export default function ModalStream({
             <img
               alt={modalData.title.romaji}
               src={modalData.cover}
-              className="w-screen h-screen object-cover blur-md opacity-50"
+              className="w-screen h-screen object-cover blur-md opacity-50 transition-all duration-500"
             />
           </div>
         </Transition.Child>
@@ -188,7 +215,7 @@ export default function ModalStream({
             >
               <Dialog.Panel className="h-auto lg:mt-0 2xl:w-[70rem] xl:w-[52rem] lg:w-[42rem] md:w-[36rem]  flex flex-col relative page-bg rounded-lg text-left overflow-hidden shadow-xl transform transition-all">
                 <div className="w-full 2xl:h-[40rem] xl:h-[30rem] lg:h-[24rem] md:h-[20rem]flex flex-col page-bg lg:pb-4">
-                  <VideoPlayer />
+                  <ArtPlayerApp />
                 </div>
                 {loading ? (
                   <div className="flex justify-center items-center lg:h-96 h-52 w-full">
@@ -223,9 +250,16 @@ export default function ModalStream({
                       </span>
                     </div>
                     <div className="flex flex-col justify-center md:items-center lg:items-start">
-                      <div className="flex mt-2 gap-4 justify-center lg:justify-start lg:px-8 px-4">
+                      <div className="flex mt-2 gap-4 justify-center lg:justify-start pr-8 pl-4 mb-2">
+                        <h3 className="flex items-center outfit-medium text-redor xl:text-[18px] lg:text-[16px] md:text-[16px] text-[12px] pl-4 text-left ">
+                          Episode:
+                        </h3>
                         {/*  drop down list for episodes*/}
                         <EpisodeDropdown dub={dub} />
+                        <h3 className="flex items-center outfit-medium text-redor xl:text-[18px] lg:text-[16px] md:text-[16px] text-[12px] pl-4 text-left ">
+                          Server:
+                        </h3>
+                        <ProviderDropdown />
                         <ToggleDub handleToggle={handleToggleDub} dub={dub} />
                       </div>
                       <div className="flex justify-center lg:justify-start lg:ml-8">
@@ -263,6 +297,25 @@ export default function ModalStream({
                   ""
                 ) : (
                   <div className="my-4 lg:px-8 px-4 overflow-y-auto">
+                    {(streamEpisodeObject?.description ||
+                      streamEpisode?.description) && (
+                      <div>
+                        <p className="text-redor outfit-medium xl:text-[20px] md:text-[18px]">
+                          Episode Synopsis
+                        </p>
+                        <p className="text-white mb-[1rem] outfit-light lg:text-[16px] md:text-[16px] text-[10px]">
+                          {/*clean HTML text from the variable*/}
+                          {streamEpisodeObject?.description?.replace(
+                            /<[^>]*>?/gm,
+                            ""
+                          ) ||
+                            streamEpisode?.description?.replace(
+                              /<[^>]*>?/gm,
+                              ""
+                            )}
+                        </p>
+                      </div>
+                    )}
                     <p className="text-redor outfit-medium xl:text-[20px] md:text-[18px]">
                       Summary
                     </p>
@@ -272,7 +325,7 @@ export default function ModalStream({
                     </p>
                   </div>
                 )}
-                <div className=" flex flex-col lg:px-4 mt-auto lg:pb-6 pb-4 flex justify-between ">
+                <div className=" flex flex-col lg:px-4 mt-auto lg:pb-6 pb-4 justify-between ">
                   <div className="flex items-center">
                     <span className="outfit-medium text-redor xl:text-[18px] lg:text-[16px] md:text-[16px] text-[12px] pl-4 text-left ">
                       {loading ? "" : "Genres:"}

@@ -85,7 +85,7 @@ const Recommended = ({ getAnimeDetails, setModalId, data, local }: props) => {
       dispatch(searchLoadingAction(true));
       const getSearch = async () => {
         await axios
-          .get(`https://consumet-api.herokuapp.com/meta/anilist/${title}`, {
+          .get(` https://api.consumet.org/meta/anilist/${title}`, {
             params: {
               pagePage: 25,
             },
@@ -131,7 +131,7 @@ const Recommended = ({ getAnimeDetails, setModalId, data, local }: props) => {
               return (
                 <SwiperSlide key={anime.title.romaji} className="lg:ml-0.5">
                   <div
-                    className=" flex justify-center lg:w-[8rem] lg:h-[12rem] xl:w-[10rem] xl:h-[15rem] 2xl:w-[13rem] 2xl:h-[19.5rem] inline-block cursor-pointer mt-4 relative"
+                    className=" flex flex-col justify-center lg:w-[8rem] lg:h-[12rem] xl:w-[10rem] xl:h-[15rem] 2xl:w-[13rem] 2xl:h-[19.5rem] inline-block cursor-pointer mt-12 relative"
                     key={anime.title.romaji}
                   >
                     <img
@@ -142,14 +142,14 @@ const Recommended = ({ getAnimeDetails, setModalId, data, local }: props) => {
                         handleOnClick(anime.id, anime.title.romaji)
                       }
                     />
-                  </div>
-                  <div className="flex flex-col justify-center items-center mx-4">
-                    <p className="outfit-medium  mt-2 lg:mx-0 text-white hover:text-redor transition-all ease-in-out lg:text-[12px] text-[12px] cursor-pointer text-center">
-                      Score: {anime.rating}
-                    </p>
-                    <h3 className="h-14 lg:h-12 overflow-clip outfit-medium  lg:mx-0 mt-1 text-white hover:text-redor transition-all ease-in-out lg:text-[16px] text-[12px] cursor-pointer text-center">
-                      {title}
-                    </h3>
+                    <div className="flex flex-col justify-center items-center mx-4">
+                      <p className="outfit-medium  mt-2 lg:mx-0 text-white hover:text-redor transition-all ease-in-out lg:text-[12px] text-[12px] cursor-pointer text-center">
+                        Score: {anime.rating}
+                      </p>
+                      <h3 className="h-14 lg:h-12 overflow-clip outfit-medium  lg:mx-0 mt-1 text-white hover:text-redor transition-all ease-in-out lg:text-[16px] text-[12px] cursor-pointer text-center">
+                        {title}
+                      </h3>
+                    </div>
                   </div>
                 </SwiperSlide>
               );

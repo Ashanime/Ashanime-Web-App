@@ -17,7 +17,13 @@ interface initialStateInterface {
   currentPage: number;
   modalData: streamModal;
   stream: any;
-  streamId: string;
+  streamEpisode: {
+    id: string;
+    number: number;
+    title: string;
+    description: string;
+    image: string;
+  };
   episodeSelected: boolean;
   // below is length of recent releases
   recentReleasesLength: number;
@@ -64,7 +70,13 @@ const initialState: initialStateInterface = {
     ...streamDataState,
   },
   stream: {},
-  streamId: "",
+  streamEpisode: {
+    id: "",
+    number: 0,
+    title: "",
+    description: "",
+    image: "",
+  },
   episodeSelected: false,
   recentReleasesLength: 0,
 };
@@ -113,8 +125,17 @@ export const animeSlice = createSlice({
     setStream: (state, action: PayloadAction<any>) => {
       state.stream = action.payload;
     },
-    setStreamId: (state, action: PayloadAction<string>) => {
-      state.streamId = action.payload;
+    setStreamEpisode: (
+      state,
+      action: PayloadAction<{
+        id: string;
+        number: number;
+        title: string;
+        description: string;
+        image: string;
+      }>
+    ) => {
+      state.streamEpisode = action.payload;
     },
     setEpisodeSelected: (state, action: PayloadAction<boolean>) => {
       state.episodeSelected = action.payload;
@@ -140,7 +161,7 @@ export const {
   setCurrentPage,
   setModalData,
   setStream,
-  setStreamId,
+  setStreamEpisode,
   setEpisodeSelected,
   setRecentReleasesLength,
 } = animeSlice.actions;

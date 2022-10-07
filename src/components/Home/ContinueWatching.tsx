@@ -8,13 +8,13 @@ import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../redux/store";
 import { streamModal } from "../../types/type";
 import { Pagination } from "swiper";
-import LocalModalStream from "./LocalModalStream";
-import LocalSheetStream from "./LocalSheetStream";
+import SheetStream from "../Shared/SheetStream";
 import useWindowResize from "../../hooks/useWindowResize";
 import { ref, set } from "firebase/database";
 import { db } from "../../firebase/Firebase";
 import { streamDataState } from "../../types/initialDataState";
 import { imageResize } from "../Shared/reUsableFunctions";
+import ModalStream from "../Shared/ModalStream";
 
 const ContinueWatching = () => {
   const [modal, setModal] = useState(false);
@@ -137,7 +137,7 @@ const ContinueWatching = () => {
           })}
         </Swiper>
       </div>
-      <LocalModalStream
+      <ModalStream
         setToggle={(boolean: boolean) => {
           if (!boolean) {
             dispatch(setModalData(streamDataState));
@@ -145,10 +145,10 @@ const ContinueWatching = () => {
           setModal(boolean);
         }}
         toggle={modal}
-        data={localModalData}
+        modalId={localModalData.id}
       />
-      <LocalSheetStream
-        data={localModalData}
+      <SheetStream
+        modalId={localModalData.id}
         toggle={sheet}
         setToggle={(boolean: boolean) => {
           if (!boolean) {

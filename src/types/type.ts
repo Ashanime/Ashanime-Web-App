@@ -14,6 +14,7 @@ export interface streamSearch {
 }
 
 export interface episodes {
+  isFiller: boolean | null;
   id: string;
   title: string;
   image: string;
@@ -136,4 +137,12 @@ interface genres {
 
 export interface comments {
   commentId: string;
+}
+
+export interface streamEpisode {
+  id: string;
+  title: string;
+  image: string;
+  number: number;
+  description: string;
 }

@@ -30,13 +30,12 @@ const Random = (classes: props) => {
     }
     if (winWidth < 768) {
       setSheet(true);
-      console.log(sheet);
     }
   };
 
   const getRandom = async () => {
     await axios
-      .get("https://consumet-api.herokuapp.com/meta/anilist/random-anime")
+      .get(" https://api.consumet.org/meta/anilist/random-anime")
       .then((res) => {
         const data = res.data;
         handleClick(data.id);
