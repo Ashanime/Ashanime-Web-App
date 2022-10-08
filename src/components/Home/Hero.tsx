@@ -1,8 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper";
+import { A11y, Autoplay, Mousewheel, Pagination } from "swiper";
 import "swiper/css";
-import "swiper/css/pagination";
 // @ts-ignore
 import episodes from "../../assets/episodes.svg";
 // @ts-ignore
@@ -28,7 +27,7 @@ const Hero = () => {
 
   const getTrending = async () => {
     try {
-      const data = await animeApi.getTrending()
+      const data = await animeApi.getTrending();
       setTrending(data.results);
       return data;
     } catch (error) {
@@ -79,9 +78,19 @@ const Hero = () => {
           <Swiper
             className="lg:ml-0 flex h-full"
             slidesPerView={1}
-            modules={[Pagination]}
+            modules={[Pagination, Autoplay, Mousewheel, A11y]}
             loop={true}
             pagination={{ clickable: true }}
+            autoplay={{
+              delay: 2000,
+              pauseOnMouseEnter: true,
+              disableOnInteraction: false,
+            }}
+            mousewheel={true}
+            a11y={{
+              prevSlideMessage: "previous slide",
+              nextSlideMessage: "next slide",
+            }}
           >
             {trending.map((anime) => {
               if (anime.cover.includes("banner")) {

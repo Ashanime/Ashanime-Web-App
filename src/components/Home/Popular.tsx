@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
-import { A11y, Navigation, Pagination, Scrollbar } from "swiper";
+import { A11y, Mousewheel, Navigation, Pagination, Scrollbar } from "swiper";
 import "swiper/css/navigation";
 import { useAppDispatch } from "../../redux/store";
 import useWindowResize from "../../hooks/useWindowResize";
@@ -12,77 +12,77 @@ import { imageResize } from "../Shared/reUsableFunctions";
 import { animeApi } from "../../backend/anime_api";
 
 export const Popular = () => {
-	const [popular, setPopular] = useState<any>([]);
-	const [modalId, setModalId] = useState<number>(0);
-	const [modal, setModal] = useState(false);
-	const [sheet, setSheet] = useState(false);
+  const [popular, setPopular] = useState<any>([]);
+  const [modalId, setModalId] = useState<number>(0);
+  const [modal, setModal] = useState(false);
+  const [sheet, setSheet] = useState(false);
 
-	const dispatch = useAppDispatch();
-	const { windowDimension } = useWindowResize();
-	const { winWidth } = windowDimension;
+  const dispatch = useAppDispatch();
+  const { windowDimension } = useWindowResize();
+  const { winWidth } = windowDimension;
 
-	const getPopular = async () => {
-		try {
-			const data = await animeApi.getPopular();
-			setPopular(data.results);
-		} catch (error) {
-			//@ts-ignore
-			console.log(error.status);
-		}
-	};
+  const getPopular = async () => {
+    try {
+      const data = await animeApi.getPopular();
+      setPopular(data.results);
+    } catch (error) {
+      //@ts-ignore
+      console.log(error.status);
+    }
+  };
 
-	useEffect(() => {
-		if (popular.length === 0) {
-			getPopular();
-		}
-	}, [popular.length]);
+  useEffect(() => {
+    if (popular.length === 0) {
+      getPopular();
+    }
+  }, [popular.length]);
 
-	const handleClick = (id: number) => {
-		setModalId(id);
+  const handleClick = (id: number) => {
+    setModalId(id);
 
-		if (winWidth >= 768) {
-			setModal(true);
-		}
-		if (winWidth < 768) {
-			setSheet(true);
-		}
-	};
+    if (winWidth >= 768) {
+      setModal(true);
+    }
+    if (winWidth < 768) {
+      setSheet(true);
+    }
+  };
 
-	const itemCount = () => {
-		if (winWidth <= 500) {
-			return 3;
-		}
-		if (winWidth > 500 && winWidth <= 800) {
-			return 4;
-		}
-		if (winWidth > 800 && winWidth <= 1440) {
-			return 5;
-		}
-		if (winWidth > 1440 && winWidth <= 1790) {
-			return 6;
-		}
-		if (winWidth > 1790) {
-			return 7;
-		}
-	};
+  const itemCount = () => {
+    if (winWidth <= 500) {
+      return 3;
+    }
+    if (winWidth > 500 && winWidth <= 800) {
+      return 4;
+    }
+    if (winWidth > 800 && winWidth <= 1440) {
+      return 5;
+    }
+    if (winWidth > 1440 && winWidth <= 1790) {
+      return 6;
+    }
+    if (winWidth > 1790) {
+      return 7;
+    }
+  };
 
-	const spaceBetween = () => {
-		if (winWidth <= 500) {
-			return 10;
-		}
-		if (winWidth > 500 && winWidth <= 800) {
-			return 10;
-		}
-		if (winWidth > 800 && winWidth <= 1100) {
-			return 15;
-		}
-		if (winWidth > 1100 && winWidth <= 1440) {
-			return 0;
-		}
-		if (winWidth > 1440) {
-			return 0;
-		}
-	};
+  const spaceBetween = () => {
+    if (winWidth <= 500) {
+      return 10;
+    }
+    if (winWidth > 500 && winWidth <= 800) {
+      return 10;
+    }
+    if (winWidth > 800 && winWidth <= 1100) {
+      return 15;
+    }
+    if (winWidth > 1100 && winWidth <= 1440) {
+      return 0;
+    }
+    if (winWidth > 1440) {
+      return 0;
+    }
+  };
 
   return (
     <div className="z-10 lg:-ml-2 lg:mt-0 lg:mt-6 ">
@@ -92,12 +92,17 @@ export const Popular = () => {
       <div className="flex recent-height justify-center 2xl:mr-6 2xl:ml-8  ">
         <Swiper
           className="popular-height flex justify-center items-center"
-          modules={[Navigation, Pagination, Scrollbar, A11y]}
+          modules={[Navigation, Pagination, Scrollbar, A11y, Mousewheel, A11y]}
           slidesPerView={itemCount()}
           spaceBetween={spaceBetween()}
           pagination={{ clickable: true }}
           scrollbar={{ draggable: true }}
           loop={true}
+          mousewheel={true}
+          a11y={{
+            prevSlideMessage: "previous slide",
+            nextSlideMessage: "next slide",
+          }}
         >
           {popular.map(
             (anime: {
@@ -168,5 +173,4 @@ export const Popular = () => {
       />
     </div>
   );
-
 };

@@ -10,7 +10,6 @@ import {
 } from "../../redux/videoState-slice";
 import useWindowResize from "../../hooks/useWindowResize";
 import Hls from "hls.js";
-// @ts-ignore
 import subtitleIcon from "../../assets/subtitle.svg";
 
 interface props {
@@ -148,7 +147,7 @@ const ArtPlayer = (props: props) => {
   // loop over episodeObject.sources and create an array of objects with the url and the video quality
   const handleVideoQualities = () => {
     return episodeObject.sources.map((source: any) => {
-      if (source.quality === "1080p") {
+      if (source.quality === "default" || source.quality === "auto") {
         return {
           default: true,
           url: source.url,
@@ -163,10 +162,13 @@ const ArtPlayer = (props: props) => {
   };
 
   const handleFontSize = () => {
+    if (winWidth <= 900) {
+      return "2rem";
+    }
     if (winWidth < 1024) {
       return "1.5rem";
     }
-    return "4rem";
+    return "3rem";
   };
 
   const handleTimeStamps = () => {

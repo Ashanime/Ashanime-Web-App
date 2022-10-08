@@ -9,7 +9,6 @@ import {
 import { RootState, useAppDispatch } from "../../redux/store";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import VideoPlayer from "../videoplayer/ArtPlayer";
 import EpisodeDropdown from "./EpisodeDropdown";
 import Comments from "./Comments";
 import {
@@ -172,6 +171,10 @@ export default function ModalStream({
     dispatch(setBookmarks(newBookmarks));
     localStorage.setItem("bookmarks", JSON.stringify(newBookmarks));
     writeUserData(newBookmarks);
+  };
+
+  const handleComments = (comments: any) => {
+    return comments[0].author.username;
   };
 
   const recommendations = modalData.recommendations;
@@ -376,7 +379,9 @@ export default function ModalStream({
                     }}
                   />
                 )}
-                <Comments />
+                {/*{handleComments.length > 0 && (*/}
+                {/*  <Comments handleComments={handleComments} />*/}
+                {/*)}*/}
               </Dialog.Panel>
             </Transition.Child>
           </div>

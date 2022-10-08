@@ -35,11 +35,17 @@ export default function EpisodeDropdown(modalToggle: any) {
   const savedProvider = useSelector(
     (state: RootState) => state.videoState.streamProvider
   );
+  const savedEpisodes = useSelector(
+    (state: RootState) => state.videoState.savedEpisodes
+  );
+  const streamEpisodeLinkObject = useSelector(
+    (state: RootState) => state.videoState.streamEpisodeObject
+  );
+  const episodeSelectedDependency = useSelector(
+    (state: RootState) => state.anime.episodeSelected
+  );
 
   const uid = useSelector((state: any) => state.google.profileObject.uid);
-  const streamProvider = useSelector(
-    (state: any) => state.videoState.streamProvider
-  );
   const provider = useSelector((state: any) => state.anime.provider);
 
   const [selected, setSelected] = useState<any>(savedEpisode);
@@ -51,12 +57,6 @@ export default function EpisodeDropdown(modalToggle: any) {
 
   const currentAnimeTitleB64 = encodeBase64(modalData.title.romaji) as string;
 
-  const writeUserDataEpisode = (episode: any) => {
-    set(ref(db, `users/${uid}/savedEpisodes/${currentAnimeTitleB64}`), {
-      id: episode.id,
-      number: episode.number,
-    });
-  };
   // fetch savedEpisodes from firebase
   useEffect(() => {
     dispatch(watchViewOpened(modalData));
@@ -99,15 +99,39 @@ export default function EpisodeDropdown(modalToggle: any) {
         setSelected(episode);
         writeUserDataEpisode(episode);
       }
+      if (
+        savedProvider === "zoro" &&
+        episode && //check if streamEpisode.id contains a $ character anywhere in the string and if it does not, dispatch the setStreamEpisode action
+        !streamEpisode.id.includes("$")
+      ) {
+        console.log("zoro");
+        dispatch(setStreamEpisode(episode));
+        dispatch(setStreamEpisodeObject(episode));
+      }
+      if (
+        savedProvider === "gogo" &&
+        episode && //check if streamEpisode.id contains a $ character anywhere in the string and if it does, dispatch the setStreamEpisode action
+        streamEpisode.id.includes("$")
+      ) {
+        console.log("gogo");
+        dispatch(setStreamEpisode(episode));
+        dispatch(setStreamEpisodeObject(episode));
+      }
     }
   }, [
     savedProvider,
-    streamProvider,
     episodesList,
     savedEpisode.number,
     dispatch,
+    streamEpisode,
     savedEpisode,
     provider,
+    uid,
+    currentAnimeTitleB64,
+    savedEpisodes,
+    streamEpisodeLinkObject,
+    episodeSelectedDependency,
+    selected,
   ]);
 
   // send the selected episode to the video player

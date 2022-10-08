@@ -3,7 +3,7 @@ import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../redux/store";
 
 import { Swiper, SwiperSlide } from "swiper/react";
-import { A11y, Navigation, Pagination, Scrollbar } from "swiper";
+import { A11y, Mousewheel, Navigation, Pagination, Scrollbar } from "swiper";
 import {
   animeSearch,
   searchLoadingAction,
@@ -117,12 +117,17 @@ const Recommended = ({ getAnimeDetails, setModalId, data, local }: props) => {
       <div className=" flex justify-center">
         <Swiper
           className="lg:h-[20rem] xl:h-[23rem] 2xl:h-[28rem] flex justify-center"
-          modules={[Navigation, Pagination, Scrollbar, A11y]}
+          modules={[Navigation, Pagination, Scrollbar, A11y, Mousewheel]}
           slidesPerView={itemCount()}
           spaceBetween={spaceBetween()}
           pagination={{ clickable: true }}
           scrollbar={{ draggable: true }}
           loop={true}
+          mousewheel={true}
+          a11y={{
+            prevSlideMessage: "previous slide",
+            nextSlideMessage: "next slide",
+          }}
         >
           {recommendations?.map((anime) => {
             // only include animeTitle if it does not have special characters

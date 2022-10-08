@@ -367,12 +367,12 @@ vm-player {
 
 @media (min-width: 1790px ) {
     .seasonal-box {
-        width:30rem;
+        width:26rem;
         height:16rem;
     }
 
     .seasonal-img-box {
-        width:30rem;
+        width:26rem;
         height: 15rem;
     }
 
@@ -443,7 +443,6 @@ vm-player {
 
 
 @media ( max-width: 1280px) {
-    /*reduce screen width to 1024*/
 
     .seasonal-box {
         width:18rem;

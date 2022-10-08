@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import Modal from "./AnimeTrailerModal";
 import { Swiper, SwiperSlide } from "swiper/react";
-import { Pagination } from "swiper";
+import { Autoplay, Pagination, Keyboard, Mousewheel, A11y } from "swiper";
 import "swiper/css";
 import "swiper/css/pagination";
 import useWindowResize from "../../hooks/useWindowResize";
@@ -89,9 +89,19 @@ const AnimeTrailersHome = () => {
           className=" flex lg:h-56 xl:h-72 2xl:h-[21rem] ml-20"
           slidesPerView={itemCount()}
           spaceBetween={spaceBetween()}
-          modules={[Pagination]}
+          modules={[Pagination, Autoplay, Mousewheel, A11y]}
           loop={true}
           pagination={{ clickable: true }}
+          autoplay={{
+            delay: 2000,
+            pauseOnMouseEnter: true,
+            disableOnInteraction: false,
+          }}
+          mousewheel={true}
+          a11y={{
+            prevSlideMessage: "previous slide",
+            nextSlideMessage: "next slide",
+          }}
         >
           {[...animeTrailer].reverse().map((anime) => {
             if (anime.trailer.images.large_image_url) {

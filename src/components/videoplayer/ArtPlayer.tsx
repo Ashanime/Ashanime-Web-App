@@ -8,9 +8,6 @@ export default function Player({ option, getInstance }: any) {
   const streamEpisodeLinkObject = useSelector(
     (state: RootState) => state.videoState.streamEpisodeLinkObject
   );
-  const streamEpisode = useSelector(
-    (state: RootState) => state.anime.streamEpisode
-  );
 
   useEffect(() => {
     const art = new Artplayer({
@@ -27,6 +24,15 @@ export default function Player({ option, getInstance }: any) {
         });
         return item.html;
       },
+      plugins: [
+        artplayerPluginHighlight([
+          {
+            start: streamEpisodeLinkObject?.intro?.start,
+            end: streamEpisodeLinkObject?.intro?.end,
+            text: "Intro",
+          },
+        ]),
+      ],
       layers: [
         {
           name: "intro",
@@ -83,6 +89,28 @@ export default function Player({ option, getInstance }: any) {
 
     if (getInstance && typeof getInstance === "function") {
       getInstance(art);
+    }
+
+    function artplayerPluginHighlight(option: any) {
+      return (art: any) => {
+        const $highlight = art.query(".art-progress-highlight");
+        const { append, createElement, setStyles } = art.constructor.utils;
+        art.on("video:loadedmetadata", () => {
+          for (let index = 0; index < option.length; index++) {
+            const item = option[index];
+            const left = (item.start / art.duration) * 100;
+            const width = ((item.end - item.start) / art.duration) * 100;
+            const $item = createElement("span");
+            $item.dataset.text = item.text;
+            setStyles($item, {
+              left: left + "%",
+              width: width + "%",
+              background: "#00ff96",
+            });
+            append($highlight, $item);
+          }
+        });
+      };
     }
 
     // Make the skip intro button show between start and end of intro

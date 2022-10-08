@@ -7,7 +7,7 @@ import { setContinueWatching } from "../../redux/videoState-slice";
 import { useSelector } from "react-redux";
 import { RootState, useAppDispatch } from "../../redux/store";
 import { streamModal } from "../../types/type";
-import { Pagination } from "swiper";
+import { A11y, Mousewheel, Pagination } from "swiper";
 import SheetStream from "../Shared/SheetStream";
 import useWindowResize from "../../hooks/useWindowResize";
 import { ref, set } from "firebase/database";
@@ -100,7 +100,12 @@ const ContinueWatching = () => {
           className="continue-height"
           slidesPerView={itemCount()}
           spaceBetween={spaceBetween()}
-          modules={[Pagination]}
+          modules={[Pagination, Mousewheel, A11y]}
+          mousewheel={true}
+          a11y={{
+            prevSlideMessage: "previous slide",
+            nextSlideMessage: "next slide",
+          }}
         >
           {reverseContinueWatching().map((anime) => {
             if (anime.image) {
