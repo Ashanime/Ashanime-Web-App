@@ -81,11 +81,3 @@ export const streamEpisodeDatastate: streamEpisode = {
   number: 0,
   description: "",
 };
-
-export const streamEpisodeDatastate: streamEpisode = {
-  id: "",
-  title: "",
-  image: "",
-  number: 0,
-  description: "",
-};

@@ -146,11 +146,3 @@ export interface streamEpisode {
   number: number;
   description: string;
 }
-
-export interface streamEpisode {
-  id: string;
-  title: string;
-  image: string;
-  number: number;
-  description: string;
-}

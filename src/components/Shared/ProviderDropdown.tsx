@@ -34,6 +34,7 @@ export default function ProviderDropdown(modalToggle: any) {
   const currentAnimeTitle = useSelector(
     (state: any) => state.anime.modalData.title.romaji
   );
+  const videoLink = useSelector((state: any) => state.videoState.videoLink);
 
   const currentAnimeTitleB64 = encodeBase64(currentAnimeTitle) as string;
   const [selected, setSelected] = useState<any>(savedProvider);
@@ -75,8 +76,10 @@ export default function ProviderDropdown(modalToggle: any) {
   }, []);
 
   useEffect(() => {
-    dispatch(setVideoLink(""));
-  }, [savedProvider]);
+    if (videoLink.length > 0) {
+      dispatch(setVideoLink(""));
+    }
+  }, [dispatch, savedProvider]);
 
   // send the selected episode to the video player
   const handleOnChange = (selected: string) => {

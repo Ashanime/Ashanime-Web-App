@@ -93,29 +93,26 @@ export default function EpisodeDropdown(modalToggle: any) {
         (episode: episodes) => episode.number === savedEpisode.number
       );
       if (episode) {
-        //@ts-ignore
-        dispatch(setStreamEpisode(episode));
-        dispatch(setStreamEpisodeObject(episode));
         setSelected(episode);
         writeUserDataEpisode(episode);
-      }
-      if (
-        savedProvider === "zoro" &&
-        episode && //check if streamEpisode.id contains a $ character anywhere in the string and if it does not, dispatch the setStreamEpisode action
-        !streamEpisode.id.includes("$")
-      ) {
-        console.log("zoro");
-        dispatch(setStreamEpisode(episode));
-        dispatch(setStreamEpisodeObject(episode));
-      }
-      if (
-        savedProvider === "gogo" &&
-        episode && //check if streamEpisode.id contains a $ character anywhere in the string and if it does, dispatch the setStreamEpisode action
-        streamEpisode.id.includes("$")
-      ) {
-        console.log("gogo");
-        dispatch(setStreamEpisode(episode));
-        dispatch(setStreamEpisodeObject(episode));
+        if (
+          savedProvider === "zoro" &&
+          episode && //check if streamEpisode.id contains a $ character anywhere in the string and if it does not, dispatch the setStreamEpisode action
+          !streamEpisode.id.includes("$")
+        ) {
+          console.log("zoro");
+          dispatch(setStreamEpisode(episode));
+          dispatch(setStreamEpisodeObject(episode));
+        }
+        if (
+          savedProvider === "gogo" &&
+          episode && //check if streamEpisode.id contains a $ character anywhere in the string and if it does, dispatch the setStreamEpisode action
+          streamEpisode.id.includes("$")
+        ) {
+          console.log("gogo");
+          dispatch(setStreamEpisode(episode));
+          dispatch(setStreamEpisodeObject(episode));
+        }
       }
     }
   }, [
