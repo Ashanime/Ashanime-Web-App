@@ -95,40 +95,36 @@ export default function EpisodeDropdown(modalToggle: any) {
       if (episode) {
         setSelected(episode);
         writeUserDataEpisode(episode);
-        if (
-          savedProvider === "zoro" &&
-          episode && //check if streamEpisode.id contains a $ character anywhere in the string and if it does not, dispatch the setStreamEpisode action
-          !streamEpisode.id.includes("$")
-        ) {
-          console.log("zoro");
-          dispatch(setStreamEpisode(episode));
-          dispatch(setStreamEpisodeObject(episode));
-        }
-        if (
-          savedProvider === "gogo" &&
-          episode && //check if streamEpisode.id contains a $ character anywhere in the string and if it does, dispatch the setStreamEpisode action
-          streamEpisode.id.includes("$")
-        ) {
-          console.log("gogo");
-          dispatch(setStreamEpisode(episode));
-          dispatch(setStreamEpisodeObject(episode));
-        }
+        dispatch(setStreamEpisode(episode));
+        dispatch(setStreamEpisodeObject(episode));
+        // if (
+        //   savedProvider === "zoro" &&
+        //   episode && //check if streamEpisode.id contains a $ character anywhere in the string and if it does not, dispatch the setStreamEpisode action
+        //   !streamEpisode.id.includes("$")
+        // ) {
+        //   console.log("zoro");
+        //   dispatch(setStreamEpisode(episode));
+        //   dispatch(setStreamEpisodeObject(episode));
+        // }
+        // if (
+        //   savedProvider === "gogo" &&
+        //   episode && //check if streamEpisode.id contains a $ character anywhere in the string and if it does, dispatch the setStreamEpisode action
+        //   streamEpisode.id.includes("$")
+        // ) {
+        //   console.log("gogo");
+        //   dispatch(setStreamEpisode(episode));
+        //   dispatch(setStreamEpisodeObject(episode));
+        // }
       }
     }
   }, [
-    savedProvider,
+    currentAnimeTitleB64,
+    dispatch,
     episodesList,
     savedEpisode.number,
-    dispatch,
-    streamEpisode,
     savedEpisode,
-    provider,
+    savedProvider,
     uid,
-    currentAnimeTitleB64,
-    savedEpisodes,
-    streamEpisodeLinkObject,
-    episodeSelectedDependency,
-    selected,
   ]);
 
   // send the selected episode to the video player

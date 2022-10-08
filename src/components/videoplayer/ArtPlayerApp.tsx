@@ -11,6 +11,7 @@ import {
 import useWindowResize from "../../hooks/useWindowResize";
 import Hls from "hls.js";
 import subtitleIcon from "../../assets/subtitle.svg";
+import { setStreamEpisode } from "../../redux/search-slice";
 
 interface props {
   animeStatus?: string;
@@ -35,6 +36,9 @@ const ArtPlayer = (props: props) => {
   const streamEpisode = useSelector(
     (state: RootState) => state.anime.streamEpisode
   );
+  const streamEpisodeObject = useSelector(
+    (state: RootState) => state.videoState.streamEpisodeObject
+  );
   const provider = useSelector(
     (state: RootState) => state.videoState.streamProvider
   );
@@ -46,11 +50,18 @@ const ArtPlayer = (props: props) => {
   const getEpisodeStream = async () => {
     setLoading(true);
     await axios
-      .get(`https://api.consumet.org/meta/anilist/watch/${streamEpisode.id}`, {
-        params: {
-          ...(provider && { provider }),
-        },
-      })
+      .get(
+        `https://api.consumet.org/meta/anilist/watch/${
+          streamEpisodeObject.id.length > 1
+            ? streamEpisodeObject.id
+            : streamEpisode.id
+        }`,
+        {
+          params: {
+            ...(provider && { provider }),
+          },
+        }
+      )
       .then((response) => {
         const { data } = response;
         setEpisodeObject(data);
