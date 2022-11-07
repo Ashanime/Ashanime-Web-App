@@ -102,7 +102,10 @@ vds-media {
 background: linear-gradient(to bottom, rgba(0,0,0, 0.8), rgba(0,0,0, 0.001))
 }
 
-
+/*video player seeker thickness*/
+.art-control-progress {
+    height: 10px !important;
+}
 
 .z-index-99 {
     z-index: 99;
@@ -413,13 +416,13 @@ vm-player {
 
 @media (max-width: 1789px) {
     .seasonal-box {
-        width:28rem;
-        height:14rem;
+        width:24rem;
+        height:16rem;
     }
 
     .seasonal-img-box {
-        width:28rem;
-        height: 14.7rem;
+        width:24rem;
+        height: 13rem;
     }
 
     .standard-box-recent {

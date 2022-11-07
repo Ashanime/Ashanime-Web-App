@@ -18,6 +18,7 @@ import {
   setGenres,
   setSort,
   setStatus,
+  setStatusInSearch,
   setYear,
 } from "../../redux/filter-slice";
 import Pagination from "../Shared/Pagination";
@@ -47,7 +48,7 @@ const SearchResults = () => {
       dispatch(setSort({ value: "", name: "" }));
       dispatch(setGenres([]));
       dispatch(setYear(0));
-      dispatch(setStatus({ value: "", name: "" }));
+      dispatch(setStatusInSearch({ value: "", name: "" }));
     };
   }, []);
 
@@ -163,11 +164,9 @@ const SearchResults = () => {
                 toggle={sheet}
                 setModalId={setModalId}
               />
-              {searchResults.length >= 25 && (
-                <div className="mb-10 mt-5">
-                  <Pagination paginate={paginate} currentPage={currentPage} />
-                </div>
-              )}
+              <div className="mb-10 mt-5">
+                <Pagination paginate={paginate} currentPage={currentPage} />
+              </div>
             </div>
           </div>
         </div>

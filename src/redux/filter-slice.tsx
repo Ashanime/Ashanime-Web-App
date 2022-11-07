@@ -17,6 +17,10 @@ interface initialStateInterface {
     name: string;
     value: string;
   };
+  statusInSearch: {
+    name: string;
+    value: string;
+  };
 }
 
 const initialState: initialStateInterface = {
@@ -33,6 +37,10 @@ const initialState: initialStateInterface = {
   submit: false,
   year: null,
   status: {
+    name: "",
+    value: "",
+  },
+  statusInSearch: {
     name: "",
     value: "",
   },
@@ -81,6 +89,15 @@ export const filterSlice = createSlice({
     ) => {
       state.status = action.payload;
     },
+    setStatusInSearch: (
+      state,
+      action: PayloadAction<{
+        name: string;
+        value: string;
+      }>
+    ) => {
+      state.statusInSearch = action.payload;
+    },
   },
 });
 
@@ -93,6 +110,7 @@ export const {
   setSubmit,
   setYear,
   setStatus,
+  setStatusInSearch,
 } = filterSlice.actions;
 
 export default filterSlice.reducer;

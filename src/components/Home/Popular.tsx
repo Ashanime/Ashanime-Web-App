@@ -92,7 +92,7 @@ export const Popular = () => {
       <div className="flex recent-height justify-center 2xl:mr-6 2xl:ml-8  ">
         <Swiper
           className="popular-height flex justify-center items-center"
-          modules={[Navigation, Pagination, Scrollbar, A11y, Mousewheel, A11y]}
+          modules={[Navigation, Pagination, Scrollbar, A11y, Mousewheel]}
           slidesPerView={itemCount()}
           spaceBetween={spaceBetween()}
           pagination={{ clickable: true }}

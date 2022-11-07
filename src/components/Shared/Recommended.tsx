@@ -110,9 +110,9 @@ const Recommended = ({ getAnimeDetails, setModalId, data, local }: props) => {
   };
 
   return (
-    <section>
+    <section className="mb-6">
       <h2 className="text-redor md:mx-4 xl:text-[24px] xl:mx-8 lg:mx-8  mx-4 text-[18px] outfit-medium mt-4 lg:-mb-2">
-        Recommended
+        More like this
       </h2>
       <div className=" flex justify-center">
         <Swiper
@@ -122,12 +122,8 @@ const Recommended = ({ getAnimeDetails, setModalId, data, local }: props) => {
           spaceBetween={spaceBetween()}
           pagination={{ clickable: true }}
           scrollbar={{ draggable: true }}
-          loop={true}
           mousewheel={true}
-          a11y={{
-            prevSlideMessage: "previous slide",
-            nextSlideMessage: "next slide",
-          }}
+          loop={true}
         >
           {recommendations?.map((anime) => {
             // only include animeTitle if it does not have special characters
@@ -136,7 +132,7 @@ const Recommended = ({ getAnimeDetails, setModalId, data, local }: props) => {
               return (
                 <SwiperSlide key={anime.title.romaji} className="lg:ml-0.5">
                   <div
-                    className=" flex flex-col justify-center lg:w-[8rem] lg:h-[12rem] xl:w-[10rem] xl:h-[15rem] 2xl:w-[13rem] 2xl:h-[19.5rem] inline-block cursor-pointer mt-12 relative"
+                    className=" flex flex-col justify-center lg:w-[8rem] lg:h-[12rem] xl:w-[10rem] xl:h-[15rem] 2xl:w-[13rem] 2xl:h-[19.5rem] inline-block cursor-pointer mt-2 lg:mt-12 mb-4 relative"
                     key={anime.title.romaji}
                   >
                     <img

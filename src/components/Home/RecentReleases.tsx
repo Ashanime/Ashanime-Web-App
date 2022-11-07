@@ -3,10 +3,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import { A11y, Mousewheel, Navigation, Pagination, Scrollbar } from "swiper";
 import "swiper/css/navigation";
-import {
-  setModalData,
-  setRecentReleasesLength,
-} from "../../redux/search-slice";
+import { setModalData, setRecentReleases } from "../../redux/search-slice";
 import { useAppDispatch } from "../../redux/store";
 import useWindowResize from "../../hooks/useWindowResize";
 import ModalStream from "../Shared/ModalStream";
@@ -29,6 +26,8 @@ export const RecentReleases = () => {
     try {
       const data = await animeApi.getRecentEpisodes();
       setAnimeBelt(data.results);
+      data && dispatch(setRecentReleases(true));
+      !data && dispatch(setRecentReleases(false));
     } catch (error: any) {
       return console.log(error.status);
     }
@@ -47,9 +46,6 @@ export const RecentReleases = () => {
 
   useEffect(() => {
     getRecent();
-    if ([...animeBelt].length === 0) {
-      dispatch(setRecentReleasesLength(0));
-    }
   }, []);
 
   const itemCount = () => {

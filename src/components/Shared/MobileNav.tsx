@@ -24,7 +24,11 @@ import { RootState } from "../../redux/store";
 import LogoutButton from "../Login/google/LogoutButton";
 import axios from "axios";
 import Random from "../Random/Random";
-import { setFormat, setStatus } from "../../redux/filter-slice";
+import {
+  setFormat,
+  setStatus,
+  setStatusInSearch,
+} from "../../redux/filter-slice";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
@@ -42,9 +46,8 @@ export default function MobileNav({ paginate }: props) {
   const currentPage = useSelector(
     (state: RootState) => state.anime.currentPage
   );
-  const { format, type, sort, genres, submit, year, status } = useSelector(
-    (state: RootState) => state.filter
-  );
+  const { format, type, sort, genres, submit, year, statusInSearch } =
+    useSelector((state: RootState) => state.filter);
   const searchResults = useSelector(
     (state: RootState) => state.anime.searchResults
   );
@@ -54,6 +57,7 @@ export default function MobileNav({ paginate }: props) {
     navigate("/home");
     //  Smooth scroll to top of page
     window.scrollTo({ top: 0, behavior: "smooth" });
+    dispatch(setSearchQuery(""));
   };
 
   // Handles the click highlighting of the Home button
@@ -72,7 +76,6 @@ export default function MobileNav({ paginate }: props) {
     }
     navigate("/home");
     dispatch(setSearchQuery(""));
-    //
   };
 
   //Handles the click highlighting of the movie button
@@ -140,7 +143,7 @@ export default function MobileNav({ paginate }: props) {
           ...([...genres].length > 0 && { genres: convertedGenres }),
           ...(sort.value && { sort: sort.value }),
           ...(year && { year: year }),
-          ...(status.value && { status: status.value }),
+          ...(statusInSearch.value && { status: statusInSearch.value }),
         },
       })
       .then(async (res) => {
@@ -163,7 +166,7 @@ export default function MobileNav({ paginate }: props) {
       if (searchResults.length === 0 && setCurrentPage) {
         setCurrentPage(1);
       }
-      dispatch(setSearchQuery(""));
+      // dispatch(setSearchQuery(""));
       //check if address bar contains /search-results and redirect to it
       if (window.location.pathname !== "/search-results") {
         navigate("/search-results");
@@ -177,7 +180,7 @@ export default function MobileNav({ paginate }: props) {
     } else {
       dispatch(setPageLoadingAction(true));
       dispatch(searchLoadingAction(false));
-      dispatch(setSearchQuery(""));
+      // dispatch(setSearchQuery(""));
     }
   }, [currentPage, searchLoading]);
 

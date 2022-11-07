@@ -23,6 +23,8 @@ import { db } from "../../firebase/Firebase";
 import Relations from "./Relations";
 import ProviderDropdown from "./ProviderDropdown";
 import ArtPlayerApp from "../videoplayer/ArtPlayerApp";
+import { Buffer } from "buffer";
+import { setStreamProvider } from "../../redux/videoState-slice";
 
 interface props {
   setToggle: (toggle: boolean) => void;
@@ -49,8 +51,39 @@ export default function SheetStream({ setToggle, toggle, modalId }: props) {
     (state: RootState) => state.anime.streamEpisode
   );
 
+  const currentAnimeTitle = useSelector(
+    (state: any) => state.anime.modalData.title.romaji
+  );
+
+  const encodeBase64 = (data: string) => {
+    if (!data) return "undefined";
+    return Buffer.from(data).toString("base64");
+  };
+
+  const currentAnimeTitleB64 = encodeBase64(currentAnimeTitle) as string;
+
+  function readUserDataProvider() {
+    try {
+      onValue(
+        ref(db, `users/${uid}/savedProviders/${currentAnimeTitleB64}/provider`),
+        async (snapshot: { val: () => any }) => {
+          const data = await snapshot.val();
+          if (data !== null) {
+            dispatch(setStreamProvider(data));
+          }
+          if (data === null) {
+            dispatch(setStreamProvider("gogoanime"));
+          }
+        }
+      );
+    } catch (err) {
+      console.error(err);
+    }
+  }
+
   const getAnimeDetails = async (modalId: number) => {
     setLoading(true);
+    readUserDataProvider();
     await axios
       .get(
         `https://api.consumet.org/meta/anilist/info/${modalId}${
@@ -346,7 +379,7 @@ export default function SheetStream({ setToggle, toggle, modalId }: props) {
                     }}
                   />
                 )}
-                <Comments />
+                {/*<Comments />*/}
               </div>
             </Sheet.Content>
           </Sheet.Container>

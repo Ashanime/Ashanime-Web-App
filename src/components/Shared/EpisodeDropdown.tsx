@@ -35,18 +35,15 @@ export default function EpisodeDropdown(modalToggle: any) {
   const savedProvider = useSelector(
     (state: RootState) => state.videoState.streamProvider
   );
-  const savedEpisodes = useSelector(
-    (state: RootState) => state.videoState.savedEpisodes
-  );
-  const streamEpisodeLinkObject = useSelector(
-    (state: RootState) => state.videoState.streamEpisodeObject
-  );
-  const episodeSelectedDependency = useSelector(
-    (state: RootState) => state.anime.episodeSelected
-  );
 
   const uid = useSelector((state: any) => state.google.profileObject.uid);
+  const streamProvider = useSelector(
+    (state: any) => state.videoState.streamProvider
+  );
   const provider = useSelector((state: any) => state.anime.provider);
+  const streamEpisodeObject = useSelector(
+    (state: any) => state.videoState.streamEpisodeObject
+  );
 
   const [selected, setSelected] = useState<any>(savedEpisode);
 
@@ -57,6 +54,12 @@ export default function EpisodeDropdown(modalToggle: any) {
 
   const currentAnimeTitleB64 = encodeBase64(modalData.title.romaji) as string;
 
+  const writeUserDataEpisode = (episode: any) => {
+    set(ref(db, `users/${uid}/savedEpisodes/${currentAnimeTitleB64}`), {
+      id: episode.id,
+      number: episode.number,
+    });
+  };
   // fetch savedEpisodes from firebase
   useEffect(() => {
     dispatch(watchViewOpened(modalData));
@@ -93,38 +96,22 @@ export default function EpisodeDropdown(modalToggle: any) {
         (episode: episodes) => episode.number === savedEpisode.number
       );
       if (episode) {
-        setSelected(episode);
-        writeUserDataEpisode(episode);
+        //@ts-ignore
         dispatch(setStreamEpisode(episode));
         dispatch(setStreamEpisodeObject(episode));
-        // if (
-        //   savedProvider === "zoro" &&
-        //   episode && //check if streamEpisode.id contains a $ character anywhere in the string and if it does not, dispatch the setStreamEpisode action
-        //   !streamEpisode.id.includes("$")
-        // ) {
-        //   console.log("zoro");
-        //   dispatch(setStreamEpisode(episode));
-        //   dispatch(setStreamEpisodeObject(episode));
-        // }
-        // if (
-        //   savedProvider === "gogo" &&
-        //   episode && //check if streamEpisode.id contains a $ character anywhere in the string and if it does, dispatch the setStreamEpisode action
-        //   streamEpisode.id.includes("$")
-        // ) {
-        //   console.log("gogo");
-        //   dispatch(setStreamEpisode(episode));
-        //   dispatch(setStreamEpisodeObject(episode));
-        // }
+        setSelected(episode);
+        writeUserDataEpisode(episode);
       }
     }
   }, [
-    currentAnimeTitleB64,
-    dispatch,
+    savedProvider,
+    streamProvider,
     episodesList,
     savedEpisode.number,
+    dispatch,
     savedEpisode,
-    savedProvider,
-    uid,
+    provider,
+    streamEpisodeObject,
   ]);
 
   // send the selected episode to the video player
@@ -167,7 +154,7 @@ export default function EpisodeDropdown(modalToggle: any) {
           leaveFrom="opacity-100"
           leaveTo="opacity-0"
         >
-          <Listbox.Options className="absolute mt-1 max-h-60 w-24 overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
+          <Listbox.Options className="absolute w-28 mt-1 max-h-60 w-24 overflow-auto rounded-md bg-white py-1 text-base shadow-lg ring-1 ring-black ring-opacity-5 focus:outline-none sm:text-sm">
             <Listbox.Option
               key={0}
               value={lastEpisode?.id ? lastEpisode : "No episodes"}
@@ -185,7 +172,7 @@ export default function EpisodeDropdown(modalToggle: any) {
                 <Listbox.Option
                   key={episode.id}
                   className={({ active }) =>
-                    `relative cursor-default select-none py-2 pl-10 pr-4 ${
+                    `relative w-full cursor-default select-none py-2 flex justify-center ${
                       active ? "bg-redor text-white" : ""
                     }${
                       episode.isFiller

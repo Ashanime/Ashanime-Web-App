@@ -9,11 +9,7 @@ import thumbsDown from "../../assets/thumbs-down.svg";
 
 import PulseLoader from "react-spinners/PulseLoader";
 
-interface props {
-  handleComments?: any;
-}
-
-const Comments = (props: props) => {
+const Comments = () => {
   const [loading, setLoading] = useState(false);
   const [comments, setComments] = useState<any>([]);
 

@@ -2,7 +2,7 @@ import { Fragment } from "react";
 import { Menu, Transition } from "@headlessui/react";
 import { ChevronDownIcon } from "@heroicons/react/solid";
 import { useAppDispatch } from "../../redux/store";
-import { setStatus } from "../../redux/filter-slice";
+import { setStatusInSearch } from "../../redux/filter-slice";
 import { useSelector } from "react-redux";
 
 function classNames(...classes: string[]) {
@@ -15,7 +15,7 @@ interface props {
 
 export default function StatusDropdown(props: props) {
   const dispatch = useAppDispatch();
-  const savedStatus = useSelector((state: any) => state.filter.status);
+  const savedStatus = useSelector((state: any) => state.filter.statusInSearch);
 
   const statusList = [
     { value: "FINISHED", name: "Finished" },
@@ -32,7 +32,7 @@ export default function StatusDropdown(props: props) {
           {({ active }) => (
             <span
               onClick={() => {
-                dispatch(setStatus(status));
+                dispatch(setStatusInSearch(status));
                 props.paginate(1);
               }}
               className={classNames(

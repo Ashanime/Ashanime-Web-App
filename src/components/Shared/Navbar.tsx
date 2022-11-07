@@ -28,6 +28,7 @@ const Navbar = ({ paginate }: props) => {
     navigate("/home");
     //  Smooth scroll to top of page
     window.scrollTo({ top: 0, behavior: "smooth" });
+    dispatch(setSearchQuery(""));
   };
 
   // Handles the click highlighting of the Home button

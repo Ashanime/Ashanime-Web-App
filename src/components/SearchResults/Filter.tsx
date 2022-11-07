@@ -7,6 +7,7 @@ import {
   searchLoadingAction,
   setHasNextPage,
   setLastPage,
+  setSearchQuery,
   setSearchQueryView,
 } from "../../redux/search-slice";
 import axios from "axios";
@@ -16,7 +17,7 @@ import {
   setFormat,
   setGenres,
   setSort,
-  setStatus,
+  setStatusInSearch,
   setYear,
 } from "../../redux/filter-slice";
 import { setCurrentPage } from "../../redux/search-slice";
@@ -34,6 +35,9 @@ const Filter = () => {
   );
   const currentPage = useSelector(
     (state: RootState) => state.anime.currentPage
+  );
+  const statusInSearch = useSelector(
+    (state: RootState) => state.filter.statusInSearch
   );
 
   const { searchQueryView } = useSelector((state: RootState) => state.anime);
@@ -57,7 +61,9 @@ const Filter = () => {
           ...([...genres].length > 0 && { genres: convertedGenres }),
           ...(sort.value && { sort: sort.value }),
           ...(year && { year: year }),
-          ...(status.value && { status: status.value }),
+          ...((statusInSearch.value || status.value) && {
+            status: statusInSearch.value || status.value,
+          }),
         },
       })
       .then(async (res) => {
@@ -76,12 +82,13 @@ const Filter = () => {
 
   const handleReset = () => {
     dispatch(setSearchQueryView(""));
+    dispatch(setSearchQuery(""));
     dispatch(setFormat({ value: "", name: "" }));
     dispatch(setSort({ value: "", name: "" }));
     dispatch(setGenres([]));
     dispatch(setCurrentPage(1));
     dispatch(setYear(0));
-    dispatch(setStatus({ value: "", name: "" }));
+    dispatch(setStatusInSearch({ value: "", name: "" }));
   };
 
   return (

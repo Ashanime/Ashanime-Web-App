@@ -26,7 +26,7 @@ const SearchBar = () => {
   const currentPage = useSelector(
     (state: RootState) => state.anime.currentPage
   );
-  const { format, sort, genres, year, status } = useSelector(
+  const { format, sort, genres, year, statusInSearch } = useSelector(
     (state: RootState) => state.filter
   );
 
@@ -47,7 +47,7 @@ const SearchBar = () => {
           ...([...genres].length > 0 && { genres: convertedGenres }),
           ...(sort.value && { sort: sort.value }),
           ...(year && { year: year }),
-          ...(status.value && { status: status.value }),
+          ...(statusInSearch.value && { status: statusInSearch.value }),
         },
       })
       .then(async (res) => {
@@ -70,7 +70,7 @@ const SearchBar = () => {
       if (searchResults.length === 0 && setCurrentPage) {
         setCurrentPage(1);
       }
-      dispatch(setSearchQuery(""));
+      // dispatch(setSearchQuery(""));
       //check if address bar contains /search-results and redirect to it
       if (window.location.pathname !== "/search-results") {
         navigate("/search-results");
@@ -85,7 +85,7 @@ const SearchBar = () => {
     } else {
       dispatch(setPageLoadingAction(true));
       dispatch(searchLoadingAction(false));
-      dispatch(setSearchQuery(""));
+      // dispatch(setSearchQuery(""));
     }
   }, [currentPage, searchLoading]);
 

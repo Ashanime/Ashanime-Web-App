@@ -12,7 +12,7 @@ interface initialStateInterface {
   hasNextPage: boolean;
   lastPage: number | null;
   type: string;
-  airing: boolean;
+  recentReleases: boolean;
   bookmarks: streamModal[];
   currentPage: number;
   modalData: streamModal;
@@ -63,7 +63,7 @@ const initialState: initialStateInterface = {
   hasNextPage: false,
   lastPage: null,
   type: "",
-  airing: false,
+  recentReleases: true,
   bookmarks: [],
   currentPage: 1,
   modalData: {
@@ -110,8 +110,8 @@ export const animeSlice = createSlice({
     setType: (state, action: PayloadAction<string>) => {
       state.type = action.payload;
     },
-    setAiring: (state, action: PayloadAction<boolean>) => {
-      state.airing = action.payload;
+    setRecentReleases: (state, action: PayloadAction<boolean>) => {
+      state.recentReleases = action.payload;
     },
     setBookmarks: (state, action: PayloadAction<streamModal[]>) => {
       state.bookmarks = action.payload;
@@ -156,7 +156,7 @@ export const {
   searchLoadingAction,
   setPageLoadingAction,
   setType,
-  setAiring,
+  setRecentReleases,
   setBookmarks,
   setCurrentPage,
   setModalData,

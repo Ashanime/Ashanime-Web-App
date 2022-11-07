@@ -13,12 +13,16 @@ import { setStreamProvider, setVideoLink } from "../../redux/videoState-slice";
 import { onValue, ref, set } from "firebase/database";
 import { db } from "../../firebase/Firebase";
 import { Buffer } from "buffer";
+import { setStreamEpisode } from "../../redux/search-slice";
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(" ");
 }
 
 export default function ProviderDropdown(modalToggle: any) {
+  //click is a fake switch used to dispatch the episodeID whenever the user clicks on a provider
+  const [click, setClick] = useState(false);
+
   const dispatch = useAppDispatch();
 
   const encodeBase64 = (data: string) => {
@@ -29,12 +33,14 @@ export default function ProviderDropdown(modalToggle: any) {
   const savedProvider = useSelector(
     (state: RootState) => state.videoState.streamProvider
   );
+  const streamEpisodeObject = useSelector(
+    (state: RootState) => state.videoState.streamEpisodeObject
+  );
 
   const uid = useSelector((state: any) => state.google.profileObject.uid);
   const currentAnimeTitle = useSelector(
     (state: any) => state.anime.modalData.title.romaji
   );
-  const videoLink = useSelector((state: any) => state.videoState.videoLink);
 
   const currentAnimeTitleB64 = encodeBase64(currentAnimeTitle) as string;
   const [selected, setSelected] = useState<any>(savedProvider);
@@ -45,25 +51,6 @@ export default function ProviderDropdown(modalToggle: any) {
     });
   };
 
-  function readUserDataProvider() {
-    try {
-      onValue(
-        ref(db, `users/${uid}/savedProviders/${currentAnimeTitleB64}/provider`),
-        async (snapshot: { val: () => any }) => {
-          const data = await snapshot.val();
-          if (data !== null) {
-            dispatch(setStreamProvider(data));
-          }
-          if (data === null) {
-            dispatch(setStreamProvider("gogoanime"));
-          }
-        }
-      );
-    } catch (err) {
-      console.error(err);
-    }
-  }
-
   // fetch savedEpisodes from firebase
   useEffect(() => {
     dispatch(watchViewOpened(modalData));
@@ -71,22 +58,24 @@ export default function ProviderDropdown(modalToggle: any) {
   }, [modalToggle]);
 
   useEffect(() => {
-    readUserDataProvider();
     dispatch(fetchUserDataById(uid));
   }, []);
 
   useEffect(() => {
-    if (videoLink.length > 0) {
-      dispatch(setVideoLink(""));
-    }
-  }, [dispatch, savedProvider]);
+    dispatch(setVideoLink(""));
+  }, [savedProvider]);
+
+  useEffect(() => {
+    dispatch(setStreamEpisode(streamEpisodeObject));
+  }, [streamEpisodeObject, click, dispatch]);
 
   // send the selected episode to the video player
   const handleOnChange = (selected: string) => {
     dispatch(setStreamProvider(selected));
-    // make first letter uppercase
     setSelected(selected);
     writeUserDataProvider(selected);
+    dispatch(setStreamEpisode(streamEpisodeObject));
+    setClick(!click);
   };
 
   const providers = [
@@ -125,14 +114,14 @@ export default function ProviderDropdown(modalToggle: any) {
               leaveFrom="opacity-100"
               leaveTo="opacity-0"
             >
-              <Listbox.Options className="absolute infinite  mt-1 w-28 bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
+              <Listbox.Options className="absolute infinite mt-1 w-32 bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
                 {providers &&
                   [...providers].map((provider) => (
                     <Listbox.Option
                       key={provider.id}
                       className={({ active }) =>
                         classNames(
-                          active ? "text-white bg-indigo-600" : "text-gray-900",
+                          active ? "text-white bg-redor" : "text-gray-900",
                           "cursor-default  select-none relative py-2 pl-3 pr-9"
                         )
                       }
@@ -152,7 +141,7 @@ export default function ProviderDropdown(modalToggle: any) {
                           {selected ? (
                             <span
                               className={classNames(
-                                active ? "text-white" : "text-indigo-600",
+                                active ? "text-white" : "text-redor",
                                 "absolute inset-y-0 right-0 flex items-center pr-4"
                               )}
                             >

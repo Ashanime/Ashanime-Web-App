@@ -29,8 +29,8 @@ export const Home = () => {
   const continueWatching = useSelector(
     (state: RootState) => state.videoState.continueWatching
   );
-  const recentReleasesLength = useSelector(
-    (state: RootState) => state.anime.recentReleasesLength
+  const recentReleases = useSelector(
+    (state: RootState) => state.anime.recentReleases
   );
   const dispatch = useAppDispatch();
   const uid = useSelector((state: any) => state.google.profileObject?.uid);
@@ -89,7 +89,7 @@ export const Home = () => {
           <MobileNav paginate={(pageNumber: number) => paginate(pageNumber)} />
           <Hero />
           {window.innerWidth > 768 && <AnimeTrailersHome />}
-          <RecentReleases />
+          {recentReleases && <RecentReleases />}
           {continueWatching.length > 0 && <ContinueWatching />}
           <Popular />
           <TopAnime

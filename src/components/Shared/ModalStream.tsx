@@ -9,6 +9,7 @@ import {
 import { RootState, useAppDispatch } from "../../redux/store";
 import { useSelector } from "react-redux";
 import axios from "axios";
+import VideoPlayer from "../videoplayer/ArtPlayer";
 import EpisodeDropdown from "./EpisodeDropdown";
 import Comments from "./Comments";
 import {
@@ -21,6 +22,7 @@ import {
   setVideoLink,
   setContinueWatching,
   setStreamEpisodeObject,
+  setStreamProvider,
 } from "../../redux/videoState-slice";
 import { useNotification } from "../../hooks/useNotification";
 import { onValue, ref, set } from "firebase/database";
@@ -28,6 +30,7 @@ import { db } from "../../firebase/Firebase";
 import Relations from "../Shared/Relations";
 import ProviderDropdown from "./ProviderDropdown";
 import ArtPlayerApp from "../videoplayer/ArtPlayerApp";
+import { Buffer } from "buffer";
 
 interface props {
   setToggle: (toggle: boolean) => void;
@@ -59,10 +62,40 @@ export default function ModalStream({
   const streamEpisode = useSelector(
     (state: RootState) => state.anime.streamEpisode
   );
+  const currentAnimeTitle = useSelector(
+    (state: any) => state.anime.modalData.title.romaji
+  );
+
+  const encodeBase64 = (data: string) => {
+    if (!data) return "undefined";
+    return Buffer.from(data).toString("base64");
+  };
+
+  const currentAnimeTitleB64 = encodeBase64(currentAnimeTitle) as string;
+
+  function readUserDataProvider() {
+    try {
+      onValue(
+        ref(db, `users/${uid}/savedProviders/${currentAnimeTitleB64}/provider`),
+        async (snapshot: { val: () => any }) => {
+          const data = await snapshot.val();
+          if (data !== null) {
+            dispatch(setStreamProvider(data));
+          }
+          if (data === null) {
+            dispatch(setStreamProvider("gogoanime"));
+          }
+        }
+      );
+    } catch (err) {
+      console.error(err);
+    }
+  }
 
   const getAnimeDetails = async (modalId: number) => {
     dispatch(setVideoLink(""));
     setLoading(true);
+    readUserDataProvider();
     await axios
       .get(
         `https://api.consumet.org/meta/anilist/info/${modalId}${
@@ -171,10 +204,6 @@ export default function ModalStream({
     dispatch(setBookmarks(newBookmarks));
     localStorage.setItem("bookmarks", JSON.stringify(newBookmarks));
     writeUserData(newBookmarks);
-  };
-
-  const handleComments = (comments: any) => {
-    return comments[0].author.username;
   };
 
   const recommendations = modalData.recommendations;
@@ -379,9 +408,7 @@ export default function ModalStream({
                     }}
                   />
                 )}
-                {/*{handleComments.length > 0 && (*/}
-                {/*  <Comments handleComments={handleComments} />*/}
-                {/*)}*/}
+                {/*<Comments />*/}
               </Dialog.Panel>
             </Transition.Child>
           </div>

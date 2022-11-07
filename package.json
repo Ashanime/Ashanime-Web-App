@@ -14,7 +14,7 @@
     "@types/node": "^16.11.38",
     "@types/react": "^18.0.10",
     "@types/react-dom": "^18.0.5",
-    "artplayer": "^4.5.7",
+    "artplayer": "^4.5.8",
     "axios": "^0.27.2",
     "buffer": "^6.0.3",
     "cmdk": "^0.1.16",

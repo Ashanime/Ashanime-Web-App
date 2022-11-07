@@ -110,46 +110,58 @@ const Hero = () => {
                           </h2>
                           <div className="flex flex-col">
                             <div className="flex gap-4">
-                              <p
-                                className="text-white flex items-center justify-center outfit-light lg:text-[16px]
+                              {anime.type && (
+                                <p
+                                  className="text-white flex items-center justify-center outfit-light lg:text-[16px]
                             text-[14px]"
-                              >
-                                <img alt="TV show" src={play} className="h-4" />
-                                {anime.type}
-                              </p>
-                              <p
-                                className="ml-4 flex items-center justify-center text-white outfit-light lg:text-[16px]
+                                >
+                                  <img
+                                    alt="TV show"
+                                    src={play}
+                                    className="h-4"
+                                  />
+                                  {anime.type}
+                                </p>
+                              )}
+                              {anime.totalEpisodes && (
+                                <p
+                                  className="ml-4 flex items-center justify-center text-white outfit-light lg:text-[16px]
                             text-[14px]"
-                              >
-                                <img
-                                  alt="total episodes"
-                                  src={episodes}
-                                  className="h-4"
-                                />
-                                {anime.totalEpisodes} Episodes
-                              </p>
-                              <p
-                                className="text-white flex items-center justify-center outfit-light lg:text-[16px]
+                                >
+                                  <img
+                                    alt="total episodes"
+                                    src={episodes}
+                                    className="h-4"
+                                  />
+                                  {anime.totalEpisodes} Episodes
+                                </p>
+                              )}
+                              {anime.duration && (
+                                <p
+                                  className="text-white flex items-center justify-center outfit-light lg:text-[16px]
                             text-[14px]"
-                              >
-                                <img
-                                  alt="average episode duration"
-                                  src={time}
-                                  className="h-4"
-                                />
-                                {anime.duration} mins
-                              </p>
-                              <p
-                                className="text-white flex items-center justify-center outfit-light lg:text-[16px]
+                                >
+                                  <img
+                                    alt="average episode duration"
+                                    src={time}
+                                    className="h-4"
+                                  />
+                                  {anime.duration} mins
+                                </p>
+                              )}
+                              {anime.releaseDate && (
+                                <p
+                                  className="text-white flex items-center justify-center outfit-light lg:text-[16px]
                             text-[14px]"
-                              >
-                                <img
-                                  alt="airing date"
-                                  src={calender}
-                                  className="h-4"
-                                />
-                                {anime.releaseDate}
-                              </p>
+                                >
+                                  <img
+                                    alt="airing date"
+                                    src={calender}
+                                    className="h-4"
+                                  />
+                                  {anime.releaseDate}
+                                </p>
+                              )}
                             </div>
                           </div>
                           {/*add the anime description within the container*/}
