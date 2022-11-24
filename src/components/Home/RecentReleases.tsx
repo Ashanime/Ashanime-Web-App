@@ -26,8 +26,8 @@ export const RecentReleases = () => {
     try {
       const data = await animeApi.getRecentEpisodes();
       setAnimeBelt(data.results);
-      data && dispatch(setRecentReleases(true));
-      !data && dispatch(setRecentReleases(false));
+      data.results.length > 0 && dispatch(setRecentReleases(true));
+      data.results.length === 0 && dispatch(setRecentReleases(false));
     } catch (error: any) {
       return console.log(error.status);
     }

@@ -48,7 +48,9 @@ const ArtPlayer = (props: props) => {
         const { data } = response;
         setEpisodeObject(data);
         dispatch(setStreamEpisodeLinkObject(data));
-        dispatch(setVideoLink(data.sources[0].url));
+        dispatch(
+          setVideoLink("https://cors.proxy.consumet.org/" + data.sources[0].url)
+        );
         setLoading(false);
       })
       .catch((error) => {
@@ -96,7 +98,7 @@ const ArtPlayer = (props: props) => {
   };
 
   return (
-    <div className="relative flex justify-center items-end w-full h-full  bg-black">
+    <div className="relative flex justify-center items-end w-full lg:h-full md:h-[21rem]  bg-black">
       {loading ? (
         <div className="flex justify-center items-center w-full h-full">
           <div className="sweet-loading">

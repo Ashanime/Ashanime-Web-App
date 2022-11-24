@@ -3,7 +3,6 @@ import TopAnime from "./TopAnime";
 import Navbar from "../Shared/Navbar";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router";
-// @ts-ignore
 import MobileNav from "../Shared/MobileNav";
 import ContinueWatching from "./ContinueWatching";
 import { RecentReleases } from "./RecentReleases";
@@ -29,6 +28,7 @@ export const Home = () => {
   const continueWatching = useSelector(
     (state: RootState) => state.videoState.continueWatching
   );
+  const { searchResults } = useSelector((state: RootState) => state.anime);
   const recentReleases = useSelector(
     (state: RootState) => state.anime.recentReleases
   );
@@ -91,7 +91,7 @@ export const Home = () => {
           {window.innerWidth > 768 && <AnimeTrailersHome />}
           {recentReleases && <RecentReleases />}
           {continueWatching.length > 0 && <ContinueWatching />}
-          <Popular />
+          {searchResults && <Popular />}
           <TopAnime
             currentPage={currentPage}
             paginate={(pageNumber: number) => paginate(pageNumber)}

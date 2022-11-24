@@ -53,11 +53,18 @@ export default function Player({ option, getInstance }: any) {
           url: source.url,
           html: source.quality,
         };
-      } else
-        return {
-          url: source.url,
-          html: source.quality,
-        };
+      } else {
+        if (source.quality)
+          return {
+            url: source.url,
+            html: source.quality,
+          };
+        else
+          return {
+            url: source.url,
+            html: "Adaptive",
+          };
+      }
     });
   };
 
@@ -92,7 +99,7 @@ export default function Player({ option, getInstance }: any) {
     let subtitles: any = [];
     let sIndex = 0;
 
-    if (provider === "zoro") {
+    if (provider === "zoro" || provider === "crunchyroll") {
       subtitles.push({
         html: "Show Subs",
         icon: "",
@@ -103,23 +110,17 @@ export default function Player({ option, getInstance }: any) {
         },
       });
       for (let i = 0; i < streamEpisodeLinkObject.subtitles?.length; i++) {
-        if (streamEpisodeLinkObject.subtitles[i].lang === "English") {
+        if (
+          streamEpisodeLinkObject.subtitles[i].lang === "English" ||
+          streamEpisodeLinkObject.subtitles[i].lang === "[en-US] English"
+        ) {
           sIndex = i;
           subtitles.push({
             default: true,
             url: streamEpisodeLinkObject.subtitles[i].url,
             html: streamEpisodeLinkObject.subtitles[i].lang,
           });
-          const selectEnglish = function (item: any) {
-            if (item.html === "English") {
-              //@ts-ignore
-              art.subtitle.switch(item.url, {
-                //@ts-ignore
-                name: item.html,
-              });
-              return item.html;
-            }
-          };
+
           selectEnglish(subtitles[i]);
         } else if (streamEpisodeLinkObject.subtitles[i].lang === "Thumbnails") {
           // do nothing
@@ -411,6 +412,15 @@ export default function Player({ option, getInstance }: any) {
     //     screen.orientation.lock("landscape");
     //   }
     // });
+
+    function selectEnglish(item: any) {
+      if (item.html === "English") {
+        art.subtitle.switch(item.url, {
+          name: item.html,
+        });
+        return item.html;
+      }
+    }
 
     art.on("pause", () => {
       art.layers.title.style.display = "block";

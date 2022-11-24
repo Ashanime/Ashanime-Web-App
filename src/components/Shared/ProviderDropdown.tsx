@@ -51,10 +51,23 @@ export default function ProviderDropdown(modalToggle: any) {
     });
   };
 
+  const readUserDataProvider = () => {
+    onValue(
+      ref(db, `users/${uid}/savedProviders/${currentAnimeTitleB64}`),
+      (snapshot) => {
+        const data = snapshot.val();
+        if (data) {
+          dispatch(setStreamProvider(data.provider));
+          setSelected(data.provider);
+        }
+      }
+    );
+  };
+
   // fetch savedEpisodes from firebase
   useEffect(() => {
     dispatch(watchViewOpened(modalData));
-    setSelected(savedProvider);
+    readUserDataProvider();
   }, [modalToggle]);
 
   useEffect(() => {
@@ -80,10 +93,12 @@ export default function ProviderDropdown(modalToggle: any) {
 
   const providers = [
     { name: "Gogoanime", id: "gogoanime" },
-    { name: "Zoro", id: "zoro" },
-    // { name: "Anime Fox", id: "animefox" },
+    // { name: "Zoro", id: "zoro" },
+    { name: "Anime Fox", id: "animefox" },
     // { name: "Enime", id: "enime" },
     // { name: "AniMixPlay", id: "animixplay" },
+    { name: "Crunchyroll", id: "crunchyroll" },
+    // { name: "Animepahe", id: "animepahe" },
   ];
 
   return (

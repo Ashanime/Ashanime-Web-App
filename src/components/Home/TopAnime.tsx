@@ -96,11 +96,13 @@ const TopAnime = ({ currentPage, paginate }: props) => {
   return (
     <div className="lg:mt-8 mt-4" id="top-anime">
       <div className="flex justify-between">
-        <h2 className="outfit-light 2xl:ml-8 lg:ml-3 text-orange-300 text-[32px] mb-4 z-10">
-          {handleTitle()}
-        </h2>
+        {searchResults && (
+          <h2 className="outfit-light 2xl:ml-8 lg:ml-3 text-orange-300 text-[32px] mb-4 z-10">
+            {handleTitle()}
+          </h2>
+        )}
         <div className="flex items-center mb-4">
-          {format.name !== "Movie" && (
+          {format.name !== "Movie" && searchResults && (
             <ToggleAiring
               paginate={(pageNumber: number) => paginate(pageNumber)}
             />
@@ -137,7 +139,7 @@ const TopAnime = ({ currentPage, paginate }: props) => {
           toggle={sheet}
           setModalId={setModalId}
         />
-        {searchResults.length >= 25 && (
+        {searchResults?.length >= 25 && (
           <div className="mb-10 mt-5">
             <Pagination paginate={paginate} currentPage={currentPage} />
           </div>
