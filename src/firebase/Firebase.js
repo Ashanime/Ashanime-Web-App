@@ -7,7 +7,19 @@ import {
   signInAnonymously,
 } from "firebase/auth";
 import { setUser } from "../redux/google-slice";
-import { firebaseConfig } from "./firebaseConfig";
+// import { firebaseConfig } from "./firebaseConfig";
+
+//replace with own config
+export const firebaseConfig = {
+apiKey: "sjhHDJsh82hJHdh3jHJDHJQk4398",
+authDomain: "yourdomain.firebaseapp.com",
+databaseURL: "https://jgjfhg453EHQHT.asia-east1.firebasedatabase.app",
+projectId: "your project id",
+storageBucket: "projectid.appspot.com",
+messagingSenderId: "333747474747477",
+appId: "yourappid",
+measurementId: "R-FKJHSJW",
+};
 
 const envValue = process.env.REACT_APP_FIREBASE_CONFIG;
 
