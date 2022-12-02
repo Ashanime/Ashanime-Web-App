@@ -112,6 +112,17 @@ export const firebaseConfig = {
 };
 ```
 
+### Firebase rules configuration
+
+To secure your firebase app and allow it to correctly work with Ashanime, please access your realtime database rules:
+
+<img width="602" alt="image" src="https://user-images.githubusercontent.com/96653465/205239377-ec33c27c-e629-474c-ac9c-27fd9ca30c7f.png">
+
+Then, insert the following code into your rules:
+
+<img width="702" alt="image" src="https://user-images.githubusercontent.com/96653465/205239495-428c7bd3-631f-4a40-9992-b24433d170dd.png">
+
+
 You need to have `nodejs` and `git` installed on your pc for the upcoming steps.
 
 First download the repository using
