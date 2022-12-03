@@ -15,7 +15,7 @@
      <a href="https://github.com/Ashanime/Ashanime-App">
       <img src="https://img.shields.io/github/forks/Ashanime/Ashanime-Web-App" alt="Github Forks">
   </a>
-    <a href="https://discord.gg/zT22GZya">
+    <a href="https://discord.gg/G8W8wwEWfj">
       <img src="https://img.shields.io/discord/1013555216425173053?color=7289da&label=discord&logo=Discord&logoColor=7289da&style=flat" alt="Discord">
   </a>
 </p>
