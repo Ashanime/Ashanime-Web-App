@@ -91,96 +91,12 @@ Here at Ashanime, we use firebase to sync your information to the cloud. Log in 
 
 Tired of repeatedly opening the browser and searching for Ashanime every single time you feel like Bing Chilling? No worries fam. Be it on Android, iOS, MacOS, or PC, simply download the PWA from your chrome browser and install Ashanime right on your device! You'll receieve updates automatically whenever you open your app.
 
-## Local Deployment
-
-### Firebase Installation
-
-To use Ashanime with firebase, create a firebaseConfig.js file in Ashanime-Web-App/src/firebase and insert your firebase config details therein.
-Be sure to create an export const with the name "firebaseConfig".
-See example below:
-
-```ts
-export const firebaseConfig = {
-	apiKey: "your api key",
-	authDomain: "yourdomain.firebaseapp.com",
-	databaseURL: "your database url",
-	projectId: "your project id",
-	storageBucket: "projectid.appspot.com",
-	messagingSenderId: "333747474747477",
-	appId: "your app id",
-	measurementId: "R-FKJHSJW",
-};
-```
-
-### Firebase rules configuration
-
-To secure your firebase app and allow it to correctly work with Ashanime, please access your realtime database rules:
-
-<img width="602" alt="image" src="https://user-images.githubusercontent.com/96653465/205239377-ec33c27c-e629-474c-ac9c-27fd9ca30c7f.png">
-
-Then, insert the following code into your rules:
-
-```
-{
-"rules": {
-"users": {
-"$userId": {
-// grants write access to the owner of this user account
-// whose uid must exactly match the key ($userId)
-".write": "$userId === auth.uid",
-".read" : "$userId === auth.uid"
-}
-}
-}
-}
-```
-Like seen here:
-
-<img width="702" alt="image" src="https://user-images.githubusercontent.com/96653465/205239495-428c7bd3-631f-4a40-9992-b24433d170dd.png">
 
 
-You need to have `nodejs` and `git` installed on your pc for the upcoming steps.
+## Installation
+For Information on how to install refer to our Wiki:
+[#Installation](https://github.com/Ashanime/Ashanime-Web-App/wiki/Installation)
 
-First download the repository using
-
-```
-git clone https://github.com/Ashanime/Ashanime-Web-App
-```
-
-This should download this repository to your computer. Next, to download the dependencies run
-
-```
-npm install
-```
-
-Now start the production build of the site using
-
-```
-npm start
-```
-
-This will start the app on http://localhost:3000
-
-## Aknowledgements
-
- <a href="https://github.com/consumet/consumet.ts/">
-    <img src="https://img.shields.io/badge/consumet/consumet.ts-333.svg?style=flat-square">
-  </a>
-  
-This app would not have been possible without the kind and rapid support of the experts over at [Consumet](https://github.com/consumet).
-Ashanime was built using the Consumet API to supply 95% of the data.
-
-## Ecosystem
-
--   [Discord Server](https://discord.gg/zT22GZya) - Join our discord server and chat with the developers.
-
-## Support
-
-You can contact the developers of Ashanime via [email](mailto:help.ashanime@gmail.com), or [join the discord server](https://discord.gg/zT22GZya) (Recommended).
-
-<a href="https://discord.gg/G8W8wwEWfj">
-   <img src="https://discordapp.com/api/guilds/1013555216425173053/widget.png?style=banner2">
-</a>
 
 ## Contributors ✨
 
