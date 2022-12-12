@@ -32,7 +32,7 @@
 
   </div>
 
-## Summary
+# Summary
 
 ### Tech Utilized
 
@@ -60,8 +60,13 @@
     <img src="https://img.shields.io/github/package-json/dependency-version/Ashanime/Ashanime-Web-App/@headlessui/react?logo=headless-ui&style=flat-square">
   </a>
 </p>
-
-<h2> App Features </h2>
+  
+## Installation
+For Information on how to install refer to our Wiki:
+[#Installation](https://github.com/Ashanime/Ashanime-Web-App/wiki/Installation)
+  
+  
+<h1> App Features </h1>
 
 ### Popular, trending, and recently released Animes
 
@@ -93,21 +98,16 @@ Tired of repeatedly opening the browser and searching for Ashanime every single 
 
 
 
-## Installation
-For Information on how to install refer to our Wiki:
-[#Installation](https://github.com/Ashanime/Ashanime-Web-App/wiki/Installation)
-
-
-## Contributors ✨
+# Contributors ✨
 
 Thanks to the following people for taking this app to new heights.
 
 [![](https://avatars.githubusercontent.com/u/96653465?s=50)](https://github.com/ahmedalashhab) [![](https://avatars.githubusercontent.com/u/5903821?s=50)](https://github.com/smashah)
 
-## License
+# License
 
 Licensed under [AG](./LICENSE).
 
-## Sponsor this project
+# Sponsor this project
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/ahmedalashhab)
