@@ -3,7 +3,7 @@
 
 <p align="center">  Ashanime is an Ad free responsive web application built with the intention of providing a pleasent anime experience. <p/>
 
-<p align="center"> Don't forget to 🌟 this Repo for updates! <p/>
+<p align="center"> Don't forget to 🌟 this repo for updates! <p/>
 
 <p align="center">
   <a href="https://github.com/Ashanime/Ashanime-Web-App">
@@ -101,13 +101,13 @@ See example below:
 
 ```ts
 export const firebaseConfig = {
-	apiKey: "sjhHDJsh82hJHdh3jHJDHJQk4398",
+	apiKey: "your api key",
 	authDomain: "yourdomain.firebaseapp.com",
-	databaseURL: "https://jgjfhg453EHQHT.asia-east1.firebasedatabase.app",
+	databaseURL: "your database url",
 	projectId: "your project id",
 	storageBucket: "projectid.appspot.com",
 	messagingSenderId: "333747474747477",
-	appId: "yourappid",
+	appId: "your app id",
 	measurementId: "R-FKJHSJW",
 };
 ```
@@ -119,6 +119,22 @@ To secure your firebase app and allow it to correctly work with Ashanime, please
 <img width="602" alt="image" src="https://user-images.githubusercontent.com/96653465/205239377-ec33c27c-e629-474c-ac9c-27fd9ca30c7f.png">
 
 Then, insert the following code into your rules:
+
+```
+{
+"rules": {
+"users": {
+"$userId": {
+// grants write access to the owner of this user account
+// whose uid must exactly match the key ($userId)
+".write": "$userId === auth.uid",
+".read" : "$userId === auth.uid"
+}
+}
+}
+}
+```
+Like seen here:
 
 <img width="702" alt="image" src="https://user-images.githubusercontent.com/96653465/205239495-428c7bd3-631f-4a40-9992-b24433d170dd.png">
 
