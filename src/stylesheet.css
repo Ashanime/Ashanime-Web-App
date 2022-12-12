@@ -7,6 +7,10 @@
     --vm-slider-track-height: 10px;
 }
 
+* {
+    font-family:poppins !important;
+    }
+
 html {
     width: 100%;
 }
