@@ -20,17 +20,6 @@
   </a>
 </p>
 
-<img width="1440" alt="image" src="https://user-images.githubusercontent.com/96653465/187176391-6052d729-561b-4ee8-b967-4092d66b6a52.jpeg">
-
-<h2>Responsive to most devices </h2>
-<div class="flex" align="center"> 
-  <img width="260" alt="image" src="https://user-images.githubusercontent.com/96653465/187175226-c6f33a73-910c-4423-bbf9-4eedf9f15754.jpeg")>
-  <img width="260" alt="image" src="https://user-images.githubusercontent.com/96653465/187175668-8c83a384-78a9-45dc-9b0e-3f7e49054db9.jpeg">
-  <img width="260" alt="image" src="https://user-images.githubusercontent.com/96653465/187175995-a9dcfa81-ade4-4e8d-accb-33f920aa3cae.jpeg">
-  
-
-
-  </div>
 
 # Summary
 
@@ -61,9 +50,27 @@
   </a>
 </p>
   
-## Installation
+### Installation
 For Information on how to install refer to our Wiki:
 [#Installation](https://github.com/Ashanime/Ashanime-Web-App/wiki/Installation)
+
+
+
+<br />
+
+
+<h1>Responsive to most devices </h1>
+<img width="1440" alt="image" src="https://user-images.githubusercontent.com/96653465/187176391-6052d729-561b-4ee8-b967-4092d66b6a52.jpeg">
+
+
+<div class="flex" align="center"> 
+  <img width="260" alt="image" src="https://user-images.githubusercontent.com/96653465/187175226-c6f33a73-910c-4423-bbf9-4eedf9f15754.jpeg")>
+  <img width="260" alt="image" src="https://user-images.githubusercontent.com/96653465/187175668-8c83a384-78a9-45dc-9b0e-3f7e49054db9.jpeg">
+  <img width="260" alt="image" src="https://user-images.githubusercontent.com/96653465/187175995-a9dcfa81-ade4-4e8d-accb-33f920aa3cae.jpeg">
+  
+</div>
+
+
   
   
 <h1> App Features </h1>
