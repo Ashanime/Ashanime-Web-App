@@ -27,7 +27,7 @@
   <img width="313" alt="image" src="https://user-images.githubusercontent.com/96653465/187175226-c6f33a73-910c-4423-bbf9-4eedf9f15754.jpeg")>
   <img width="313" alt="image" src="https://user-images.githubusercontent.com/96653465/187175668-8c83a384-78a9-45dc-9b0e-3f7e49054db9.jpeg">
   <img width="313" alt="image" src="https://user-images.githubusercontent.com/96653465/187175995-a9dcfa81-ade4-4e8d-accb-33f920aa3cae.jpeg">
-  <img width="313" alt="image" src="https://user-images.githubusercontent.com/96653465/187183534-4c304a66-dd26-4878-99f8-9965f02d98c1.jpeg">
+  
 
 
   </div>
@@ -102,7 +102,7 @@ Tired of repeatedly opening the browser and searching for Ashanime every single 
 
 Thanks to the following people for taking this app to new heights.
 
-[![](https://avatars.githubusercontent.com/u/96653465?s=50)](https://github.com/ahmedalashhab) [![](https://avatars.githubusercontent.com/u/5903821?s=50)](https://github.com/smashah)
+[![](https://avatars.githubusercontent.com/u/96653465?s=50)](https://github.com/ahmedalashhab) [![](https://avatars.githubusercontent.com/u/5903821?s=50)](https://github.com/smashah) [![](https://avatars.githubusercontent.com/u/46091052?s=50)](https://github.com/k3noxofficial)
 
 # License
 
