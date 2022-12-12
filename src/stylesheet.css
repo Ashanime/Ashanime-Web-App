@@ -647,41 +647,107 @@ vm-player {
 }
 
 
-/*    Forced Styles do not disturb     */
 
-#root > div > div > section > div::before {
+            /*    Forced Styles do not disturb     */
 
-content: " ";
-position: absolute;
-left: 0;
-top: 0;
-width: 100%;
-height: 100vh;
-/* forced before css panel to apply blur to background   */
-backdrop-filter: blur(12px);
-isolation: isolate;
-z-index: 0;
-}
-
-
-/*      background of login main panel   */
-.bg-whole-page {
---tw-bg-opacity: 0.6;
-background-color: rgb(16 20 30/var(--tw-bg-opacity));
-backdrop-filter: blur(32px);
-}
-
-
-
-
-/*    Logo of login page     */
-
-@media (min-width: 1024px)
-.lg\:h-16 {
-height: 2.8rem;
-}
-
-
-
-
-
+            #root > div {
+                overflow:hidden;
+                /*    Fix Body Overflow   */
+            
+            }
+            
+            
+            #root > div > div > section > div::before {
+            
+                content: " ";
+                position: absolute;
+                left: 0;
+                top: 0;
+                width: 100%;
+                height: 100vh;
+                /* forced before css panel to apply blur to background   */
+                backdrop-filter: blur(12px);
+                isolation: isolate;
+                z-index: 0;
+            }
+            
+            
+            /*      background of login main panel   */
+            .bg-whole-page {
+                --tw-bg-opacity: 0.6;
+                background-color: rgb(16 20 30/var(--tw-bg-opacity));
+                backdrop-filter: blur(32px);
+            }
+            
+            
+            
+            
+            /*    Logo of login page     */
+            
+            @media (min-width: 1024px) {
+            .lg\:h-16 {
+                height: 2.9rem !important;
+            }
+            }
+            
+            
+            .mt-6 {
+                margin-top: 2rem;
+            }
+            
+            
+            #root > div > div > section > div > div > div.w-full.px-6.mb-2 > div.w-full.mt-4 > button:nth-child(1) {
+                display:none;
+            
+            }
+            
+            
+            #root > div > div > section > div > div > div.w-full.px-6.mb-2 > div.flex.justify-center.items-center {
+                margin-bottom: 3.3vh;
+            }
+            
+            
+            
+            @media (orientation: portrait) {
+            
+            #root>div>div>section>div:before {
+                -webkit-backdrop-filter: blur(32px);
+                backdrop-filter: blur(32px);
+                content: " ";
+                height: 100vh;
+                isolation: isolate;
+                left: 0;
+                position: absolute;
+                top: 0;
+                width: 100%;
+                z-index: 0;
+                background: #10141ebf;
+            }
+            
+                .bg-whole-page {
+            
+                -webkit-backdrop-filter: blur(0px);
+                backdrop-filter: blur(0px);
+                background-color: #ff000000;
+            }
+            
+            #root > div > div > section > div > div > h2 {
+                display:none;
+                }
+            
+                        }
+            
+            
+            
+            #root > div > div > section > div > div > div.w-full.px-6.mb-2 > div.relative > div.absolute.inset-0.flex.items-center {
+             opacity:0.1;   
+            }
+            
+            
+            
+            
+            #headlessui-dialog-\:rs\: > div.fixed.modal-stream.inset-0.overflow-y-auto {
+                background: #00000057;
+                backdrop-filter: blur(24px);
+            }
+            
