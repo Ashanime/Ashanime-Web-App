@@ -7,6 +7,10 @@
     --vm-slider-track-height: 10px;
 }
 
+* {
+    font-family:poppins !important;
+    }
+
 html {
     width: 100%;
 }
@@ -472,7 +476,7 @@ vm-player {
     }
 
     .continue-height {
-        height: 22rem;
+        height: 24rem;
     }
 
     .popular-height {
@@ -643,28 +647,37 @@ vm-player {
 }
 
 
-/*    Forced Styles do not disturb     */
+
+            
+            /*    Forced Styles do not disturb     */
+
+#root > div {
+    overflow:hidden;
+    /*    Fix Body Overflow   */
+
+}
+
 
 #root > div > div > section > div::before {
 
-content: " ";
-position: absolute;
-left: 0;
-top: 0;
-width: 100%;
-height: 100vh;
-/* forced before css panel to apply blur to background   */
-backdrop-filter: blur(12px);
-isolation: isolate;
-z-index: 0;
+    content: " ";
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100vh;
+    /* forced before css panel to apply blur to background   */
+    backdrop-filter: blur(12px);
+    isolation: isolate;
+    z-index: 0;
 }
 
 
 /*      background of login main panel   */
 .bg-whole-page {
---tw-bg-opacity: 0.6;
-background-color: rgb(16 20 30/var(--tw-bg-opacity));
-backdrop-filter: blur(32px);
+    --tw-bg-opacity: 0.8;
+    /*background-color: rgb(16 20 30/var(--tw-bg-opacity));  */
+    backdrop-filter: blur(32px);
 }
 
 
@@ -672,12 +685,10 @@ backdrop-filter: blur(32px);
 
 /*    Logo of login page     */
 
-@media (min-width: 1024px)
+@media (min-width: 1024px) {
 .lg\:h-16 {
-height: 2.8rem;
+    height: 2.9rem !important;
 }
-
-
-
+}
 
 

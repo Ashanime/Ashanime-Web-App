@@ -3,7 +3,7 @@
 
 <p align="center">  Ashanime is an Ad free responsive web application built with the intention of providing a pleasent anime experience. <p/>
 
-<p align="center"> Don't forget to 🌟 this repo for updates! <p/>
+<p align="center"> Don't forget to 🌟 this Repo for updates! <p/>
 
 <p align="center">
   <a href="https://github.com/Ashanime/Ashanime-Web-App">
@@ -20,19 +20,8 @@
   </a>
 </p>
 
-<img width="1440" alt="image" src="https://user-images.githubusercontent.com/96653465/187176391-6052d729-561b-4ee8-b967-4092d66b6a52.jpeg">
 
-<h2>Responsive to most devices </h2>
-<div class="flex" align="center"> 
-  <img width="313" alt="image" src="https://user-images.githubusercontent.com/96653465/187175226-c6f33a73-910c-4423-bbf9-4eedf9f15754.jpeg")>
-  <img width="313" alt="image" src="https://user-images.githubusercontent.com/96653465/187175668-8c83a384-78a9-45dc-9b0e-3f7e49054db9.jpeg">
-  <img width="313" alt="image" src="https://user-images.githubusercontent.com/96653465/187175995-a9dcfa81-ade4-4e8d-accb-33f920aa3cae.jpeg">
-  <img width="313" alt="image" src="https://user-images.githubusercontent.com/96653465/187183534-4c304a66-dd26-4878-99f8-9965f02d98c1.jpeg">
-
-
-  </div>
-
-## Summary
+# Summary
 
 ### Tech Utilized
 
@@ -60,8 +49,31 @@
     <img src="https://img.shields.io/github/package-json/dependency-version/Ashanime/Ashanime-Web-App/@headlessui/react?logo=headless-ui&style=flat-square">
   </a>
 </p>
+  
+### Installation
+For Information on how to install refer to our Wiki:
+[#Installation](https://github.com/Ashanime/Ashanime-Web-App/wiki/Installation)
 
-<h2> App Features </h2>
+
+
+<br />
+
+
+<h1>Responsive to most devices </h1>
+<img width="1440" alt="image" src="https://user-images.githubusercontent.com/96653465/187176391-6052d729-561b-4ee8-b967-4092d66b6a52.jpeg">
+
+
+<div class="flex" align="center"> 
+  <img width="260" alt="image" src="https://user-images.githubusercontent.com/96653465/187175226-c6f33a73-910c-4423-bbf9-4eedf9f15754.jpeg")>
+  <img width="260" alt="image" src="https://user-images.githubusercontent.com/96653465/187175668-8c83a384-78a9-45dc-9b0e-3f7e49054db9.jpeg">
+  <img width="260" alt="image" src="https://user-images.githubusercontent.com/96653465/187175995-a9dcfa81-ade4-4e8d-accb-33f920aa3cae.jpeg">
+  
+</div>
+
+
+  
+  
+<h1> App Features </h1>
 
 ### Popular, trending, and recently released Animes
 
@@ -91,91 +103,18 @@ Here at Ashanime, we use firebase to sync your information to the cloud. Log in 
 
 Tired of repeatedly opening the browser and searching for Ashanime every single time you feel like Bing Chilling? No worries fam. Be it on Android, iOS, MacOS, or PC, simply download the PWA from your chrome browser and install Ashanime right on your device! You'll receieve updates automatically whenever you open your app.
 
-## Local Deployment
-
-### Firebase Installation
-
-To use Ashanime with firebase, create a firebaseConfig.js file in Ashanime-Web-App/src/firebase and insert your firebase config details therein.
-Be sure to create an export const with the name "firebaseConfig".
-See example below:
-
-```ts
-export const firebaseConfig = {
-	apiKey: "sjhHDJsh82hJHdh3jHJDHJQk4398",
-	authDomain: "yourdomain.firebaseapp.com",
-	databaseURL: "https://jgjfhg453EHQHT.asia-east1.firebasedatabase.app",
-	projectId: "your project id",
-	storageBucket: "projectid.appspot.com",
-	messagingSenderId: "333747474747477",
-	appId: "yourappid",
-	measurementId: "R-FKJHSJW",
-};
-```
-
-### Firebase rules configuration
-
-To secure your firebase app and allow it to correctly work with Ashanime, please access your realtime database rules:
-
-<img width="602" alt="image" src="https://user-images.githubusercontent.com/96653465/205239377-ec33c27c-e629-474c-ac9c-27fd9ca30c7f.png">
-
-Then, insert the following code into your rules:
-
-<img width="702" alt="image" src="https://user-images.githubusercontent.com/96653465/205239495-428c7bd3-631f-4a40-9992-b24433d170dd.png">
 
 
-You need to have `nodejs` and `git` installed on your pc for the upcoming steps.
-
-First download the repository using
-
-```
-git clone https://github.com/Ashanime/Ashanime-Web-App
-```
-
-This should download this repository to your computer. Next, to download the dependencies run
-
-```
-npm install
-```
-
-Now start the production build of the site using
-
-```
-npm start
-```
-
-This will start the app on http://localhost:3000
-
-## Aknowledgements
-
- <a href="https://github.com/consumet/consumet.ts/">
-    <img src="https://img.shields.io/badge/consumet/consumet.ts-333.svg?style=flat-square">
-  </a>
-  
-This app would not have been possible without the kind and rapid support of the experts over at [Consumet](https://github.com/consumet).
-Ashanime was built using the Consumet API to supply 95% of the data.
-
-## Ecosystem
-
--   [Discord Server](https://discord.gg/zT22GZya) - Join our discord server and chat with the developers.
-
-## Support
-
-You can contact the developers of Ashanime via [email](mailto:help.ashanime@gmail.com), or [join the discord server](https://discord.gg/zT22GZya) (Recommended).
-
-<a href="https://discord.gg/G8W8wwEWfj">
-   <img src="https://discordapp.com/api/guilds/1013555216425173053/widget.png?style=banner2">
-</a>
-
-## Contributors ✨
+# Contributors ✨
 
 Thanks to the following people for taking this app to new heights.
 
-[![](https://avatars.githubusercontent.com/u/96653465?s=50)](https://github.com/ahmedalashhab) [![](https://avatars.githubusercontent.com/u/5903821?s=50)](https://github.com/smashah)
+[![](https://avatars.githubusercontent.com/u/96653465?s=50)](https://github.com/ahmedalashhab) [![](https://avatars.githubusercontent.com/u/5903821?s=50)](https://github.com/smashah) [![](https://avatars.githubusercontent.com/u/46091052?s=50)](https://github.com/k3noxofficial)
 
-## License
+# License
 
 Licensed under [AG](./LICENSE).
 
-## Sponsor this project
+# Sponsor this project
 
 [!["Buy Me A Coffee"](https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png)](https://www.buymeacoffee.com/ahmedalashhab)
