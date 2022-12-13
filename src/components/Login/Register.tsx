@@ -296,13 +296,16 @@ const Register = () => {
                 <span className="px-2 text-white page-bg">Or</span>
               </div>
             </div>
+
+
             <div className="w-full mt-4">
+              <LoginButton content="Back to Login" />
               <button
+                type="button"
                 onClick={() => navigate("/login")}
-                type={"button"}
                 className="bg-redor w-full flex justify-center py-2 mb-4 px-4 border border-transparent rounded-md shadow-sm text-sm outfit-medium text-white hover:brightness-125 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
               >
-                Back to login
+                Back to Login
               </button>
             </div>
           </div>
