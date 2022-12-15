@@ -63,8 +63,8 @@
 <br />
 
 # Installation
-For Information on how to install refer to our Wiki:
-[#Installation](https://github.com/Ashanime/Ashanime-Web-App/wiki/Installation)
+For Information on how to install locally refer to our Wiki:
+[#local-Installation](https://github.com/Ashanime/Ashanime-Web-App/wiki/Installation)
 
 <br />
 
