@@ -66,9 +66,15 @@
 For Information on how to install refer to our Wiki:
 [#Installation](https://github.com/Ashanime/Ashanime-Web-App/wiki/Installation)
 
-Or Deploy on Vercel
+<br />
+
+### Deploy on Vercel
+You still need to go through [Firebase Installation and Firebase Configuration](https://github.com/Ashanime/Ashanime-Web-App/wiki/Installation)
 
 <a href="https://vercel.com/new/clone?repository-url=https%3A%2F%2Fgithub.com%2FAshanime%2FAshanime-Web-App&project-name=ashanime-web-app&repository-name=ashanime-web-app&redirect-url=https%3A%2F%2Fgithub.com%2FAshanime%2FAshanime-Web-App%2Fwiki&demo-title=Ashanime%20Web%20App&demo-description=An%20Ad%20free%20responsive%20web%20application%20built%20with%20the%20intention%20of%20providing%20a%20pleasent%20anime%20experience.&demo-url=https%3A%2F%2Fashanime.pro%2F&demo-image=https%3A%2F%2Fuser-images.githubusercontent.com%2F96653465%2F187176391-6052d729-561b-4ee8-b967-4092d66b6a52.jpeg"><img src="https://vercel.com/button" alt="Deploy with Vercel"/></a>
+
+
+
 
 <br />
 
