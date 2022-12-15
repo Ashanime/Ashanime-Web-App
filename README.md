@@ -5,6 +5,8 @@
 
 <p align="center"> Don't forget to 🌟 this Repo for updates! <p/>
 
+<br />
+
 <p align="center">
   <a href="https://github.com/Ashanime/Ashanime-Web-App">
       <img src="https://img.shields.io/github/stars/Ashanime/Ashanime-Web-App" alt="Github Stars">
@@ -19,11 +21,6 @@
       <img src="https://img.shields.io/discord/1013555216425173053?color=7289da&label=discord&logo=Discord&logoColor=7289da&style=flat" alt="Discord">
   </a>
 </p>
-
-
-# Summary
-
-### Tech Utilized
 
 <!-- DEPENDENCY BADGES -->
 <p align="center">
@@ -49,27 +46,41 @@
     <img src="https://img.shields.io/github/package-json/dependency-version/Ashanime/Ashanime-Web-App/@headlessui/react?logo=headless-ui&style=flat-square">
   </a>
 </p>
-  
-### Installation
-For Information on how to install refer to our Wiki:
-[#Installation](https://github.com/Ashanime/Ashanime-Web-App/wiki/Installation)
 
+
+
+
+# Table Of Content
+- [Instalation](#installation)
+- [Help Developing](#helping-develop)
+- [Picture Gallery](#screenshots)
+- [App Features](#-app-features-)
+- [Contributors](#contributors-)
+- [License](#license)
+- [Sponsor this Project](#sponsor-this-project)
 
 
 <br />
 
+# Installation
+For Information on how to install refer to our Wiki:
+[#Installation](https://github.com/Ashanime/Ashanime-Web-App/wiki/Installation)
 
-<h1>Responsive to most devices </h1>
-<img width="1440" alt="image" src="https://user-images.githubusercontent.com/96653465/187176391-6052d729-561b-4ee8-b967-4092d66b6a52.jpeg">
+<br />
 
-
-<div class="flex" align="center"> 
-  <img width="260" alt="image" src="https://user-images.githubusercontent.com/96653465/187175226-c6f33a73-910c-4423-bbf9-4eedf9f15754.jpeg")>
-  <img width="260" alt="image" src="https://user-images.githubusercontent.com/96653465/187175668-8c83a384-78a9-45dc-9b0e-3f7e49054db9.jpeg">
-  <img width="260" alt="image" src="https://user-images.githubusercontent.com/96653465/187175995-a9dcfa81-ade4-4e8d-accb-33f920aa3cae.jpeg">
+# Helping Develop
+If you want to help develop the Project, you can [Choose a Fix or Enhancement from this List](https://github.com/Ashanime/Ashanime-Web-App/issues/9#issue-1472046131) or contribute own Enhancements, [create a Fork](https://github.com/Ashanime/Ashanime-Web-App/fork) and if your done [open a Pull request](https://github.com/Ashanime/Ashanime-Web-App/pulls) to contribute.
   
-</div>
+  
 
+<br />
+
+# Screenshots
+For Screenshots refer to our Gallery:
+[#Gallery](https://github.com/Ashanime/Ashanime-Web-App/wiki/gallery)
+
+
+<br />
 
   
   
@@ -103,17 +114,29 @@ Here at Ashanime, we use firebase to sync your information to the cloud. Log in 
 
 Tired of repeatedly opening the browser and searching for Ashanime every single time you feel like Bing Chilling? No worries fam. Be it on Android, iOS, MacOS, or PC, simply download the PWA from your chrome browser and install Ashanime right on your device! You'll receieve updates automatically whenever you open your app.
 
-
+<br />
 
 # Contributors ✨
 
 Thanks to the following people for taking this app to new heights.
 
-[![](https://avatars.githubusercontent.com/u/96653465?s=50)](https://github.com/ahmedalashhab) [![](https://avatars.githubusercontent.com/u/5903821?s=50)](https://github.com/smashah) [![](https://avatars.githubusercontent.com/u/46091052?s=50)](https://github.com/k3noxofficial)
+
+
+|1ST|2ND|Mentioned|
+|---|---|---------|
+| ![ahmedalashhab](https://avatars.githubusercontent.com/u/96653465?s=100) | ![k3noxofficial](https://avatars.githubusercontent.com/u/46091052?s=100) |![smashah](https://avatars.githubusercontent.com/u/5903821?s=100) |
+| [ahmedalashhab](https://github.com/ahmedalashhab) | [k3noxofficial](https://github.com/k3noxofficial) | [smashah](https://github.com/smashah) |
+
+
+<br />
+
+
 
 # License
 
 Licensed under [AG](./LICENSE).
+
+<br />
 
 # Sponsor this project
 
