@@ -52,6 +52,7 @@
 
 # Table Of Content
 - [Instalation](#installation)
+- [Help Developing](#helping-develop)
 - [Picture Gallery](#screenshots)
 - [App Features](#-app-features-)
 - [Contributors](#contributors-)
@@ -65,7 +66,12 @@
 For Information on how to install refer to our Wiki:
 [#Installation](https://github.com/Ashanime/Ashanime-Web-App/wiki/Installation)
 
+<br />
 
+# Helping Develop
+If you want to help develop the Project, you can [Choose a Fix or Enhancement from this List](https://github.com/Ashanime/Ashanime-Web-App/issues/9#issue-1472046131) or contribute own Enhancements, [create a Fork](https://github.com/Ashanime/Ashanime-Web-App/fork) and if your done [open a Pull request](https://github.com/Ashanime/Ashanime-Web-App/pulls) to contribute.
+  
+  
 
 <br />
 
