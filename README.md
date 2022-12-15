@@ -69,7 +69,7 @@ For Information on how to install refer to our Wiki:
 <br />
 
 # Helping Develop
-If you want to help develop the Project further, you can [Choose a Fix or Enhancement](https://github.com/Ashanime/Ashanime-Web-App/issues/9#issue-1472046131) or contribute own Enhancements <br />
+If you want to help develop the Project further, you can [Choose a Fix or Enhancement](https://github.com/Ashanime/Ashanime-Web-App/issues/9#issue-1472046131) or contribute own Enhancements. <br />
 Then [create a Fork](https://github.com/Ashanime/Ashanime-Web-App/fork), Develop it and if your done [open a Pull request](https://github.com/Ashanime/Ashanime-Web-App/pulls) to contribute.
   
 ### Help Us By suggesting Enhancements
