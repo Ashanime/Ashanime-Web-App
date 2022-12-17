@@ -124,8 +124,7 @@ Thanks to the following people for taking this app to new heights.
 
 
 
-| ![ahmedalashhab](https://avatars.githubusercontent.com/u/96653465?s=100) | ![k3noxofficial](https://avatars.githubusercontent.com/u/46091052?s=100) |![smashah](https://avatars.githubusercontent.com/u/5903821?s=100) |
-| [ahmedalashhab](https://github.com/ahmedalashhab) | [k3noxofficial](https://github.com/k3noxofficial) | [smashah](https://github.com/smashah) |
+ ![ahmedalashhab](https://avatars.githubusercontent.com/u/96653465?s=100) ![k3noxofficial](https://avatars.githubusercontent.com/u/46091052?s=100) ![smashah](https://avatars.githubusercontent.com/u/5903821?s=100)
 
 
 <br />
