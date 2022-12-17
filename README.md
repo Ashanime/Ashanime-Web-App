@@ -51,7 +51,7 @@
 
 
 # Table Of Content
-- [Instalation](#installation)
+- [Installation](#installation)
 - [Help Developing](#helping-develop)
 - [Picture Gallery](#screenshots)
 - [App Features](#-app-features-)
