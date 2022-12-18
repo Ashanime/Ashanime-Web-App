@@ -81,6 +81,8 @@ For Information on how to deploy on Vercel refer to our Wiki:
 # Helping Develop
 If you want to help develop the Project further, you can [Choose a Fix or Enhancement](https://github.com/Ashanime/Ashanime-Web-App/issues/9#issue-1472046131) or contribute own Enhancements. <br />
 Then [create a Fork](https://github.com/Ashanime/Ashanime-Web-App/fork), Develop it and if your done [open a Pull request](https://github.com/Ashanime/Ashanime-Web-App/pulls) to contribute.
+<br />
+  For more Information look in our [Contribution Guidelines.](https://github.com/Ashanime/Ashanime-Web-App/blob/main/CONTRIBUTING.md)
   
 ### Help Us By suggesting Enhancements
 Even if you don't want or can't help Develop the Project you can help us out by suggesting Enhancements. <br />
