@@ -81,6 +81,8 @@ For Information on how to deploy on Vercel refer to our Wiki:
 # Helping Develop
 If you want to help develop the Project further, you can [Choose a Fix or Enhancement](https://github.com/Ashanime/Ashanime-Web-App/issues/9#issue-1472046131) or contribute own Enhancements. <br />
 Then [create a Fork](https://github.com/Ashanime/Ashanime-Web-App/fork), Develop it and if your done [open a Pull request](https://github.com/Ashanime/Ashanime-Web-App/pulls) to contribute.
+<br />
+  For more Information look in our [Contribution Guidelines.](https://github.com/Ashanime/Ashanime-Web-App/blob/main/CONTRIBUTING.md)
   
 ### Help Us By suggesting Enhancements
 Even if you don't want or can't help Develop the Project you can help us out by suggesting Enhancements. <br />
@@ -137,8 +139,14 @@ Thanks to the following people for taking this app to new heights.
 
 
 
+|1ST|2ND|Mentioned|
+|---|---|---------|
+| ![ahmedalashhab](https://avatars.githubusercontent.com/u/96653465?s=100) | ![k3noxofficial](https://avatars.githubusercontent.com/u/46091052?s=100) |![smashah](https://avatars.githubusercontent.com/u/5903821?s=100) |
+| [ahmedalashhab](https://github.com/ahmedalashhab) | [k3noxofficial](https://github.com/k3noxofficial) | [smashah](https://github.com/smashah) |
 
- ![ahmedalashhab](https://avatars.githubusercontent.com/u/96653465?s=100) ![k3noxofficial](https://avatars.githubusercontent.com/u/46091052?s=100) ![smashah](https://avatars.githubusercontent.com/u/5903821?s=100)
+
+
+
 
 
 <br />
