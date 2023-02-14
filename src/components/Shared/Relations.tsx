@@ -34,7 +34,7 @@ const Relations = ({ getAnimeDetails, setModalId, data, local }: props) => {
       dispatch(searchLoadingAction(true));
       const getSearch = async () => {
         await axios
-          .get(` https://api.consumet.org/meta/anilist/${title}`, {
+          .get(` https://ashanime-api.vercel.app/meta/anilist/${title}`, {
             params: {
               pagePage: 25,
             },
@@ -94,7 +94,7 @@ const Relations = ({ getAnimeDetails, setModalId, data, local }: props) => {
                   onClick={() =>
                     handleOnClick(relation.id, relation.title.romaji)
                   }
-                  className="outfit-light cursor-pointer hover:text-orange-300 transition-all ease-in-out text-white   text-[16px] px-2 text-left "
+                  className="outfit-light cursor-pointer hover:text-orange-300 transition-all ease-in-out text-white text-[16px] px-2 text-left "
                 >
                   {relation.title.romaji}
                 </p>

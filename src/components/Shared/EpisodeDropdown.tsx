@@ -47,22 +47,22 @@ export default function EpisodeDropdown(modalToggle: any) {
 
   const [selected, setSelected] = useState<any>(savedEpisode);
 
+  //remove mappings from modalData since it breaks firebase
+  const { mappings, ...rest } = modalData;
+  const cleanModalData = { ...rest } as any;
+
   const encodeBase64 = (data: string) => {
     if (!data) return "undefined";
     return Buffer.from(data).toString("base64");
   };
 
-  const currentAnimeTitleB64 = encodeBase64(modalData.title.romaji) as string;
+  const currentAnimeTitleB64 = encodeBase64(
+    cleanModalData.title.romaji
+  ) as string;
 
-  const writeUserDataEpisode = (episode: any) => {
-    set(ref(db, `users/${uid}/savedEpisodes/${currentAnimeTitleB64}`), {
-      id: episode.id,
-      number: episode.number,
-    });
-  };
   // fetch savedEpisodes from firebase
   useEffect(() => {
-    dispatch(watchViewOpened(modalData));
+    dispatch(watchViewOpened(cleanModalData));
     setSelected(streamEpisode);
   }, [modalToggle, streamEpisode, episodesList, selected]);
 
@@ -96,7 +96,6 @@ export default function EpisodeDropdown(modalToggle: any) {
         (episode: episodes) => episode.number === savedEpisode.number
       );
       if (episode) {
-        //@ts-ignore
         dispatch(setStreamEpisode(episode));
         dispatch(setStreamEpisodeObject(episode));
         setSelected(episode);
@@ -119,7 +118,7 @@ export default function EpisodeDropdown(modalToggle: any) {
     dispatch(
       episodeSelected({
         selectedEpisode: selected,
-        modalData,
+        cleanModalData,
         uid: uid,
       })
     );
@@ -132,7 +131,6 @@ export default function EpisodeDropdown(modalToggle: any) {
   return (
     <Listbox
       value={selected}
-      //@ts-ignore
       by={"number"}
       onChange={(selected) => handleOnChange(selected)}
     >
@@ -215,90 +213,5 @@ export default function EpisodeDropdown(modalToggle: any) {
         </Transition>
       </div>
     </Listbox>
-    // <Listbox
-    //   value={selected ? selected : streamEpisode}
-    //   onChange={(selected) => handleOnChange(selected)}
-    // >
-    //   {({ open }) => (
-    //     <div className="flex">
-    //       <div className="relative flex items-center w-full">
-    //         <Listbox.Button className="bg-white w-full border border-gray-300 rounded-md shadow-sm pl-3 pr-10 py-2 text-left cursor-default focus:outline-none focus:ring-1 focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm">
-    //           <p className="block truncate text-[12px] lg:text-[16px]">
-    //             {streamEpisode.number || "Select episode"}
-    //           </p>
-    //           <span className="absolute inset-y-0 right-0 flex items-center pr-2 pointer-events-none">
-    //             <SelectorIcon
-    //               className="h-5 w-5 text-gray-400"
-    //               aria-hidden="true"
-    //             />
-    //           </span>
-    //         </Listbox.Button>
-    //
-    //         <Transition
-    //           show={open}
-    //           as={Fragment}
-    //           leave="transition ease-in duration-100"
-    //           leaveFrom="opacity-100"
-    //           leaveTo="opacity-0"
-    //         >
-    //           <Listbox.Options className="absolute infinite  mt-1 w-28 bg-white shadow-lg max-h-60 rounded-md py-1 text-base ring-1 ring-black ring-opacity-5 overflow-auto focus:outline-none sm:text-sm">
-    //             <Listbox.Option
-    //               key={0}
-    //               value={lastEpisode?.id ? lastEpisode : "No episodes"}
-    //               className={({ active }) =>
-    //                 classNames(
-    //                   active ? "text-white bg-indigo-600" : "text-gray-900",
-    //                   "cursor-default  select-none relative py-2 pl-3 pr-9 whitespace-nowrap"
-    //                 )
-    //               }
-    //             >
-    //               {lastEpisode?.id ? "Last episode" : "No episodes"}
-    //             </Listbox.Option>
-    //             {episodesList &&
-    //               [...episodesList].map((episode: episodes) => (
-    //                 <Listbox.Option
-    //                   key={episode.number}
-    //                   className={({ active }) =>
-    //                     classNames(
-    //                       active ? "text-white bg-indigo-600" : "text-gray-900",
-    //                       "cursor-default  select-none relative py-2 pl-3 pr-9"
-    //                     )
-    //                   }
-    //                   value={episode}
-    //                 >
-    //                   {({ selected, active }) => (
-    //                     <>
-    //                       <span
-    //                         className={classNames(
-    //                           selected ? "font-semibold" : "font-normal",
-    //                           "block truncate"
-    //                         )}
-    //                       >
-    //                         {episode && episode.number}
-    //                       </span>
-    //
-    //                       {selected ? (
-    //                         <span
-    //                           className={classNames(
-    //                             active ? "text-white" : "text-indigo-600",
-    //                             "absolute inset-y-0 right-0 flex items-center pr-4"
-    //                           )}
-    //                         >
-    //                           <CheckIcon
-    //                             className="h-5 w-5"
-    //                             aria-hidden="true"
-    //                           />
-    //                         </span>
-    //                       ) : null}
-    //                     </>
-    //                   )}
-    //                 </Listbox.Option>
-    //               ))}
-    //           </Listbox.Options>
-    //         </Transition>
-    //       </div>
-    //     </div>
-    //   )}
-    // </Listbox>
   );
 }

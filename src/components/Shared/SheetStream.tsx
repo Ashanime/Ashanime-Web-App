@@ -86,7 +86,7 @@ export default function SheetStream({ setToggle, toggle, modalId }: props) {
     readUserDataProvider();
     await axios
       .get(
-        `https://api.consumet.org/meta/anilist/info/${modalId}${
+        `https://ashanime-api.vercel.app/meta/anilist/info/${modalId}${
           provider === "gogoanime" || "zoro" ? "?fetchFiller=true" : ""
         }`,
         {

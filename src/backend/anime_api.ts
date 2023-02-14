@@ -5,12 +5,13 @@ const AnimeProviders = {
   GOGO: "gogoanime",
   ZORO: "zoro",
   ENIME: "enime",
+  CRUNCHYROLL: "crunchyroll",
 };
 
 export type AnimeProvider = keyof typeof AnimeProviders;
 
 export class AnimeApi {
-  host = "https://api.consumet.org";
+  host = "https://ashanime-api.vercel.app";
   provider;
 
   constructor(provider: AnimeProvider = "GOGO") {

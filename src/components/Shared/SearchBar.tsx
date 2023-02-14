@@ -11,13 +11,16 @@ import {
 import { setSearchQuery, setSearchQueryView } from "../../redux/search-slice";
 import { RootState, useAppDispatch } from "../../redux/store";
 import { useSelector } from "react-redux";
-import { useNavigate } from "react-router";
+import { useLocation, useNavigate } from "react-router";
 import { AnimatePresence } from "framer-motion";
 import { motion } from "framer-motion";
 
 const SearchBar = () => {
   const { searchLoading, searchResults, searchQuery, searchQueryView } =
     useSelector((state: RootState) => state.anime);
+  const location = useLocation();
+  const getParams = new URLSearchParams(location.search);
+  const searchQueryTerm = getParams.get("search");
 
   const [showInput, setShowInput] = useState(true);
 
@@ -37,9 +40,9 @@ const SearchBar = () => {
   const getSearch = async () => {
     const convertedGenres = `[${genres.map((genre: any) => `"${genre}"`)}]`;
     await axios
-      .get(`https://api.consumet.org/meta/anilist/advanced-search`, {
+      .get(`https://ashanime-api.vercel.app/meta/anilist/advanced-search`, {
         params: {
-          ...(searchQuery && { query: searchQuery }),
+          ...(searchQueryTerm && { query: searchQueryTerm }),
           page: currentPage,
           perPage: isMobile ? 26 : 25,
           ...(format.value && { format: format.value }),
@@ -61,7 +64,7 @@ const SearchBar = () => {
   const handleSubmit = (e?: React.FormEvent<HTMLFormElement>) => {
     e?.preventDefault();
     // searchQueryView is used to store what the user is searching for without filling the search input bar
-    if (searchQuery !== "") {
+    if (searchQuery !== "" && searchQueryTerm !== "") {
       dispatch(setSearchQueryView(searchQuery));
       dispatch(searchLoadingAction(true));
     }
@@ -70,23 +73,30 @@ const SearchBar = () => {
       if (searchResults.length === 0 && setCurrentPage) {
         setCurrentPage(1);
       }
-      // dispatch(setSearchQuery(""));
-      //check if address bar contains /search-results and redirect to it
-      if (window.location.pathname !== "/search-results") {
-        navigate("/search-results");
+      if (
+        searchQueryTerm !== "" &&
+        searchQuery === "" &&
+        searchResults.length > 0
+      ) {
+        navigate(`/search-results/?search=${searchQueryTerm}`);
+      } else if (searchQuery) {
+        navigate(`/search-results/?search=${searchQuery}`);
       }
     });
   };
 
+  useEffect(() => {
+    if (searchQueryTerm) {
+      dispatch(setSearchQuery(searchQueryTerm));
+      dispatch(setSearchQueryView(searchQueryTerm));
+      handleSubmit();
+    }
+  }, [dispatch, searchQueryTerm]);
+
   // The search loading state is used so that the handleSubmit function does not keep rerunning infinitely.
   useEffect(() => {
-    if (searchLoading) {
-      handleSubmit();
-    } else {
-      dispatch(setPageLoadingAction(true));
-      dispatch(searchLoadingAction(false));
-      // dispatch(setSearchQuery(""));
-    }
+    dispatch(setPageLoadingAction(true));
+    dispatch(searchLoadingAction(false));
   }, [currentPage, searchLoading]);
 
   return (

@@ -39,18 +39,19 @@ const ArtPlayer = (props: props) => {
   const getEpisodeStream = async () => {
     setLoading(true);
     await axios
-      .get(`https://api.consumet.org/meta/anilist/watch/${streamEpisode.id}`, {
-        params: {
-          ...(provider && { provider }),
-        },
-      })
+      .get(
+        `https://ashanime-api.vercel.app/meta/anilist/watch/${streamEpisode.id}`,
+        {
+          params: {
+            ...(provider && { provider }),
+          },
+        }
+      )
       .then((response) => {
         const { data } = response;
         setEpisodeObject(data);
         dispatch(setStreamEpisodeLinkObject(data));
-        dispatch(
-          setVideoLink("https://cors.proxy.consumet.org/" + data.sources[0].url)
-        );
+        dispatch(setVideoLink(data.sources[0].url));
         setLoading(false);
       })
       .catch((error) => {
