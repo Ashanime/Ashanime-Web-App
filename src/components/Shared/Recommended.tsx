@@ -85,7 +85,7 @@ const Recommended = ({ getAnimeDetails, setModalId, data, local }: props) => {
       dispatch(searchLoadingAction(true));
       const getSearch = async () => {
         await axios
-          .get(` https://api.consumet.org/meta/anilist/${title}`, {
+          .get(` https://ashanime-api.vercel.app/meta/anilist/${title}`, {
             params: {
               pagePage: 25,
             },
@@ -136,9 +136,9 @@ const Recommended = ({ getAnimeDetails, setModalId, data, local }: props) => {
                     key={anime.title.romaji}
                   >
                     <img
-                      alt={`thumbnail of ${title}`}
+                      alt={`${title}`}
                       src={imageResize(anime.image)}
-                      className="skeleton h-full mr-1 inline-block lg:w-[8rem] lg:h-[12rem] xl:w-[10rem] xl:h-[15rem] 2xl:w-[13rem] 2xl:h-[19.5rem] rounded-xl hover:scale-105 hover:shadow-2xl overflow-visible transition-all duration-300 ease-in-out"
+                      className="skeleton h-full mr-1 inline-block lg:w-[8rem] lg:h-[12rem] xl:w-[10rem] xl:h-[15rem] 2xl:w-[13rem] 2xl:h-[19.5rem] rounded-xl hover:scale-105 hover:shadow-2xl transition-all duration-300 ease-in-out"
                       onClick={() =>
                         handleOnClick(anime.id, anime.title.romaji)
                       }

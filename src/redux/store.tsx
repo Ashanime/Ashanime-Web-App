@@ -73,7 +73,7 @@ export const episodeSelected = createAsyncThunk(
   async (
     {
       selectedEpisode,
-      modalData,
+      cleanModalData,
       uid,
     }: {
       selectedEpisode: {
@@ -83,7 +83,7 @@ export const episodeSelected = createAsyncThunk(
         image: string;
         description: string;
       };
-      modalData: any;
+      cleanModalData: any;
       uid: string;
     },
     thunkAPI
@@ -100,7 +100,7 @@ export const episodeSelected = createAsyncThunk(
        */
       const updatedSelectedEpisodes = {
         ...videoState.savedEpisodes,
-        [encodeBase64(modalData.title.romaji)]: selectedEpisode,
+        [encodeBase64(cleanModalData.title.romaji)]: selectedEpisode,
       };
       thunkAPI.dispatch(setSavedEpisodes(updatedSelectedEpisodes));
 
@@ -109,12 +109,12 @@ export const episodeSelected = createAsyncThunk(
       );
       //check if episode is already in continue watching
       const InContinueWatching = videoState.continueWatching.find(
-        (anime: any) => anime.title.romaji === modalData.title.romaji
+        (anime: any) => anime.title.romaji === cleanModalData.title.romaji
       );
       if (!InContinueWatching) {
         const newContinueWatching = [
           ...(videoState.continueWatching || []),
-          modalData,
+          cleanModalData,
         ];
         thunkAPI.dispatch(setContinueWatching(newContinueWatching));
         backendSyncPromises.push(

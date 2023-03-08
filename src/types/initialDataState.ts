@@ -61,6 +61,7 @@ export const streamDataState: streamModal = {
     },
   ],
   studios: [""],
+  mappings: { "": "" },
   episodes: [
     {
       id: "",

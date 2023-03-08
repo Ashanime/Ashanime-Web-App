@@ -39,6 +39,7 @@ export interface recommended {
 }
 
 export interface streamModal {
+  mappings: any;
   title: {
     romaji: string;
     english: string;

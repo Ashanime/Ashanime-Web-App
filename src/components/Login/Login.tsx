@@ -9,6 +9,7 @@ import { setUser } from "../../redux/google-slice";
 import { useNotification } from "../../hooks/useNotification";
 import { Link } from "react-router-dom";
 import { SignInAnonymously, SignInWithGoogle } from "../../firebase/Firebase";
+import ReactGA from "react-ga";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -130,7 +131,7 @@ const Login = () => {
                 <div className="w-full border-t border-gray-300" />
               </div>
               <div className="relative flex justify-center text-sm">
-                <span className="px-2 text-white">
+                <span className="px-2 text-white page-bg">
                   Or continue with
                 </span>
               </div>

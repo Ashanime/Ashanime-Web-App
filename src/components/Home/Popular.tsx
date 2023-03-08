@@ -129,7 +129,7 @@ export const Popular = () => {
                       <img
                         alt={`thumbnail of ${title}`}
                         src={imageResize(anime.image)}
-                        className="skeleton h-full standard-box-recent rounded-xl hover:scale-105 hover:shadow-2xl overflow-visible transition-all duration-300 ease-in-out"
+                        className="skeleton h-full standard-box-recent rounded-xl hover:scale-105 hover:shadow-2xl transition-all duration-300 ease-in-out"
                         onClick={() => handleClick(anime.id)}
                       />
                       <div className="flex flex-col justify-center">

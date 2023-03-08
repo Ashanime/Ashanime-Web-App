@@ -7,10 +7,6 @@
     --vm-slider-track-height: 10px;
 }
 
-* {
-    font-family:poppins !important;
-    }
-
 html {
     width: 100%;
 }
@@ -47,8 +43,8 @@ font-family: outfit-medium, sans-serif;
 
 .login-background {
     /*style background image*/
-    background-image: url("https://media.tenor.com/1Zx-xg0eTnkAAAAd/demon-slayer.gif");
-    background-size: cover;
+    background-image: url("./assets/login-background.webp");
+    background-size: auto;
     background-position: center;
     background-repeat: no-repeat;
     background-attachment: fixed;
@@ -476,7 +472,7 @@ vm-player {
     }
 
     .continue-height {
-        height: 24rem;
+        height: 22rem;
     }
 
     .popular-height {
@@ -644,51 +640,6 @@ vm-player {
 
 
 
-}
-
-
-
-            
-            /*    Forced Styles do not disturb     */
-
-#root > div {
-    overflow:hidden;
-    /*    Fix Body Overflow   */
-
-}
-
-
-#root > div > div > section > div::before {
-
-    content: " ";
-    position: absolute;
-    left: 0;
-    top: 0;
-    width: 100%;
-    height: 100vh;
-    /* forced before css panel to apply blur to background   */
-    backdrop-filter: blur(12px);
-    isolation: isolate;
-    z-index: 0;
-}
-
-
-/*      background of login main panel   */
-.bg-whole-page {
-    --tw-bg-opacity: 0.8;
-    /*background-color: rgb(16 20 30/var(--tw-bg-opacity));  */
-    backdrop-filter: blur(32px);
-}
-
-
-
-
-/*    Logo of login page     */
-
-@media (min-width: 1024px) {
-.lg\:h-16 {
-    height: 2.9rem !important;
-}
 }
 
 

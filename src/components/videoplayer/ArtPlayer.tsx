@@ -4,6 +4,9 @@ import { useSelector } from "react-redux";
 import { RootState } from "../../redux/store";
 import Hls from "hls.js";
 import useWindowResize from "../../hooks/useWindowResize";
+import { onValue, ref, set } from "firebase/database";
+import { db } from "../../firebase/Firebase";
+import { Buffer } from "buffer";
 
 export default function Player({ option, getInstance }: any) {
   const [selectedSubtitle, setSelectedSubtitle] = useState("English");
@@ -22,6 +25,18 @@ export default function Player({ option, getInstance }: any) {
   const provider = useSelector(
     (state: RootState) => state.videoState.streamProvider
   );
+  const uid = useSelector((state: any) => state.google.profileObject?.uid);
+
+  const encodeBase64 = (data: string) => {
+    if (!data) return "undefined";
+    return Buffer.from(data).toString("base64");
+  };
+
+  const currentAnimeTitle = useSelector(
+    (state: any) => state.anime.modalData.title.romaji
+  );
+
+  const currentAnimeTitleB64 = encodeBase64(currentAnimeTitle) as string;
 
   const { windowDimension } = useWindowResize();
   const { winWidth } = windowDimension;
@@ -47,7 +62,7 @@ export default function Player({ option, getInstance }: any) {
   // loop over episodeObject.sources and create an array of objects with the url and the video quality
   const handleVideoQualities = () => {
     return streamEpisodeLinkObject.sources.map((source: any) => {
-      if (source.quality === "1080p") {
+      if (source.quality === "backup") {
         return {
           default: true,
           url: source.url,
@@ -380,10 +395,26 @@ export default function Player({ option, getInstance }: any) {
     }
 
     streamEpisodeLinkObject.sources.map((source: any) => {
-      if (source.quality === "1080p") {
+      if (source.quality === "backup") {
         art.switchQuality(source.url);
       }
     });
+
+    // fetch the episode current time from firebase realtime database
+    const readEpisodeWatchTime = () => {
+      onValue(
+        ref(
+          db,
+          `users/${uid}/episodeWatchTime/${currentAnimeTitleB64}/${streamEpisodeObject.number}`
+        ),
+        (snapshot) => {
+          const data = snapshot.val();
+          if (data) {
+            art.currentTime = data.episodeCurrentTime;
+          }
+        }
+      );
+    };
 
     // make the intro skip button only appear when video starts playing from 0
     art.on("ready", async () => {
@@ -391,7 +422,7 @@ export default function Player({ option, getInstance }: any) {
       const selectEnglish = function (item: any) {
         if (item.html === "English") {
           //@ts-ignore
-          art.subtitle.switch(item.url, {
+          art.subtitle?.switch(item.url, {
             //@ts-ignore
             name: item.html,
           });
@@ -403,6 +434,29 @@ export default function Player({ option, getInstance }: any) {
           selectEnglish(subtitles[i]);
         }
       }
+      readEpisodeWatchTime();
+      console.log(art.currentTime);
+    });
+
+    const writeEpisodeWatchTime = (currentTime: number) => {
+      set(
+        ref(
+          db,
+          `users/${uid}/episodeWatchTime/${currentAnimeTitleB64}/${streamEpisodeObject.number}`
+        ),
+        {
+          episodeCurrentTime: currentTime,
+        }
+      );
+    };
+
+    art.on("pause", () => {
+      // sync to firebase the current time of the video
+      writeEpisodeWatchTime(art.currentTime);
+    });
+
+    art.on("ready", () => {
+      art.seek = 300;
     });
 
     // art.on("fullscreen", () => {

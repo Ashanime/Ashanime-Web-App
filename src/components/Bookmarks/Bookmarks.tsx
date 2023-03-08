@@ -25,6 +25,17 @@ const Bookmarks = () => {
 
   const uid = useSelector((state: any) => state.google.profileObject?.uid);
 
+  //obtain the bookmarks from the database and store them in the redux store
+  const readUserDataBookmarks = () => {
+    onValue(ref(db, `users/${uid}/bookmarks`), (snapshot) => {
+      const data = snapshot.val();
+      if (data) {
+        dispatch(setBookmarks(data));
+        localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+      }
+    });
+  };
+
   const dispatch = useAppDispatch();
 
   useEffect(() => {
@@ -32,19 +43,11 @@ const Bookmarks = () => {
     localStorage.removeItem("format");
     dispatch(animeSearch([]));
     dispatch(setSearchQueryView(""));
+    readUserDataBookmarks();
+    // read bookmarks from local storage
+    const bookmarks = JSON.parse(localStorage.getItem("bookmarks") || "[]");
+    dispatch(setBookmarks(bookmarks));
   }, []);
-
-  useEffect(() => {
-    onValue(
-      ref(db, `users/${uid}/bookmarks`),
-      (snapshot: { val: () => any }) => {
-        const data = snapshot.val();
-        if (data !== null) {
-          dispatch(setBookmarks(data));
-        }
-      }
-    );
-  }, [dispatch, uid]);
 
   const bookmarks = useSelector((state: RootState) => state.anime.bookmarks);
 

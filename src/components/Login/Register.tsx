@@ -7,6 +7,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { setUser } from "../../redux/google-slice";
 import { useNotification } from "../../hooks/useNotification";
 import { useNavigate } from "react-router";
+import ReactGA from "react-ga";
 
 const Register = () => {
   // password and confirm password must match
@@ -284,7 +285,7 @@ const Register = () => {
                 } w-full flex justify-center py-2 mb-4 px-4 border border-transparent rounded-md shadow-sm text-sm outfit-medium text-white hover:brightness-125 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500`}
               >
                 Sign Up
-                </button>
+              </button>
             </div>
           </form>
           <div className=" w-full px-6 mb-2">

@@ -7,7 +7,11 @@ import {
   useAppDispatch,
 } from "../../redux/store";
 import AnimeGridStream from "../Shared/AnimeGridStream";
-import { setCurrentPage, setModalData } from "../../redux/search-slice";
+import {
+  setCurrentPage,
+  setModalData,
+  setSearchQueryView,
+} from "../../redux/search-slice";
 import ModalStream from "../Shared/ModalStream";
 import MobileNav from "../Shared/MobileNav";
 import SheetStream from "../Shared/SheetStream";
@@ -17,16 +21,20 @@ import {
   setFormat,
   setGenres,
   setSort,
-  setStatus,
   setStatusInSearch,
   setYear,
 } from "../../redux/filter-slice";
 import Pagination from "../Shared/Pagination";
+import { useLocation } from "react-router";
+import ReactGA from "react-ga";
 
 const SearchResults = () => {
   const [modalId, setModalId] = useState<number>(0);
   const [modal, setModal] = useState(false);
   const [sheet, setSheet] = useState(false);
+  const location = useLocation();
+  const getParams = new URLSearchParams(location.search);
+  const searchQueryTerm = getParams.get("search");
 
   const dispatch = useAppDispatch();
   const uid = useSelector((state: any) => state.google.profileObject?.uid);
@@ -38,6 +46,9 @@ const SearchResults = () => {
   );
 
   useEffect(() => {
+    if (searchQueryTerm) {
+      dispatch(setSearchQueryView(searchQueryTerm));
+    }
     dispatch(fetchUserDataById(uid));
     dispatch(setCurrentPage(1));
     localStorage.removeItem("format");
@@ -50,7 +61,7 @@ const SearchResults = () => {
       dispatch(setYear(0));
       dispatch(setStatusInSearch({ value: "", name: "" }));
     };
-  }, []);
+  }, [searchQueryTerm]);
 
   const { searchResults, searchQueryView } = useSelector(
     (state: RootState) => state.anime

@@ -9,9 +9,7 @@ import {
 import { RootState, useAppDispatch } from "../../redux/store";
 import { useSelector } from "react-redux";
 import axios from "axios";
-import VideoPlayer from "../videoplayer/ArtPlayer";
 import EpisodeDropdown from "./EpisodeDropdown";
-import Comments from "./Comments";
 import {
   streamDataState,
   streamEpisodeDatastate,
@@ -98,7 +96,7 @@ export default function ModalStream({
     readUserDataProvider();
     await axios
       .get(
-        `https://api.consumet.org/meta/anilist/info/${modalId}${
+        `https://ashanime-api.vercel.app/meta/anilist/info/${modalId}${
           provider === "gogoanime" || "zoro" ? "?fetchFiller=true" : ""
         }`,
         {
@@ -127,13 +125,6 @@ export default function ModalStream({
       getData();
     }
   }, [modalId, toggle, dub, provider]);
-
-  useEffect(() => {
-    return () => {
-      dispatch(setModalData(streamDataState));
-      dispatch(setStreamEpisode(streamEpisodeDatastate));
-    };
-  }, []);
 
   const handleOnClose = () => {
     setToggle(false);
@@ -184,17 +175,26 @@ export default function ModalStream({
     }
   }, [dispatch, uid, toggle]);
 
+  // remove mappings from modalData
+  const { mappings, ...rest } = modalData;
+
   // check if items are in bookmarks and set
   useEffect(() => {
     if (bookmarks.length > 0 && toggle) {
-      localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
+      // remove mappings from bookmarks
+      const newBookmarks = bookmarks.map((item: any) => {
+        const { mappings, ...rest } = item;
+        return rest;
+      });
+      localStorage.setItem("bookmarks", JSON.stringify(newBookmarks));
     }
   }, [bookmarks, toggle]);
 
   const addToBookmarks = () => {
-    dispatch(setBookmarks([...bookmarks, modalData]));
+    dispatch(setModalData(rest as any));
+    dispatch(setBookmarks([...bookmarks, rest as any]));
     localStorage.setItem("bookmarks", JSON.stringify(bookmarks));
-    writeUserData([...bookmarks, modalData]);
+    writeUserData([...bookmarks, rest as any]);
     notificationHandler("Added to Watchlist", "Success", true);
   };
 

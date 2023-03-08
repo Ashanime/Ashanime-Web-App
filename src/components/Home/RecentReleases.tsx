@@ -133,7 +133,7 @@ export const RecentReleases = () => {
                       <img
                         alt={`${anime.title.romaji}`}
                         src={imageResize(anime.image)}
-                        className="skeleton h-full standard-box-recent rounded-xl hover:scale-105 hover:shadow-2xl overflow-visible transition-all duration-300 ease-in-out"
+                        className="skeleton h-full standard-box-recent rounded-xl hover:scale-105 hover:shadow-2xl  transition-all duration-300 ease-in-out"
                         onClick={() => {
                           handleClick(anime.id);
                         }}

@@ -18,7 +18,7 @@ const Modal = ({ setToggle, data, toggle }: props) => {
     <Transition.Root show={toggle} as={Fragment}>
       <Dialog
         as="div"
-        className="relative z-20"
+        className="relative infinite"
         initialFocus={cancelButtonRef}
         onClose={() => setToggle(false)}
       >

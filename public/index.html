@@ -5,6 +5,7 @@
     <link rel="icon" href='../src/assets/logo-icon.png' />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
+    <meta name="apple-mobile-web-app-capable" content="yes">
     <meta
       name="Ashanime"
       content="Tons O'Anime, Tons O'Fun"
@@ -33,35 +34,24 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Poppins&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;500&display=swap" rel="stylesheet">
 
     <link rel="stylesheet" href="../src/index.css" />
     <link rel="stylesheet" href="../src/stylesheet.css" />
-
-    <!-- Default theme. ~960B -->
-    <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/@vime/core@^5/themes/default.css"
-    />
-
-    <!-- Optional light theme (extends default). ~400B -->
-    <link
-            rel="stylesheet"
-            href="https://cdn.jsdelivr.net/npm/@vime/core@^5/themes/light.css"
-    />
-
-    <!-- Library and all of its components are lazy loaded, so nothing to sweat about here. ~3kB -->
-    <script
-            type="module"
-            src="https://cdn.jsdelivr.net/npm/@vime/core@^5/dist/vime/vime.esm.js"
-    ></script>
-
-
 
 
     <title>Ashanime</title>
     <script src="https://accounts.google.com/gsi/client" async defer></script>
   </head>
+  <!-- Google tag (gtag.js) -->
+  <script async src="https://www.googletagmanager.com/gtag/js?id=G-PYK5J7STRN"></script>
+  <script>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+
+    gtag('config', 'G-PYK5J7STRN');
+  </script>
   <body class="page-bg">
   <script>
     if('serviceWorker' in navigator) {
@@ -73,7 +63,7 @@
       });
     }
   </script>
-    <noscript><h1 style="text-align:center; color:red;">You need to enable JavaScript to run this app.<h1></noscript>
+    <noscript>You need to enable JavaScript to run this app.</noscript>
     <!-- Production -->
     <div id="root"></div>
   </body>
