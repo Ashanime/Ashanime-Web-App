@@ -20,7 +20,7 @@ const Comments = () => {
   const getComments = async () => {
     setLoading(true);
     await axios
-      .get(` https://ashanime-api.vercel.app/thread/${streamId}`)
+      .get(` https://api.consumet.org/thread/${streamId}`)
       .then((response) => {
         setComments(response.data.comments);
         setLoading(false);

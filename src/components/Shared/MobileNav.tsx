@@ -133,7 +133,7 @@ export default function MobileNav({ paginate }: props) {
   const getSearch = async () => {
     const convertedGenres = `[${genres.map((genre: any) => `"${genre}"`)}]`;
     await axios
-      .get(`https://ashanime-api.vercel.app/meta/anilist/advanced-search`, {
+      .get(`https://api.consumet.org/meta/anilist/advanced-search`, {
         params: {
           ...(searchQuery && { query: searchQuery }),
           page: currentPage,

@@ -40,7 +40,7 @@ const SearchBar = () => {
   const getSearch = async () => {
     const convertedGenres = `[${genres.map((genre: any) => `"${genre}"`)}]`;
     await axios
-      .get(`https://ashanime-api.vercel.app/meta/anilist/advanced-search`, {
+      .get(`https://api.consumet.org/meta/anilist/advanced-search`, {
         params: {
           ...(searchQueryTerm && { query: searchQueryTerm }),
           page: currentPage,

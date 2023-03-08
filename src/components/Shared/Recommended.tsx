@@ -85,7 +85,7 @@ const Recommended = ({ getAnimeDetails, setModalId, data, local }: props) => {
       dispatch(searchLoadingAction(true));
       const getSearch = async () => {
         await axios
-          .get(` https://ashanime-api.vercel.app/meta/anilist/${title}`, {
+          .get(` https://api.consumet.org/meta/anilist/${title}`, {
             params: {
               pagePage: 25,
             },
