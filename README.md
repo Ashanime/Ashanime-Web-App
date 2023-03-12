@@ -15,7 +15,7 @@
      <a href="https://github.com/Ashanime/Ashanime-App">
       <img src="https://img.shields.io/github/forks/Ashanime/Ashanime-Web-App" alt="Github Forks">
   </a>
-    <a href="https://discord.gg/zT22GZya">
+    <a href="https://discord.gg/G8W8wwEWfj">
       <img src="https://img.shields.io/discord/1013555216425173053?color=7289da&label=discord&logo=Discord&logoColor=7289da&style=flat" alt="Discord">
   </a>
 </p>
@@ -145,7 +145,7 @@ Ashanime was built using the Consumet API to supply 95% of the data.
 
 ## Ecosystem
 
--   [Discord Server](https://discord.gg/zT22GZya) - Join our discord server and chat with the developers.
+-   [Discord Server](https://discord.gg/G8W8wwEWfj) - Join our discord server and chat with the developers.
 
 ## Support
 
